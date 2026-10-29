@@ -23,10 +23,8 @@
       "markdown": "posts/automated-tests-the-secret-to-peaceful-nights/post.md",
       "images": {
         "https://i.redd.it/6b4upqv6at321.jpg": "posts/automated-tests-the-secret-to-peaceful-nights/images/6b4upqv6at321.jpg",
-        "https://assets-global.website-files.com/5eb9845c0972c01cdaec8415/61b83380d5eb4d0f3ae0e849_Functionalitymeme.jpeg": "posts/automated-tests-the-secret-to-peaceful-nights/images/61b83380d5eb4d0f3ae0e849_Functionalitymeme.jpeg"
-      },
-      "missing_images": {
-        "https://www.flagship.io/wp-content/uploads/meme-test-code-in-production-live-dangerously.jpg": "HTTP Error 403: Forbidden"
+        "https://assets-global.website-files.com/5eb9845c0972c01cdaec8415/61b83380d5eb4d0f3ae0e849_Functionalitymeme.jpeg": "posts/automated-tests-the-secret-to-peaceful-nights/images/61b83380d5eb4d0f3ae0e849_Functionalitymeme.jpeg",
+        "https://www.flagship.io/wp-content/uploads/meme-test-code-in-production-live-dangerously.jpg": "posts/automated-tests-the-secret-to-peaceful-nights/images/meme-test-code-in-production-live-dangerously.png"
       },
       "html": "posts/automated-tests-the-secret-to-peaceful-nights/post.html",
       "cover": {
