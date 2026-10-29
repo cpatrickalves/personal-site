@@ -8,4 +8,4 @@ Quando o domínio sai do Hashnode, o blog volta para `*.hashnode.dev` com os 18 
 - **Manter os posts com canonical para o site novo:** exige editar os 18 posts no Hashnode.
 - **Apagar o blog inteiro sem aviso:** apaga tudo e deixa os seguidores sem saber da mudança.
 
-Origem: [revisão do TDD e do PLAN](../../.grills/revisao-tdd-plan-grill.md), Q7 e Q28.
+Origem: revisão do TDD e do PLAN de 2026-10-29, Q7 e Q28.

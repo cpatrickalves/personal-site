@@ -8,4 +8,4 @@ O site é publicado no GitHub Pages a partir do próprio repo `cpatrickalves/per
 - **Manter privado e hospedar no Netlify:** tem as mesmas trocas, mais um limite de uso mensal no plano grátis.
 - **Código privado com o Actions empurrando o HTML para um repo público:** mantém o Pages, mas exige um token pessoal guardado como segredo, e o deploy foi desenhado para usar só o token efêmero do Actions.
 
-Origem: [revisão do TDD e do PLAN](../../.grills/revisao-tdd-plan-grill.md), Q29.
+Origem: revisão do TDD e do PLAN de 2026-10-29, Q29.
