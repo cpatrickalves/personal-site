@@ -21,6 +21,8 @@ import config from "./astro-paper.config";
 
 export default defineConfig({
   site: config.site.url,
+  // Preview on GitHub Pages; removing `base` at the Virada turns the build into Produção.
+  base: "/personal-site",
   integrations: [
     mdx(),
     sitemap({

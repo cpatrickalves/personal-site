@@ -24,6 +24,8 @@ const {
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
+// With a `base`, the build is the Preview, which must stay out of search engines.
+const isPreview = import.meta.env.BASE_URL !== "/";
 const rssHref = getRelativeLocaleUrl(
   Astro.currentLocale ?? config.site.lang,
   "rss.xml"
@@ -43,6 +45,7 @@ const rssHref = getRelativeLocaleUrl(
     <link rel="icon" href={getAssetPath("favicon.ico")} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Font -->
     <Font
