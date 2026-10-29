@@ -253,7 +253,7 @@ Fatos verificados em 2026-10-29: o sitemap lista 18 posts, e o `GET <post>.md` r
 
 O snapshot fica em `archive/hashnode/` e o script em `scripts/hashnode/`; o formato está no `scripts/hashnode/README.md`. O `manifest.json` liga cada URL de imagem ao arquivo local. Uma imagem de terceiro (flagship.io, em `automated-tests-the-secret-to-peaceful-nights`) responde 403 ao script e foi salva à mão (ver o README).
 
-O snapshot também guarda as páginas `/page/about`, `/page/contact` e `/page/hire-me`, cujo texto serve de ponto de partida para a página Sobre e para o bloco da Cognicode, e as métricas do Hashnode (export ou prints).
+O snapshot também guarda as páginas `/page/about`, `/page/contact` e `/page/hire-me`, cujo texto serve de ponto de partida para a página Sobre e para o bloco da Cognicode. As métricas do Hashnode ficam fora: o histórico está no Google Analytics que o blog já usa.
 
 O importador é idempotente: lê sempre a mesma entrada, então rodar duas vezes dá o mesmo resultado.
 
@@ -311,6 +311,8 @@ Não há servidor para monitorar. A observabilidade cobre três frentes: a saúd
 | Links externos quebrados | Job semanal do link-checker | abre issue |
 | Regressão de qualidade | Lighthouse no CI | acessibilidade ou SEO abaixo de 95 bloqueia o PR; performance abaixo de 95 gera aviso |
 | Tráfego: posts mais lidos, origem, países, dispositivos | Umami Cloud (Hobby: 100 mil eventos por mês, 1 site) | revisão manual; queda brusca depois de um deploy merece investigação |
+
+**Analytics: Umami, não Google Analytics (revisto em 2026-10-29).** O blog do Hashnode já tem histórico no Google Analytics, e manter o GA4 no site novo daria uma série contínua. Mesmo assim, fica o Umami: sem cookies, não precisa de banner de consentimento (LGPD) e o script é leve para as metas de Lighthouse. O GA fica como arquivo do período do Hashnode, e a continuidade das buscas antes e depois da Virada vem do Search Console, cuja propriedade é do domínio.
 | Indexação, 404 e conteúdo duplicado | Google Search Console | erros de cobertura nas semanas após o lançamento; posts do `*.hashnode.dev` competindo com os novos |
 
 O GitHub Pages mantém no ar o último deploy bem-sucedido. Uma falha de build não derruba o site, só impede a atualização.
@@ -327,7 +329,7 @@ Todos os itens precisam estar ok antes de tirar o domínio do Hashnode:
 - [ ] Os 18 posts estão importados, com imagens locais, e o teste de datas não acha diferença.
 - [ ] Zero traduções pendentes (toda versão PT-BR com `translationReviewed: true`).
 - [ ] Simulação sem `base` feita; o link-checker passa.
-- [ ] Backup completo do Hashnode (snapshot da Fase 0, com Markdown, HTML, imagens e métricas) no repo.
+- [ ] Backup completo do Hashnode (snapshot da Fase 0, com Markdown, HTML e imagens) no repo.
 - [ ] Script do Umami presente no build de produção e ausente no preview; meta de Lighthouse (incluindo performance) batida.
 - [ ] Domínio cpatrickalves.com verificado nas configurações de Pages da conta do GitHub.
 - [ ] TTL dos registros DNS reduzido um dia antes.
