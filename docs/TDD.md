@@ -349,7 +349,7 @@ O detalhamento de tarefas e os critérios de pronto estão no [`PLAN.md`](PLAN.m
 
 | Fase | Entrega | Depende de | Portão de aprovação |
 | --- | --- | --- | --- |
-| 0. Setup | Repo público, snapshot do AstroPaper (commit da `main`, Astro 7), Node 24, CI de build, deploy do preview com `noindex`, créditos MIT, backup completo do Hashnode | — | — |
+| 0. Setup | Repo público, snapshot do AstroPaper (tag `v7.0.0`, Astro 7), Node 24, CI de build, deploy do preview com `noindex`, créditos MIT, backup completo do Hashnode | — | — |
 | 1. Design system | Tokens, 3 propostas de paleta, fontes, componentes base, animações, `/styleguide` publicado no preview | 0 | **Paleta e `/styleguide`** |
 | 2. i18n | Locales, coleções por idioma, helpers de URL, `hreflang`, sitemap, RSS, script de pendências | 1 | — |
 | 3. Layout e navegação | Header, menu mobile, busca ⌘K, tema, seletor de idioma, rodapé, 404 | 2 | — |
@@ -373,7 +373,7 @@ O detalhamento de tarefas e os critérios de pronto estão no [`PLAN.md`](PLAN.m
 | Revisão das versões PT-BR atrasa o lançamento | Médio | Média | Rascunhos do agente logo após a Importação; a revisão pode correr em paralelo com ajustes finais |
 | Rascunho de tradução mal revisado vai ao ar | Médio | Baixa | O script de pendências só conta uma versão como pronta com `translationReviewed: true` |
 | Repo público expõe rascunhos ou anotações | Baixo | Média | Nada que não possa ser público entra num commit |
-| Snapshot do AstroPaper vem de um commit sem tag (Astro 7 ainda não tem release do tema) | Médio | Baixa | Commit fixo, registrado em `THIRD_PARTY_NOTICES.md`; o CI da Fase 0 mostra se algo quebrou |
+| Snapshot do AstroPaper fica parado na `v7.0.0` enquanto o tema evolui | Baixo | Média | Origem registrada em `THIRD_PARTY_NOTICES.md`; correções do tema que valerem a pena entram à mão |
 | Links internos quebram ao remover o `base` | Médio | Média | Helpers de URL em todo link e simulação sem `base` no portão de pré-lançamento |
 | Ilhas React e Mermaid pesam no Lighthouse | Médio | Média | Hidratar só sob demanda (busca ao abrir a paleta, componentes ao entrar na tela); o mermaid só carrega em páginas com diagrama; rehype-mermaid no build como alternativa |
 | Umami só comprovado depois da Virada | Baixo | Baixa | Inspeção do HTML na Fase 6; um erro se corrige com um deploy |
@@ -384,7 +384,7 @@ O detalhamento de tarefas e os critérios de pronto estão no [`PLAN.md`](PLAN.m
 
 | # | Questão | Contexto | Responsável | Status |
 | --- | --- | --- | --- | --- |
-| 1 | Como trazer o AstroPaper para um repo que já existe? | Snapshot: os arquivos de um commit fixo da `main` entram num commit só, e a origem fica registrada em `THIRD_PARTY_NOTICES.md` | Patrick | ✅ Resolvida (2026-10-29) |
+| 1 | Como trazer o AstroPaper para um repo que já existe? | Snapshot: os arquivos da tag `v7.0.0` entram num commit só, e a origem fica registrada em `THIRD_PARTY_NOTICES.md` | Patrick | ✅ Resolvida (2026-10-29) |
 | 2 | Para qual post os projetos da série portfólio apontam? | Três dos seis slugs da série (`accelerating-claim-approval-…`, `classifying-the-floor-surface-to-help-robots-…`, `predict-the-occurrence-of-diabetes`) estão nos pares de possíveis duplicatas. A decisão sobre duplicatas define o link do card. | Patrick (Fase 7) | 🔴 Aberta |
 | 3 | O endpoint `.md` do Hashnode funciona para todos os posts? | Sim: 200 com `text/markdown` nos 18 posts, testado em 2026-10-29 | Agente | ✅ Resolvida (2026-10-29) |
 | 4 | Qual versão do Astro usar? | Astro 7 (latest 7.4.4, exige Node >= 22.23.4). O AstroPaper suporta o Astro 7 na `main`, ainda sem release. Node 24 LTS. | Patrick | ✅ Resolvida (2026-10-29) |

@@ -8,7 +8,7 @@ O novo cpatrickalves.com é um site pessoal bilíngue em Astro 7, estático, no 
 
 | Tema | Decisão |
 | --- | --- |
-| Base | Astro 7 + [AstroPaper](https://github.com/satnaing/astro-paper) (MIT), a partir de um commit fixo da `main` (a última release, v6.1.0, ainda é Astro 6), com peças do [karhdo.dev](https://github.com/Karhdo/karhdo.dev) (MIT): barra superior, busca ⌘K, modo claro/escuro, Expressive Code |
+| Base | Astro 7 + [AstroPaper](https://github.com/satnaing/astro-paper) (MIT), a partir da tag `v7.0.0` (Astro 7.4), com peças do [karhdo.dev](https://github.com/Karhdo/karhdo.dev) (MIT): barra superior, busca ⌘K, modo claro/escuro, Expressive Code |
 | Repositório | `cpatrickalves/personal-site`, que já existe; vira **público** antes da Fase 0 (o GitHub Pages no plano Free só publica repos públicos). Conteúdo em Markdown/MDX versionado |
 | Runtime | Node 24 LTS, pnpm |
 | Hospedagem | GitHub Pages via GitHub Actions, domínio cpatrickalves.com; site 100% estático |
@@ -64,7 +64,7 @@ São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeir
 **Fase 0: Setup do repositório**
 
 - Tornar o repo `cpatrickalves/personal-site` público.
-- Trazer o AstroPaper como snapshot: copiar os arquivos de um commit fixo da `main` (Astro 7) para o repo, num commit só, preservando `AGENTS.md`, `GLOSSARY.md` e `docs/`. Registrar o commit de origem em `THIRD_PARTY_NOTICES.md`.
+- Trazer o AstroPaper como snapshot: copiar os arquivos da tag `v7.0.0` (Astro 7) para o repo, num commit só, preservando `AGENTS.md`, `GLOSSARY.md` e `docs/`. Registrar o commit de origem em `THIRD_PARTY_NOTICES.md`.
 - pnpm; Node 24 LTS fixado em `.nvmrc` e em `engines` no `package.json`.
 - Remover os posts e páginas de exemplo do tema.
 - Workflow do GitHub Actions: build e checagens em todo PR e na `main`; deploy no GitHub Pages a partir da `main`, só se as checagens passarem.
@@ -222,7 +222,7 @@ Esta seção existe para que um agente no Claude Code execute o plano sem o chat
 
 **Base AstroPaper ([satnaing/astro-paper](https://github.com/satnaing/astro-paper))**
 
-- Partir de um commit fixo da `main`, que já está no Astro 7 (#664). A release v6.1.0 ainda é Astro 6.
+- Partir da tag `v7.0.0` (commit `74edd25`), a primeira release no Astro 7. Ficam de fora o `.github`, o `.vscode`, os arquivos do Docker, o `cz.yaml`, o `CHANGELOG.md`, o README e a LICENSE (creditada em `THIRD_PARTY_NOTICES.md`).
 - Posts ficam em `src/content/posts/`; o schema usa `pubDatetime`, `modDatetime`, `title`, `description`, `tags`, `ogImage`, `draft`, `featured`. Manter esses nomes e acrescentar `fake: boolean` e `translationReviewed: boolean` (opcional).
 - O i18n do tema cobre só strings de UI (`src/i18n/lang/en.ts`, `locales: ["en"]`); rotas por idioma, coleções por idioma e seletor são trabalho novo.
 - As rotas do tema usam `/posts/`; renomear para `/blog/`.
