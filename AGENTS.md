@@ -2,6 +2,13 @@
 
 Meu site pessoal com blog, projetos e palestras
 
+## Plano em andamento
+
+- `docs/PLAN.md`: roteiro de execução por fases, com critérios de pronto e pontos de aprovação.
+- `docs/TDD.md`: arquitetura, contratos, decisões, riscos e questões em aberto.
+
+Os dois são temporários: no fim da implementação, o que importar vira documentação permanente via `/docs-generator`, e eles são apagados.
+
 ## Agent skills
 
 ### Issue tracker
