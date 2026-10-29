@@ -1,0 +1,346 @@
+{
+  "source": "https://cpatrickalves.com",
+  "fetched_at": "2026-10-29T17:58:58+00:00",
+  "sitemap": "sitemap.xml",
+  "posts": [
+    {
+      "slug": "the-vibe-coding-revolution-redefining-software-development-in-2025",
+      "url": "https://cpatrickalves.com/the-vibe-coding-revolution-redefining-software-development-in-2025",
+      "markdown": "posts/the-vibe-coding-revolution-redefining-software-development-in-2025/post.md",
+      "images": {
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1742304687231/34ffbb37-259c-4ebb-87ea-fd3b49fd727a.png": "posts/the-vibe-coding-revolution-redefining-software-development-in-2025/images/34ffbb37-259c-4ebb-87ea-fd3b49fd727a.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1742305719156/46ddece7-fc1a-4d85-8d1d-612025da30e1.png": "posts/the-vibe-coding-revolution-redefining-software-development-in-2025/images/46ddece7-fc1a-4d85-8d1d-612025da30e1.png"
+      },
+      "html": "posts/the-vibe-coding-revolution-redefining-software-development-in-2025/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1742218804214/7ffd5f4b-3544-46ca-b420-7a0951261ff6.png",
+        "file": "posts/the-vibe-coding-revolution-redefining-software-development-in-2025/cover.png"
+      }
+    },
+    {
+      "slug": "automated-tests-the-secret-to-peaceful-nights",
+      "url": "https://cpatrickalves.com/automated-tests-the-secret-to-peaceful-nights",
+      "markdown": "posts/automated-tests-the-secret-to-peaceful-nights/post.md",
+      "images": {
+        "https://i.redd.it/6b4upqv6at321.jpg": "posts/automated-tests-the-secret-to-peaceful-nights/images/6b4upqv6at321.jpg",
+        "https://assets-global.website-files.com/5eb9845c0972c01cdaec8415/61b83380d5eb4d0f3ae0e849_Functionalitymeme.jpeg": "posts/automated-tests-the-secret-to-peaceful-nights/images/61b83380d5eb4d0f3ae0e849_Functionalitymeme.jpeg"
+      },
+      "missing_images": {
+        "https://www.flagship.io/wp-content/uploads/meme-test-code-in-production-live-dangerously.jpg": "HTTP Error 403: Forbidden"
+      },
+      "html": "posts/automated-tests-the-secret-to-peaceful-nights/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1683919004316/b96b108f-c49a-441d-bdf2-e8713bba13bd.png",
+        "file": "posts/automated-tests-the-secret-to-peaceful-nights/cover.png"
+      }
+    },
+    {
+      "slug": "harness-the-power-of-ai-how-chatgpt-can-boost-your-business-efficiency",
+      "url": "https://cpatrickalves.com/harness-the-power-of-ai-how-chatgpt-can-boost-your-business-efficiency",
+      "markdown": "posts/harness-the-power-of-ai-how-chatgpt-can-boost-your-business-efficiency/post.md",
+      "images": {},
+      "html": "posts/harness-the-power-of-ai-how-chatgpt-can-boost-your-business-efficiency/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1683914594616/b3625865-e193-44d7-a2d7-1992ac6404e3.png",
+        "file": "posts/harness-the-power-of-ai-how-chatgpt-can-boost-your-business-efficiency/cover.png"
+      }
+    },
+    {
+      "slug": "mlops-what-it-is-and-why-it-matters",
+      "url": "https://cpatrickalves.com/mlops-what-it-is-and-why-it-matters",
+      "markdown": "posts/mlops-what-it-is-and-why-it-matters/post.md",
+      "images": {
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1640020685778/6eAd3UyQG.png": "posts/mlops-what-it-is-and-why-it-matters/images/6eAd3UyQG.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1640276360953/BzpalBlN3.png": "posts/mlops-what-it-is-and-why-it-matters/images/BzpalBlN3.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1652822947011/IUfI_VZ62.png": "posts/mlops-what-it-is-and-why-it-matters/images/IUfI_VZ62.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1643462044712/65LatNPSy.png": "posts/mlops-what-it-is-and-why-it-matters/images/65LatNPSy.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1640803604931/-q4ABXnFV.png": "posts/mlops-what-it-is-and-why-it-matters/images/-q4ABXnFV.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1652823211005/frPNcNWsx.png": "posts/mlops-what-it-is-and-why-it-matters/images/frPNcNWsx.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1652823148079/2kPEZmMUp.png": "posts/mlops-what-it-is-and-why-it-matters/images/2kPEZmMUp.png"
+      },
+      "html": "posts/mlops-what-it-is-and-why-it-matters/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1652819645307/EuzG71_dX.png",
+        "file": "posts/mlops-what-it-is-and-why-it-matters/cover.png"
+      }
+    },
+    {
+      "slug": "basket-icon-detector",
+      "url": "https://cpatrickalves.com/basket-icon-detector",
+      "markdown": "posts/basket-icon-detector/post.md",
+      "images": {
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1649437312086/spsbl03N4.png": "posts/basket-icon-detector/images/spsbl03N4.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1649437321582/LuO9Utv7Z.png": "posts/basket-icon-detector/images/LuO9Utv7Z.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1649681006988/e7NTevt6v.png": "posts/basket-icon-detector/images/e7NTevt6v.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1649436375682/I4qdP8_Dt.png": "posts/basket-icon-detector/images/I4qdP8_Dt.png"
+      },
+      "html": "posts/basket-icon-detector/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1649437092934/q6vTjmYTO.png",
+        "file": "posts/basket-icon-detector/cover.png"
+      }
+    },
+    {
+      "slug": "real-time-face-detection",
+      "url": "https://cpatrickalves.com/real-time-face-detection",
+      "markdown": "posts/real-time-face-detection/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/82897863-b27bef00-9f2e-11ea-983e-cec5fff8bc15.jpg": "posts/real-time-face-detection/images/82897863-b27bef00-9f2e-11ea-983e-cec5fff8bc15.jpg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628343649977/iACQevF5E.png": "posts/real-time-face-detection/images/iACQevF5E.png",
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/real-time-face-detection/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/real-time-face-detection/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628534456086/nNOFQo5je.png",
+        "file": "posts/real-time-face-detection/cover.png"
+      }
+    },
+    {
+      "slug": "data-analysis-of-used-cars-on-ebay",
+      "url": "https://cpatrickalves.com/data-analysis-of-used-cars-on-ebay",
+      "markdown": "posts/data-analysis-of-used-cars-on-ebay/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/data-analysis-of-used-cars-on-ebay/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179087207/rNj-n_rjS.png": "posts/data-analysis-of-used-cars-on-ebay/images/rNj-n_rjS.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179323034/E2D5aJMNK.png": "posts/data-analysis-of-used-cars-on-ebay/images/E2D5aJMNK.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179368427/C9b98fDaA.png": "posts/data-analysis-of-used-cars-on-ebay/images/C9b98fDaA.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179400987/TikyA-DFJ.png": "posts/data-analysis-of-used-cars-on-ebay/images/TikyA-DFJ.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630180062744/IeCfFU2sN.png": "posts/data-analysis-of-used-cars-on-ebay/images/IeCfFU2sN.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179573791/jhhL0b3vc.png": "posts/data-analysis-of-used-cars-on-ebay/images/jhhL0b3vc.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179520755/dlEWQoEet.png": "posts/data-analysis-of-used-cars-on-ebay/images/dlEWQoEet.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179630768/s3S6VYqCG.png": "posts/data-analysis-of-used-cars-on-ebay/images/s3S6VYqCG.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179647907/PvWYjFxsG.png": "posts/data-analysis-of-used-cars-on-ebay/images/PvWYjFxsG.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179794832/7EYumXs0T.png": "posts/data-analysis-of-used-cars-on-ebay/images/7EYumXs0T.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630179843263/JyPqytLOv.png": "posts/data-analysis-of-used-cars-on-ebay/images/JyPqytLOv.png"
+      },
+      "html": "posts/data-analysis-of-used-cars-on-ebay/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1630180765724/t3ne_Xv3n.png",
+        "file": "posts/data-analysis-of-used-cars-on-ebay/cover.png"
+      }
+    },
+    {
+      "slug": "accelerating-claim-approval-by-an-insurance-company",
+      "url": "https://cpatrickalves.com/accelerating-claim-approval-by-an-insurance-company",
+      "markdown": "posts/accelerating-claim-approval-by-an-insurance-company/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/accelerating-claim-approval-by-an-insurance-company/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/accelerating-claim-approval-by-an-insurance-company/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1629204034103/kMwVJ3-hMg.png",
+        "file": "posts/accelerating-claim-approval-by-an-insurance-company/cover.png"
+      }
+    },
+    {
+      "slug": "accelerating-payment-clearance-process-for-an-insurance-company",
+      "url": "https://cpatrickalves.com/accelerating-payment-clearance-process-for-an-insurance-company",
+      "markdown": "posts/accelerating-payment-clearance-process-for-an-insurance-company/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629550615539/H3D3_1Pv-.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/H3D3_1Pv-.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629550685521/syVmpJsNY.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/syVmpJsNY.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629550716955/VMDXJvfrM.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/VMDXJvfrM.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629550748232/NN3ebQ2aZ.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/NN3ebQ2aZ.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629550770683/XGjyXPOOP.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/XGjyXPOOP.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629550847352/XiUXISB87T.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/XiUXISB87T.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629551053856/EnNjMOga9.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/EnNjMOga9.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629551089494/lR7xf8dGR.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/lR7xf8dGR.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629551131598/v20X8WYF7.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/v20X8WYF7.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629551181043/JiV8dJ5lN.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/JiV8dJ5lN.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629551225278/gJTEUVfqi.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/gJTEUVfqi.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1629551270484/Ljtq0IELO.png": "posts/accelerating-payment-clearance-process-for-an-insurance-company/images/Ljtq0IELO.png"
+      },
+      "html": "posts/accelerating-payment-clearance-process-for-an-insurance-company/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1629204367046/76t35ba3I.png",
+        "file": "posts/accelerating-payment-clearance-process-for-an-insurance-company/cover.png"
+      }
+    },
+    {
+      "slug": "classifying-the-floor-surface-to-help-robots-on-different-surfaces",
+      "url": "https://cpatrickalves.com/classifying-the-floor-surface-to-help-robots-on-different-surfaces",
+      "markdown": "posts/classifying-the-floor-surface-to-help-robots-on-different-surfaces/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/classifying-the-floor-surface-to-help-robots-on-different-surfaces/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/classifying-the-floor-surface-to-help-robots-on-different-surfaces/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1630768255630/smMu6I688.png",
+        "file": "posts/classifying-the-floor-surface-to-help-robots-on-different-surfaces/cover.png"
+      }
+    },
+    {
+      "slug": "classifying-the-floor-surface-to-help-a-robot",
+      "url": "https://cpatrickalves.com/classifying-the-floor-surface-to-help-a-robot",
+      "markdown": "posts/classifying-the-floor-surface-to-help-a-robot/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/classifying-the-floor-surface-to-help-a-robot/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757768983/fIYpl838L.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/fIYpl838L.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757834728/tmx0ENBSA.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/tmx0ENBSA.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757841282/1CzaNpKN6.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/1CzaNpKN6.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757880944/V-vSP0a40.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/V-vSP0a40.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757892868/V7tXPzeMW.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/V7tXPzeMW.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757905047/UXccnN1iD_.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/UXccnN1iD_.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757919057/vylUDK9b3.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/vylUDK9b3.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757930548/Alb0WPc0L.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/Alb0WPc0L.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757942678/MrxpTB2XV.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/MrxpTB2XV.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757957443/GWlis-ALb.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/GWlis-ALb.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630757974109/yMZKc6TgK.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/yMZKc6TgK.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1630759137408/fl_vTa8Qd.png": "posts/classifying-the-floor-surface-to-help-a-robot/images/fl_vTa8Qd.png"
+      },
+      "html": "posts/classifying-the-floor-surface-to-help-a-robot/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1630767729697/3e8tutuwm.png",
+        "file": "posts/classifying-the-floor-surface-to-help-a-robot/cover.png"
+      }
+    },
+    {
+      "slug": "scraping-the-dentists-data-from-findadentistadaorg",
+      "url": "https://cpatrickalves.com/scraping-the-dentists-data-from-findadentistadaorg",
+      "markdown": "posts/scraping-the-dentists-data-from-findadentistadaorg/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/scraping-the-dentists-data-from-findadentistadaorg/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/scraping-the-dentists-data-from-findadentistadaorg/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628342789232/k7x0f9amW.png",
+        "file": "posts/scraping-the-dentists-data-from-findadentistadaorg/cover.png"
+      }
+    },
+    {
+      "slug": "predict-the-occurrence-of-diabetes",
+      "url": "https://cpatrickalves.com/predict-the-occurrence-of-diabetes",
+      "markdown": "posts/predict-the-occurrence-of-diabetes/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/predict-the-occurrence-of-diabetes/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/predict-the-occurrence-of-diabetes/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628596277910/1_sKFhdUq.png",
+        "file": "posts/predict-the-occurrence-of-diabetes/cover.png"
+      }
+    },
+    {
+      "slug": "kaggle-predict-the-occurrence-of-diabetes",
+      "url": "https://cpatrickalves.com/kaggle-predict-the-occurrence-of-diabetes",
+      "markdown": "posts/kaggle-predict-the-occurrence-of-diabetes/post.md",
+      "images": {
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628594681273/utEdnFi_Ng.png": "posts/kaggle-predict-the-occurrence-of-diabetes/images/utEdnFi_Ng.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628594697160/jDIgcu3hk.png": "posts/kaggle-predict-the-occurrence-of-diabetes/images/jDIgcu3hk.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628594716223/hEPyVxt_P.png": "posts/kaggle-predict-the-occurrence-of-diabetes/images/hEPyVxt_P.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628594733879/O1UebUb-iH.png": "posts/kaggle-predict-the-occurrence-of-diabetes/images/O1UebUb-iH.png"
+      },
+      "unresolved_images": [
+        "/github.jpg"
+      ],
+      "html": "posts/kaggle-predict-the-occurrence-of-diabetes/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628595697437/meSy4bcsEb.png",
+        "file": "posts/kaggle-predict-the-occurrence-of-diabetes/cover.png"
+      }
+    },
+    {
+      "slug": "scraping-products-from-etsycom",
+      "url": "https://cpatrickalves.com/scraping-products-from-etsycom",
+      "markdown": "posts/scraping-products-from-etsycom/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/128253964-9d472e5f-5540-413c-b3a2-fe3787b71e43.png": "posts/scraping-products-from-etsycom/images/128253964-9d472e5f-5540-413c-b3a2-fe3787b71e43.png",
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/scraping-products-from-etsycom/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/scraping-products-from-etsycom/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628114734853/Mf_kLL9XW.png",
+        "file": "posts/scraping-products-from-etsycom/cover.png"
+      }
+    },
+    {
+      "slug": "scraping-products-from-ebay",
+      "url": "https://cpatrickalves.com/scraping-products-from-ebay",
+      "markdown": "posts/scraping-products-from-ebay/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/scraping-products-from-ebay/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg",
+        "https://user-images.githubusercontent.com/22003608/45721730-a6e3fc80-bb7f-11e8-8e8f-50103bf7c842.jpg": "posts/scraping-products-from-ebay/images/45721730-a6e3fc80-bb7f-11e8-8e8f-50103bf7c842.jpg"
+      },
+      "html": "posts/scraping-products-from-ebay/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628341751843/hs446Zl1L.png",
+        "file": "posts/scraping-products-from-ebay/cover.png"
+      }
+    },
+    {
+      "slug": "scraping-products-from-testmartcom",
+      "url": "https://cpatrickalves.com/scraping-products-from-testmartcom",
+      "markdown": "posts/scraping-products-from-testmartcom/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127740936-39ff0d19-3b15-44cf-937e-f7934ba9bde5.png": "posts/scraping-products-from-testmartcom/images/127740936-39ff0d19-3b15-44cf-937e-f7934ba9bde5.png",
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/scraping-products-from-testmartcom/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/scraping-products-from-testmartcom/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628115008445/9Itadp3G3.png",
+        "file": "posts/scraping-products-from-testmartcom/cover.png"
+      }
+    },
+    {
+      "slug": "scraping-and-analyzing-data-from-yelp",
+      "url": "https://cpatrickalves.com/scraping-and-analyzing-data-from-yelp",
+      "markdown": "posts/scraping-and-analyzing-data-from-yelp/post.md",
+      "images": {
+        "https://user-images.githubusercontent.com/22003608/127739346-465fbddd-b6cf-42ad-9478-ee58cb4096fb.png": "posts/scraping-and-analyzing-data-from-yelp/images/127739346-465fbddd-b6cf-42ad-9478-ee58cb4096fb.png",
+        "https://user-images.githubusercontent.com/22003608/127739343-810b5fdf-56b3-4954-8321-cd3ede6f09e0.png": "posts/scraping-and-analyzing-data-from-yelp/images/127739343-810b5fdf-56b3-4954-8321-cd3ede6f09e0.png",
+        "https://user-images.githubusercontent.com/22003608/127739345-f310c46f-3187-4940-a6e9-4e77b0e0b388.png": "posts/scraping-and-analyzing-data-from-yelp/images/127739345-f310c46f-3187-4940-a6e9-4e77b0e0b388.png",
+        "https://user-images.githubusercontent.com/22003608/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg": "posts/scraping-and-analyzing-data-from-yelp/images/127739408-c499e7b2-5a1d-4f44-a028-dc46eb8e900d.jpg"
+      },
+      "html": "posts/scraping-and-analyzing-data-from-yelp/post.html",
+      "cover": {
+        "url": "https://cdn.hashnode.com/res/hashnode/image/upload/v1628115537533/EQvXS-hhP.png",
+        "file": "posts/scraping-and-analyzing-data-from-yelp/cover.png"
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "about",
+      "url": "https://cpatrickalves.com/page/about",
+      "html": "pages/about/page.html",
+      "images": {
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627851039595/qOQ6bJRa9.png": "pages/about/images/qOQ6bJRa9.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627948744176/L2-NFCsPc.png": "pages/about/images/L2-NFCsPc.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628546153677/BEvO8g12Q.jpeg": "pages/about/images/BEvO8g12Q.jpeg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627662770809/ExJlsV9SH.jpeg": "pages/about/images/ExJlsV9SH.jpeg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1608315483637/OdFi6VLh0.jpeg": "pages/about/images/OdFi6VLh0.jpeg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627948761052/Zc10i9YGR.png": "pages/about/images/Zc10i9YGR.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628176286713/y0a_NPOBR.png": "pages/about/images/y0a_NPOBR.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628176268470/fRg_i4wDX.png": "pages/about/images/fRg_i4wDX.png"
+      }
+    },
+    {
+      "name": "contact",
+      "url": "https://cpatrickalves.com/page/contact",
+      "html": "pages/contact/page.html",
+      "images": {
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627851039595/qOQ6bJRa9.png": "pages/contact/images/qOQ6bJRa9.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627948761052/Zc10i9YGR.png": "pages/contact/images/Zc10i9YGR.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627948744176/L2-NFCsPc.png": "pages/contact/images/L2-NFCsPc.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628023001581/_YqLzBHz9.jpeg": "pages/contact/images/_YqLzBHz9.jpeg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1608315483637/OdFi6VLh0.jpeg": "pages/contact/images/OdFi6VLh0.jpeg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628176286713/y0a_NPOBR.png": "pages/contact/images/y0a_NPOBR.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628176268470/fRg_i4wDX.png": "pages/contact/images/fRg_i4wDX.png"
+      }
+    },
+    {
+      "name": "hire-me",
+      "url": "https://cpatrickalves.com/page/hire-me",
+      "html": "pages/hire-me/page.html",
+      "images": {
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627851039595/qOQ6bJRa9.png": "pages/hire-me/images/qOQ6bJRa9.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627948761052/Zc10i9YGR.png": "pages/hire-me/images/Zc10i9YGR.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1627948744176/L2-NFCsPc.png": "pages/hire-me/images/L2-NFCsPc.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1608315483637/OdFi6VLh0.jpeg": "pages/hire-me/images/OdFi6VLh0.jpeg",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628176286713/y0a_NPOBR.png": "pages/hire-me/images/y0a_NPOBR.png",
+        "https://cdn.hashnode.com/res/hashnode/image/upload/v1628176268470/fRg_i4wDX.png": "pages/hire-me/images/fRg_i4wDX.png"
+      }
+    }
+  ]
+}
