@@ -13,7 +13,7 @@ O novo cpatrickalves.com é um site pessoal bilíngue em Astro 7, estático, no 
 | Runtime | Node 24 LTS, pnpm |
 | Hospedagem | GitHub Pages via GitHub Actions, domínio cpatrickalves.com; site 100% estático |
 | Idiomas | PT-BR padrão na raiz; EN em `/en` |
-| Analytics | Umami Cloud Hobby (posts mais acessados, origem, países, dispositivos); sem contador público de views |
+| Analytics | Umami Cloud Hobby (posts mais acessados, origem, países, dispositivos); sem contador público de views. O Google Analytics do Hashnode fica como arquivo do período antigo |
 | Mermaid | astro-mermaid (blocos ```` ```mermaid ```` no Markdown, renderizados no navegador, tema claro/escuro automático) |
 | Animações | View Transitions + CSS no site; MP4/WebM para demos; SVG animado ou React + Motion em posts MDX para diagramas |
 | Design | Linguagem do [Rubric](https://www.getrubric.app/): fontes Outfit + Doto, cards, sombras, animações, estética de IA e agentes; paleta própria |
@@ -74,8 +74,8 @@ São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeir
   - o Markdown de cada post via `GET <url>.md`;
   - o HTML de cada post, com JSON-LD e meta tags;
   - as imagens do corpo e as capas;
-  - as páginas `/page/about`, `/page/contact` e `/page/hire-me`;
-  - o export ou prints das métricas do Hashnode.
+  - as páginas `/page/about`, `/page/contact` e `/page/hire-me`.
+- As métricas do Hashnode não entram no snapshot: o histórico está no Google Analytics que o blog já usa (decisão de 2026-10-29).
 - Pronto quando: `pnpm build` passa no CI, o preview abre e o snapshot tem os 18 posts com imagens.
 
 **Fase 1: Design system**
