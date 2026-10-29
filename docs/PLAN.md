@@ -59,7 +59,7 @@ PT-BR fica sem prefixo e EN em `/en`; os nomes das seções ficam em inglês nos
 
 ## Fases de implementação
 
-São oito fases em sequência: design e estrutura com dados fake primeiro (Fases 0 a 6), Importação e lançamento por último (Fases 7 e 8). Cada fase só fecha quando o critério de pronto passa no preview publicado. Cada entrega vira um GitHub Issue, agrupado num milestone por fase.
+São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeiro (Fases 0 a 6), Importação e lançamento por último (Fases 7 e 8). Cada fase só fecha quando o critério de pronto passa no preview publicado. Cada entrega vira um GitHub Issue, agrupado num milestone por fase ([milestones](https://github.com/cpatrickalves/personal-site/milestones), issues #1 a #50).
 
 **Fase 0: Setup do repositório**
 

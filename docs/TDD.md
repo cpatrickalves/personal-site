@@ -4,7 +4,7 @@
 | --- | --- |
 | Tech Lead | Patrick Alves (`cpatrickalves`) |
 | Time | Patrick Alves; agente Claude Code na execução |
-| Épico / Tickets | GitHub Issues de `cpatrickalves/personal-site`: um issue por entrega, agrupados num milestone por fase |
+| Épico / Tickets | [Milestones de `cpatrickalves/personal-site`](https://github.com/cpatrickalves/personal-site/milestones): um issue por entrega (#1 a #50), um milestone por fase |
 | Plano de execução | [`docs/PLAN.md`](PLAN.md) |
 | Design de referência | [getrubric.app](https://www.getrubric.app/) (só linguagem visual) |
 | Glossário | [`GLOSSARY.md`](../GLOSSARY.md) |
