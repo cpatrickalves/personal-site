@@ -10,6 +10,10 @@ python3 -I scripts/hashnode/hashnode_backup.py --out archive/hashnode
 
 Rode da raiz do repo. O `-I` importa porque o conteúdo baixado é dado não confiável. O snapshot é montado em `archive/hashnode.tmp` e só substitui `archive/hashnode` se tudo baixar. Imagem de site de terceiro que falha vira aviso, não erro.
 
+**Ajuste manual no snapshot.** Rodar o backup de novo refaz o snapshot do zero e desfaz este ajuste; reaplique-o depois:
+
+- `automated-tests-the-secret-to-peaceful-nights`: o meme do flagship.io responde 403 ao script. A imagem foi salva à mão em `images/meme-test-code-in-production-live-dangerously.png` (é PNG, embora a URL termine em `.jpg`) e registrada em `images` no manifest.
+
 ## Testes
 
 ```sh
