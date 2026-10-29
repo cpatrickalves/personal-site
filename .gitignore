@@ -1,1 +1,5 @@
 .grills/
+__pycache__/
+.pytest_cache/
+.venv/
+archive/hashnode.tmp/
