@@ -216,7 +216,7 @@ flowchart TD
 | Preview | `cpatrickalves.github.io/personal-site` | `noindex` | não | sim | Fases 0 a 7 |
 | Produção | `cpatrickalves.com` | indexado | sim | não | a partir da Fase 8 |
 
-O domínio aparece em um só lugar: o campo `site` da config do Astro e as Settings → Pages do repo. Não existe arquivo `CNAME`, porque o deploy por workflow do Actions o ignora.
+O domínio aparece em um só lugar: o campo `site` da config do Astro e as Settings → Pages do repo. Até a Virada, o `site` é `https://cpatrickalves.github.io/` e o `base` é `/personal-site`; na Virada, o `site` passa a ser `https://cpatrickalves.com/` e o `base` sai. Não existe arquivo `CNAME`, porque o deploy por workflow do Actions o ignora.
 
 Depois do lançamento não há mais preview publicado: o GitHub Pages tem um só site por repo. Mudanças são revisadas localmente com `pnpm build && pnpm preview`, e o merge na `main` vai direto para a produção, desde que as checagens passem.
 
