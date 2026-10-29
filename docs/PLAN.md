@@ -70,7 +70,7 @@ São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeir
 - Workflow do GitHub Actions: build e checagens em todo PR e na `main`; deploy no GitHub Pages a partir da `main`, só se as checagens passarem.
 - Preview em `cpatrickalves.github.io/personal-site` com `noindex`, até o lançamento.
 - Créditos MIT do AstroPaper e do karhdo.dev em `THIRD_PARTY_NOTICES.md`.
-- Backup do Hashnode: um script Python baixa um snapshot completo para uma pasta versionada fora do build. O snapshot inclui:
+- Backup do Hashnode: um script Python (`scripts/hashnode/`) baixa um snapshot completo para uma pasta versionada fora do build (`archive/hashnode/`). O snapshot inclui:
   - o Markdown de cada post via `GET <url>.md`;
   - o HTML de cada post, com JSON-LD e meta tags;
   - as imagens do corpo e as capas;
@@ -131,7 +131,7 @@ São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeir
 **Fase 7: Importação (última antes do lançamento)**
 
 - No início da fase, os dados fake saem do build e são apagados. As listas PT-BR mostram o estado vazio até as versões PT-BR chegarem.
-- O importador (Python) lê só do snapshot da Fase 0, nunca da rede.
+- O importador (Python, em `scripts/hashnode/`) lê só do snapshot da Fase 0 (`archive/hashnode/`, a partir do `manifest.json`), nunca da rede.
   - Corpo: o Markdown do snapshot, sem o H1 do título.
   - Metadados: do JSON-LD e das meta tags do HTML do snapshot:
     - `datePublished` → `pubDatetime`

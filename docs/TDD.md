@@ -251,6 +251,8 @@ Fatos verificados em 2026-10-29: o sitemap lista 18 posts, e o `GET <post>.md` r
 | `og:image` | capa |
 | corpo do `.md` | conteúdo, sem o H1 do título, com imagens reescritas para caminhos locais e sem atributos `align` |
 
+O snapshot fica em `archive/hashnode/` e o script em `scripts/hashnode/`; o formato está no `scripts/hashnode/README.md`. O `manifest.json` liga cada URL de imagem ao arquivo local. Uma imagem de terceiro (flagship.io, em `automated-tests-the-secret-to-peaceful-nights`) responde 403 e não entrou; ela fica listada em `missing_images`.
+
 O snapshot também guarda as páginas `/page/about`, `/page/contact` e `/page/hire-me`, cujo texto serve de ponto de partida para a página Sobre e para o bloco da Cognicode, e as métricas do Hashnode (export ou prints).
 
 O importador é idempotente: lê sempre a mesma entrada, então rodar duas vezes dá o mesmo resultado.
