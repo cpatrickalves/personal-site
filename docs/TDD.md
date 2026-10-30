@@ -61,7 +61,7 @@ O novo site é um site pessoal estático e bilíngue (PT-BR e EN). Ele apresenta
 ### ✅ No escopo (lançamento)
 
 - Site estático em Astro 7 sobre o AstroPaper, com peças do karhdo.dev: barra superior, busca ⌘K, tema claro/escuro e Expressive Code.
-- Design system próprio: tokens claro/escuro, fontes Outfit e Doto, componentes base, primitivas de animação e a página `/styleguide` (no dev e no preview, fora da produção).
+- Design system próprio: tokens claro/escuro, fontes Outfit (todo texto, inclusive números e datas) e Martian Mono (só código), componentes base, primitivas de animação e a página `/styleguide` (no dev e no preview, fora da produção).
 - i18n com PT-BR na raiz e EN em `/en`: rotas, coleções, seletor de idioma, `hreflang`, sitemap, RSS e OG images por idioma.
 - Páginas Home, Blog (lista e post), Projetos e Sobre. A página de Palestras fica pronta, mas oculta por flag.
 - Posts com TOC, tempo de leitura, Mermaid, callouts, imagens com zoom e componentes MDX animados.
@@ -165,7 +165,7 @@ O feed `/rss.xml` era o do Hashnode, em inglês. Depois da Virada, ele passa a s
 | `translationReviewed` | boolean | opcional. `false` nos rascunhos de tradução gerados pelo agente; o Patrick muda para `true` ao aprovar. Ausente nas versões originais. |
 | `fake` | boolean | marca os dados fake, que saem do build no início da Fase 7 |
 
-O idioma de um post vem da pasta onde ele está (`posts/pt-br/` ou `posts/en/`), não de um campo no frontmatter. Um post fora de uma pasta de idioma quebra o build. As datas são guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas, como `AAAA-MM-DD` (por exemplo, `2026-02-28`) em PT-BR e em EN. As datas ficam em Outfit, com algarismos tabulares (ver Typography no `DESIGN.md`), e o ISO evita a ambiguidade do `MM/DD` americano. O idioma muda só as palavras em volta ("Atualizado", "Updated").
+O idioma de um post vem da pasta onde ele está (`posts/pt-br/` ou `posts/en/`), não de um campo no frontmatter. Um post fora de uma pasta de idioma quebra o build. As datas são guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas (uma data YAML sem hora é meia-noite UTC e é formatada em UTC, senão aparece o dia anterior), como `AAAA-MM-DD` (por exemplo, `2026-02-28`) em PT-BR e em EN. As datas ficam em Outfit, com algarismos tabulares (ver Typography no `DESIGN.md`), e o ISO evita a ambiguidade do `MM/DD` americano. O idioma muda só as palavras em volta ("Atualizado", "Updated").
 
 **Projeto** (um YAML por item, com campos bilíngues):
 
