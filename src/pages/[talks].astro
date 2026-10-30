@@ -1,0 +1,9 @@
+---
+import type { GetStaticPaths } from "astro";
+import TalksPage from "@/views/TalksPage.astro";
+import { talksPaths } from "@/views/staticPaths";
+
+export const getStaticPaths = talksPaths satisfies GetStaticPaths;
+---
+
+<TalksPage />

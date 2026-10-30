@@ -1,27 +1,11 @@
 import type { APIRoute } from "astro";
-import { getCollection } from "astro:content";
 import { fontData, experimental_getFontFileURL } from "astro:assets";
 import satori from "satori";
 import sharp from "sharp";
 import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
-import { getPostSlug } from "@/utils/getPostPaths";
 import config from "@/config";
 
-export async function getStaticPaths() {
-  if (!config.features.dynamicOgImage) {
-    return [];
-  }
-
-  const posts = await getCollection("posts").then(p =>
-    p.filter(({ data }) => !data.draft && !data.ogImage)
-  );
-
-  return posts.map(post => ({
-    params: { slug: getPostSlug(post.id, post.filePath) },
-    props: post,
-  }));
-}
-
+// The dynamic OG image of a Post, shared by the PT-BR and EN routes.
 export const GET: APIRoute = async ({ props, url }) => {
   if (!config.features.dynamicOgImage) {
     return new Response(null, { status: 404, statusText: "Not found" });

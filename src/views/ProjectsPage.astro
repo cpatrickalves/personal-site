@@ -1,0 +1,66 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import { useTranslations } from "@/i18n";
+import { toLocale } from "@/i18n/locales";
+import { localeUrl } from "@/i18n/urls";
+import { getLocalePosts } from "@/utils/getLocalePosts";
+import { getPostSlug } from "@/utils/getPostPaths";
+import config from "@/config";
+
+// Skeleton: the grid of project cards comes in Fase 5.
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const postSlugs = new Set((await getLocalePosts(locale)).map(getPostSlug));
+
+// `links.post` is the slug of a Post; link it only when it has a Versão in
+// the current locale.
+const postHref = (slug: string | undefined) =>
+  slug && postSlugs.has(slug)
+    ? localeUrl(locale, { page: "post", slug })
+    : undefined;
+---
+
+<Layout title={`${t.pages.projectsTitle} | ${config.site.title}`}>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={t.pages.projectsTitle} pageDesc={t.pages.projectsDesc}>
+    {
+      projects.length > 0 ? (
+        <ul>
+          {projects.map(({ data }) => {
+            const href = postHref(data.links.post);
+            return (
+              <li class="my-6">
+                <h2 class="text-lg font-medium">
+                  {href ? (
+                    <a class="text-accent" href={href}>
+                      {data.title[locale]}
+                    </a>
+                  ) : (
+                    data.title[locale]
+                  )}
+                </h2>
+                <p>{data.description[locale]}</p>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>{t.pages.empty}</p>
+      )
+    }
+  </Main>
+
+  <Footer />
+</Layout>

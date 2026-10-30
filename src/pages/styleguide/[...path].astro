@@ -15,7 +15,8 @@ import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconDeviceDesktop from "@/assets/icons/IconDeviceDesktop.svg";
 import basketCover from "../../../archive/hashnode/posts/basket-icon-detector/cover.png";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { DEFAULT_LOCALE } from "@/i18n/locales";
+import { localeUrl } from "@/i18n/urls";
 import { pageRise } from "@/utils/transitions";
 import { formatDate, useTranslations } from "@/i18n";
 import config from "@/config";
@@ -62,7 +63,7 @@ def classify_ticket(text: str) -> str:
     )
     return response.content[0].text.strip()`;
 
-const homeHref = getRelativeLocaleUrl(config.site.lang, "");
+const homeHref = localeUrl(DEFAULT_LOCALE, { page: "home" });
 
 // 02:30 UTC on 1 March is still 28 February in São Paulo.
 const sampleDatetime = "2026-03-01T02:30:00Z";

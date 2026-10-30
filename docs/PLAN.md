@@ -31,10 +31,13 @@ PT-BR fica sem prefixo e EN em `/en`; os nomes das seções ficam em inglês nos
 | --- | --- | --- | --- |
 | Home (quem sou, Cognicode, projetos, últimos posts) | `/` | `/en/` | Visível |
 | Blog (lista e post) | `/blog/` · `/blog/<slug>/` | `/en/blog/` · `/en/blog/<slug>/` | Visível |
+| Tags | `/blog/tags/` · `/blog/tags/<tag>/` | `/en/blog/tags/` · `/en/blog/tags/<tag>/` | Visível |
 | Projetos | `/projects/` | `/en/projects/` | Visível |
 | Palestras | `/talks/` | `/en/talks/` | Oculta |
 | Sobre | `/about/` | `/en/about/` | Visível |
 | RSS | `/rss.xml` | `/en/rss.xml` | Visível |
+| Arquivo | `/archives/` | `/en/archives/` | Herdado do AstroPaper; a Fase 5 decide se fica |
+| Busca | `/search/` | `/en/search/` | Até a paleta ⌘K da Fase 3 |
 | Styleguide | `/styleguide/` | — | Só no dev e no preview |
 
 **Palestras ocultas:** uma flag `features.talks = false` na config. Desligada, a seção sai do menu e da home, a rota não é gerada e não entra no sitemap. Ligar é mudar um valor e publicar.

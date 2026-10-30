@@ -9,3 +9,8 @@ export const DEFAULT_LOCALE: Locale = "pt-br";
 export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value);
 }
+
+/** Narrows `Astro.currentLocale` to a Locale; outside a locale it is the default. */
+export function toLocale(value: string | undefined): Locale {
+  return value !== undefined && isLocale(value) ? value : DEFAULT_LOCALE;
+}

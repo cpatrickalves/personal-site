@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import { formatDate, useTranslations } from "@/i18n";
+import { toLocale } from "@/i18n/locales";
+import config from "@/config";
+
+// Skeleton: the talk list design comes in Fase 5.
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const talks = (await getCollection("talks")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Layout title={`${t.pages.talksTitle} | ${config.site.title}`}>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={t.pages.talksTitle} pageDesc={t.pages.talksDesc}>
+    {
+      talks.length > 0 ? (
+        <ul>
+          {talks.map(({ data }) => (
+            <li class="my-6">
+              <h2 class="text-lg font-medium">{data.title[locale]}</h2>
+              <p>
+                {data.event} · {data.location} ·{" "}
+                {/* A YAML date has no time: it is midnight UTC, so it is
+                    formatted in UTC to keep the same day. */}
+                <time datetime={formatDate(data.date, "UTC")}>
+                  {formatDate(data.date, "UTC")}
+                </time>
+              </p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>{t.pages.empty}</p>
+      )
+    }
+  </Main>
+
+  <Footer />
+</Layout>

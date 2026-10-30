@@ -1,0 +1,10 @@
+---
+import type { GetStaticPaths } from "astro";
+import PostPage from "@/views/PostPage.astro";
+import { postPaths } from "@/views/staticPaths";
+
+export const getStaticPaths = (() =>
+  postPaths("pt-br")) satisfies GetStaticPaths;
+---
+
+<PostPage {...Astro.props} />
