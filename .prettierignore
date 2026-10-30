@@ -5,6 +5,8 @@
 !/src
 !/public
 !/.github
+!/scripts
+!astro-paper.config.ts
 !tsconfig.json
 !astro.config.ts
 !package.json
@@ -12,6 +14,11 @@
 !eslint.config.js
 !README.md
 !.vscode
+
+# Local agent tooling, not part of the project
+/.github/agents
+/.github/hooks
+/.github/skills
 
 # Ignore MDX files
 *.mdx

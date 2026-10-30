@@ -5,18 +5,17 @@ Site pessoal bilíngue do Patrick Alves (blog, projetos e palestras) que substit
 ## Ambiente
 
 - pnpm e Node 24.
-- Typecheck: sem script próprio; `pnpm build` roda `astro check`, o build e o índice do Pagefind.
-- Lint e formatação locais: `npx eslint <arquivos>` e `npx prettier --check <arquivos>` só nos arquivos alterados (o `pnpm lint` local tropeça em pastas de ferramentas não versionadas).
+- Checks: `pnpm lint`, `pnpm format:check`, `pnpm test` e `pnpm check` (tipos); `pnpm build` roda o `check`, o build e o índice do Pagefind.
 
 ## Em toda tarefa
 
-- Leia `.claude/napkin.md` no início da sessão.
 - Confira versões e APIs (Astro 7, AstroPaper, Pagefind, astro-mermaid, Umami) no Context7 ou na documentação oficial antes de usar.
 - Use o vocabulário do `GLOSSARY.md` (Post, Versão, Importação, Preview, Produção, Virada, Portão de aprovação, Dados fake) em código, commits e issues.
 - Toda URL interna sai dos helpers de `@/i18n/urls` (`localeUrl`, `getPostUrl`): o `base` `/personal-site` some na Virada.
 - Siga `docs/PLAN.md` (fases) e `docs/TDD.md` (decisões); quando divergirem, corrija os dois. São temporários: no fim, o que durar vira doc permanente via `/docs-generator`.
 - Issues com título `Portão de aprovação:` são do Patrick: pare nelas, espere por ele e deixe que ele as feche.
 - Commits e PRs saem sem linhas de atribuição (`Co-authored-by` ou similares).
+- Para criar ou alterar qualquer página, componente ou estilo, use a skill `impeccable`.
 
 ## Docs por assunto
 

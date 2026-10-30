@@ -12,4 +12,4 @@ O repo não tem Playwright. Instale `playwright-core` numa pasta temporária for
 
 ## CI
 
-`.github/workflows/ci.yml` roda lint, `format:check`, testes e build em todo PR, e publica `dist/` no GitHub Pages no `main`. Depois deles, mesmo quando um falha, `pnpm translations` escreve o relatório de traduções pendentes no Job Summary, sem falhar o run. O CI não tem as pastas de ferramentas não versionadas que quebram o lint local.
+`.github/workflows/ci.yml` roda lint, `format:check`, testes e build em todo PR, e publica `dist/` no GitHub Pages no `main`. Depois deles, mesmo quando um falha, `pnpm translations` escreve o relatório de traduções pendentes no Job Summary, sem falhar o run.
