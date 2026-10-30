@@ -133,11 +133,16 @@ Os nomes das seções ficam em inglês nos dois idiomas.
 | --- | --- | --- | --- |
 | Home | `/` | `/en/` | Visível |
 | Blog | `/blog/`, `/blog/<slug>/` | `/en/blog/`, `/en/blog/<slug>/` | Visível |
+| Tags | `/blog/tags/`, `/blog/tags/<tag>/` | `/en/blog/tags/`, `/en/blog/tags/<tag>/` | Visível |
 | Projetos | `/projects/` | `/en/projects/` | Visível |
 | Palestras | `/talks/` | `/en/talks/` | Oculta (flag) |
 | Sobre | `/about/` | `/en/about/` | Visível |
 | RSS | `/rss.xml` | `/en/rss.xml` | Visível |
+| Arquivo | `/archives/` | `/en/archives/` | Herdado do AstroPaper; a Fase 5 decide se fica |
+| Busca | `/search/` | `/en/search/` | Até a paleta ⌘K da Fase 3 |
 | Styleguide | `/styleguide/` | — | Só no dev e no preview |
+
+Toda tag tem página nos dois idiomas, mesmo sem posts num deles, para o seletor de idioma sempre achar a mesma tag.
 
 Até o lançamento, todas as rotas ficam sob o prefixo `/personal-site`. Por isso, todo link interno passa pelos helpers de URL, e nenhum caminho é escrito à mão.
 

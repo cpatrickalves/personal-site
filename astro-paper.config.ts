@@ -21,6 +21,8 @@ export default defineAstroPaperConfig({
     lightAndDarkMode: true,
     dynamicOgImage: true,
     showArchives: true,
+    // Palestras stay hidden until there are talks to show.
+    talks: false,
     showBackButton: true,
     editPost: {
       enabled: true,

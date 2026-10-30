@@ -1,0 +1,10 @@
+---
+import type { GetStaticPaths } from "astro";
+import BlogListPage from "@/views/BlogListPage.astro";
+import { blogListPaths } from "@/views/staticPaths";
+
+export const getStaticPaths = (options =>
+  blogListPaths("en", options)) satisfies GetStaticPaths;
+---
+
+<BlogListPage {...Astro.props} />

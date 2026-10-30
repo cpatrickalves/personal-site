@@ -1,22 +1,22 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
-import { getSortedPosts } from "@/utils/getSortedPosts";
-import { getPostUrl } from "@/utils/getPostPaths";
+import { DEFAULT_LOCALE } from "@/i18n/locales";
+import { getPostUrl } from "@/i18n/urls";
+import { getLocalePosts } from "@/utils/getLocalePosts";
 import config from "@/config";
 
 export async function GET() {
-  const posts = await getCollection("posts");
-  const sortedPosts = getSortedPosts(posts);
+  // PT-BR only; the EN feed (/en/rss.xml) comes with #15.
+  const sortedPosts = await getLocalePosts(DEFAULT_LOCALE);
 
   return rss({
     title: config.site.title,
     description: config.site.description,
     site: config.site.url,
-    items: sortedPosts.map(({ data, id, filePath }) => ({
-      link: getPostUrl(id, filePath, config.site.lang),
-      title: data.title,
-      description: data.description,
-      pubDate: new Date(data.modDatetime ?? data.pubDatetime),
+    items: sortedPosts.map(post => ({
+      link: getPostUrl(post),
+      title: post.data.title,
+      description: post.data.description,
+      pubDate: new Date(post.data.modDatetime ?? post.data.pubDatetime),
     })),
   });
 }

@@ -44,6 +44,11 @@ interface FeaturesConfig {
   dynamicOgImage?: boolean;
   /** Show the /archives page and link it in nav. Defaults to true. */
   showArchives?: boolean;
+  /**
+   * Publish the Palestras section (/talks/ and /en/talks/). When false, the
+   * routes are not built, so they stay out of the sitemap. Defaults to false.
+   */
+  talks?: boolean;
   /** Show back button on post detail pages. Defaults to true. */
   showBackButton?: boolean;
   /** "Edit page" link shown on post detail pages. */

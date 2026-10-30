@@ -1,8 +1,10 @@
 export interface UIStrings {
   nav: {
     home: string;
-    posts: string;
+    blog: string;
     tags: string;
+    projects: string;
+    talks: string;
     about: string;
     archives: string;
     search: string;
@@ -42,8 +44,17 @@ export interface UIStrings {
     tagsTitle: string;
     tagsDesc: string;
 
-    postsTitle: string;
-    postsDesc: string;
+    blogTitle: string;
+    blogDesc: string;
+
+    projectsTitle: string;
+    projectsDesc: string;
+
+    talksTitle: string;
+    talksDesc: string;
+
+    /** Placeholder for an empty list until Fase 5 designs the empty states. */
+    empty: string;
 
     archivesTitle: string;
     archivesDesc: string;
