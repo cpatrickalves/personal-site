@@ -239,9 +239,9 @@ const localeSamples = [
 
     <Section
       id="tipografia"
-      title="Duas fontes, cada uma no seu"
-      emphasis="lugar"
-      description="Outfit em tudo que se lê. A fonte de detalhe só em números, datas e código, nunca em palavras."
+      title="Uma fonte para tudo que se"
+      emphasis="lê"
+      description="Outfit no texto, nos números e nas datas. A Martian Mono fica só no código."
     >
       <div class="grid gap-8 lg:grid-cols-[1.4fr_1fr] [&>*]:min-w-0">
         <Plate class="p-6 sm:p-8">
@@ -299,7 +299,7 @@ const localeSamples = [
 
         <Plate class="flex flex-col p-6 sm:p-8">
           <p class="text-muted-foreground text-sm">
-            Martian Mono · 500, do maior ao menor
+            Detalhe · Outfit 500, do maior ao menor
           </p>
           <dl class="mt-4 flex flex-1 flex-col justify-between gap-5">
             {
@@ -316,7 +316,8 @@ const localeSamples = [
                   cls: "text-[3rem] leading-none",
                 },
                 {
-                  text: "2025-03-17",
+                  text: "12",
+                  unit: "projetos",
                   size: 32,
                   cls: "text-[2rem] leading-none",
                 },
@@ -351,17 +352,17 @@ const localeSamples = [
                 15px
               </dt>
               <dd class="flex items-baseline gap-4 text-[0.9375rem]">
-                <span class="detail">2025-03-17</span>
-                <span class="text-muted-foreground">Outfit:</span>
-                <time class="tabular font-medium">2025-03-17</time>
+                <span class="detail">18</span>
+                <span class="text-muted-foreground">Data, em Outfit:</span>
+                <time class="text-accent-ink">2025-03-17</time>
               </dd>
             </div>
           </dl>
           <p
             class="text-muted-foreground mt-5 text-[0.9375rem] leading-relaxed"
           >
-            Em metadados a Martian Mono segue legível pequena. Em tabelas, os
-            números ficam na Outfit com algarismos tabulares.
+            Números de destaque em Outfit 500 com algarismos tabulares. Datas e
+            números de tabela ficam no peso do texto.
           </p>
         </Plate>
       </div>
@@ -436,7 +437,7 @@ const localeSamples = [
               <span
                 class="border-border mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 border-t-2 pt-5"
               >
-                <span class="detail text-accent-ink text-2xl">2025-03-17</span>
+                <span class="tabular text-accent-ink text-2xl">2025-03-17</span>
                 <span class="text-muted-foreground text-sm">
                   <span class="detail text-foreground text-xl">6</span> min de leitura
                 </span>
@@ -482,14 +483,14 @@ const localeSamples = [
             {
               [
                 {
-                  date: "12.05.2023",
+                  date: "2023-05-12",
                   title: "Automated Tests: The Secret to Peaceful Nights",
                   desc: "How Automated Tests Can Transform Your Nights From Stressful to Restful",
                   tags: ["testing", "python"],
                   min: 7,
                 },
                 {
-                  date: "17.05.2022",
+                  date: "2022-05-17",
                   title: "MLOps: What it is and why does it Matter?",
                   desc: "Machine Learning Operations is a process of automating and productionalizing machine learning applications and workflows.",
                   tags: ["ml", "devops"],
@@ -501,7 +502,7 @@ const localeSamples = [
                     href="#componentes"
                     class="group grid gap-x-8 gap-y-2 py-6 sm:grid-cols-[9.5rem_1fr_auto]"
                   >
-                    <span class="detail text-accent-ink text-xl leading-tight">
+                    <span class="tabular text-accent-ink text-xl leading-tight">
                       {post.date}
                     </span>
                     <span>
@@ -662,7 +663,7 @@ const localeSamples = [
             <dt class="text-muted-foreground order-last shrink-0 text-sm">
               Guardada em UTC
             </dt>
-            <dd class="detail text-[0.9375rem]">{sampleDatetime}</dd>
+            <dd class="tabular text-[0.9375rem]">{sampleDatetime}</dd>
           </div>
           {
             localeSamples.map(({ label, publishedAt }) => (
@@ -672,10 +673,7 @@ const localeSamples = [
                 </dt>
                 <dd class="text-[1.0625rem]">
                   {publishedAt}{" "}
-                  <time
-                    class="detail text-accent-ink"
-                    datetime={sampleDatetime}
-                  >
+                  <time class="text-accent-ink" datetime={sampleDatetime}>
                     {sampleDate}
                   </time>
                 </dd>

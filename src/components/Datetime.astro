@@ -46,7 +46,7 @@ const date = formatDate(datetime, postTimezone ?? config.site.timezone);
     )
   }
   <time
-    class:list={["detail text-sm", { "sm:text-base": size === "lg" }]}
+    class:list={["text-sm", { "sm:text-base": size === "lg" }]}
     datetime={datetime.toISOString()}
   >
     {date}

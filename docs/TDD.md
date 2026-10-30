@@ -160,7 +160,7 @@ O feed `/rss.xml` era o do Hashnode, em inglês. Depois da Virada, ele passa a s
 | `translationReviewed` | boolean | opcional. `false` nos rascunhos de tradução gerados pelo agente; o Patrick muda para `true` ao aprovar. Ausente nas versões originais. |
 | `fake` | boolean | marca os dados fake, que saem do build no início da Fase 7 |
 
-O idioma de um post vem da pasta onde ele está, não de um campo no frontmatter. As datas são guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas, como `AAAA-MM-DD` (por exemplo, `2026-02-28`) em PT-BR e em EN. O formato numérico segue o design, que reserva a Martian Mono a números e datas, e o ISO evita a ambiguidade do `MM/DD` americano. O idioma muda só as palavras em volta ("Atualizado", "Updated").
+O idioma de um post vem da pasta onde ele está, não de um campo no frontmatter. As datas são guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas, como `AAAA-MM-DD` (por exemplo, `2026-02-28`) em PT-BR e em EN. As datas ficam em Outfit, com algarismos tabulares (ver Typography no `DESIGN.md`), e o ISO evita a ambiguidade do `MM/DD` americano. O idioma muda só as palavras em volta ("Atualizado", "Updated").
 
 **Projeto** (um YAML por item, com campos bilíngues):
 
