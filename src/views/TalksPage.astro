@@ -18,7 +18,10 @@ const talks = (await getCollection("talks")).sort(
 );
 ---
 
-<Layout title={`${t.pages.talksTitle} | ${config.site.title}`}>
+<Layout
+  title={`${t.pages.talksTitle} | ${config.site.title}`}
+  route={{ page: "talks" }}
+>
   <Header />
 
   <Breadcrumb />

@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import type { Route } from "@/i18n/routes";
 import config from "@/config";
 
 type Props = {
@@ -9,12 +10,20 @@ type Props = {
   canonicalURL?: string;
   pubDatetime?: Date;
   modDatetime?: Date | null;
+  route: Route;
 };
 
 const { site } = config;
 
-const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
-  Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  canonicalURL,
+  pubDatetime,
+  modDatetime,
+  route,
+} = Astro.props;
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -33,7 +42,7 @@ const structuredData = {
 };
 ---
 
-<Layout {title} {description} {ogImage} {canonicalURL}>
+<Layout {title} {description} {ogImage} {canonicalURL} {route}>
   <Fragment slot="head">
     <!-- Override og:type for article pages -->
     <meta property="og:type" content="article" />

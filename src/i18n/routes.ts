@@ -1,15 +1,16 @@
-import { DEFAULT_LOCALE, type Locale } from "./locales.ts";
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "./locales.ts";
 
 /**
  * A page of the site, without its locale. Section names are the same in both
  * locales, so a Route plus a locale is enough to build any internal URL.
+ * Paginated lists carry their page number; none means the first page.
  */
 export type Route =
   | { page: "home" }
-  | { page: "blog" }
+  | { page: "blog"; pageNumber?: number }
   | { page: "post"; slug: string }
   | { page: "tags" }
-  | { page: "tag"; tag: string }
+  | { page: "tag"; tag: string; pageNumber?: number }
   | { page: "projects" }
   | { page: "talks" }
   | { page: "about" }
@@ -18,17 +19,23 @@ export type Route =
   | { page: "rss" };
 
 // Pages are directories, with a trailing slash as Astro builds them; the feed
-// is a file.
+// is a file. The first page of a list has no number, as `paginate` builds it.
+function pageNumberPath(pageNumber = 1): string {
+  return pageNumber > 1 ? `${pageNumber}/` : "";
+}
+
 function sectionPath(route: Route): string {
   switch (route.page) {
     case "home":
       return "";
+    case "blog":
+      return `blog/${pageNumberPath(route.pageNumber)}`;
     case "post":
       return `blog/${route.slug}/`;
     case "tags":
       return "blog/tags/";
     case "tag":
-      return `blog/tags/${route.tag}/`;
+      return `blog/tags/${route.tag}/${pageNumberPath(route.pageNumber)}`;
     case "rss":
       return "rss.xml";
     default:
@@ -52,19 +59,63 @@ export function routePath(locale: Locale, route: Route): string {
 }
 
 /**
- * The Route the language switch leads to, given the Post slugs that have a
- * Versão in the other locale:
- * - a Post with a Versão there leads to it;
- * - a Post without one leads to the blog list;
- * - a tag page leads to the same tag, which exists in both locales;
- * - every other page exists in both locales and leads to itself.
+ * What a locale builds, enough to tell whether a Route exists there: the slugs
+ * of its Posts and how many pages the blog list and each tag list have. Every
+ * tag has at least one page in both locales.
  */
-export function equivalentRoute(
-  route: Route,
-  otherLocaleSlugs: ReadonlySet<string>
-): Route {
-  if (route.page === "post" && !otherLocaleSlugs.has(route.slug)) {
-    return { page: "blog" };
+export type LocalePages = {
+  postSlugs: ReadonlySet<string>;
+  blogPages: number;
+  tagPages: ReadonlyMap<string, number>;
+};
+
+/** How many pages Astro's `paginate` builds for a list: at least one. */
+export function listPageCount(items: number, pageSize: number): number {
+  return Math.max(1, Math.ceil(items / pageSize));
+}
+
+function routeExists(route: Route, pages: LocalePages): boolean {
+  switch (route.page) {
+    case "post":
+      return pages.postSlugs.has(route.slug);
+    case "blog":
+      return (route.pageNumber ?? 1) <= pages.blogPages;
+    case "tag":
+      return (route.pageNumber ?? 1) <= (pages.tagPages.get(route.tag) ?? 0);
+    default:
+      return true;
   }
-  return route;
+}
+
+/**
+ * The Route the language switch leads to, given what the other locale builds:
+ * - the same page when it exists there;
+ * - a Post without a Versão there leads to the blog list;
+ * - a list page beyond the other locale's last leads to that list's first page.
+ */
+export function equivalentRoute(route: Route, otherPages: LocalePages): Route {
+  if (routeExists(route, otherPages)) {
+    return route;
+  }
+  switch (route.page) {
+    case "post":
+    case "blog":
+      return { page: "blog" };
+    case "tag":
+      return { page: "tag", tag: route.tag };
+    default:
+      return route;
+  }
+}
+
+/**
+ * The locales a page gets `hreflang` links for: every locale that builds the
+ * same Route, or none when only one does. The sitemap pairs URLs the same way.
+ */
+export function hreflangLocales(
+  route: Route,
+  pages: Record<Locale, LocalePages>
+): Locale[] {
+  const locales = LOCALES.filter(locale => routeExists(route, pages[locale]));
+  return locales.length > 1 ? locales : [];
 }

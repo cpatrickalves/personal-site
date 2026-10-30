@@ -1,10 +1,8 @@
 import type { GetStaticPathsOptions } from "astro";
-import { getCollection } from "astro:content";
 import type { Locale } from "@/i18n/locales";
 import { getLocalePosts } from "@/utils/getLocalePosts";
+import { getLocaleTags } from "@/utils/getLocaleTags";
 import { getPostSlug } from "@/utils/getPostPaths";
-import { getUniqueTags } from "@/utils/getUniqueTags";
-import { slugifyAll } from "@/utils/slugify";
 import config from "@/config";
 
 // One `getStaticPaths` per route, shared by the PT-BR page and its copy under
@@ -59,25 +57,17 @@ export async function postOgImagePaths(locale: Locale) {
     .map(post => ({ params: { slug: getPostSlug(post) }, props: post }));
 }
 
-// Every tag gets a page in both locales, so the language switch on a tag page
-// always lands on the same tag; a locale with no Posts for it shows the empty
-// list.
+// A locale with no Posts for a tag shows the empty list.
 export async function tagPaths(
   locale: Locale,
   { paginate }: GetStaticPathsOptions
 ) {
-  const tags = getUniqueTags(await getCollection("posts"));
-  const posts = await getLocalePosts(locale);
-
-  return tags.flatMap(({ tag, tagName }) =>
-    paginate(
-      posts.filter(({ data }) => slugifyAll(data.tags).includes(tag)),
-      {
-        params: { tag },
-        props: { tagName },
-        pageSize: config.posts.perPage,
-      }
-    )
+  return (await getLocaleTags(locale)).flatMap(({ tag, tagName, posts }) =>
+    paginate(posts, {
+      params: { tag },
+      props: { tag, tagName },
+      pageSize: config.posts.perPage,
+    })
   );
 }
 

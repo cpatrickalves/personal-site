@@ -17,7 +17,10 @@ const tags = getUniqueTags(await getLocalePosts(locale));
 const t = useTranslations(locale);
 ---
 
-<Layout title={`${t.pages.tagsTitle} | ${config.site.title}`}>
+<Layout
+  title={`${t.pages.tagsTitle} | ${config.site.title}`}
+  route={{ page: "tags" }}
+>
   <Header />
 
   <Breadcrumb />
