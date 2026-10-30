@@ -29,7 +29,7 @@
    Do instead: never add Co-authored-by or similar lines to commits or PRs.
 2. **[2026-10-29] Use the GLOSSARY terms**
    Do instead: name things Post, Versão, Importação, Preview, Produção, Virada, Portão de aprovação, Dados fake in issues, commits and code.
-3. **[2026-10-30] Dates show as `AAAA-MM-DD` in both languages, in America/Sao_Paulo**
-   Do instead: use `formatDate` from `@/i18n` with `class="detail"`; never a locale-dependent date format or month words in Martian Mono.
+3. **[2026-10-30] Martian Mono is for code only; numbers and dates are Outfit**
+   Do instead: numbers use the `detail` class (Outfit 500, tabular); dates use `formatDate` from `@/i18n` (`AAAA-MM-DD`, America/Sao_Paulo, same in both languages) in a `<time>` or `tabular` span, without `detail`.
 4. **[2026-10-29] PLAN.md and TDD.md are temporary**
    Do instead: when they diverge, fix both; at the end, move what lasts to permanent docs via `/docs-generator`.
