@@ -1,24 +1,33 @@
 # personal-site
 
-Meu site pessoal com blog, projetos e palestras
+Site pessoal bilíngue do Patrick Alves (blog, projetos e palestras) que substitui o blog do Hashnode: Astro 7 sobre o tema AstroPaper, estático no GitHub Pages, PT-BR na raiz e EN em `/en/`.
 
-## Plano em andamento
+## Ambiente
 
-- `docs/PLAN.md`: roteiro de execução por fases, com critérios de pronto e pontos de aprovação.
-- `docs/TDD.md`: arquitetura, contratos, decisões, riscos e questões em aberto.
+- pnpm e Node 24.
+- Typecheck: sem script próprio; `pnpm build` roda `astro check`, o build e o índice do Pagefind.
+- Lint e formatação locais: `npx eslint <arquivos>` e `npx prettier --check <arquivos>` só nos arquivos alterados (o `pnpm lint` local tropeça em pastas de ferramentas não versionadas).
 
-Os dois são temporários: no fim da implementação, o que importar vira documentação permanente via `/docs-generator`, e eles são apagados.
+## Em toda tarefa
+
+- Leia `.claude/napkin.md` no início da sessão.
+- Confira versões e APIs (Astro 7, AstroPaper, Pagefind, astro-mermaid, Umami) no Context7 ou na documentação oficial antes de usar.
+- Use o vocabulário do `GLOSSARY.md` (Post, Versão, Importação, Preview, Produção, Virada, Portão de aprovação, Dados fake) em código, commits e issues.
+- Toda URL interna sai dos helpers de `@/i18n/urls` (`localeUrl`, `getPostUrl`): o `base` `/personal-site` some na Virada.
+- Siga `docs/PLAN.md` (fases) e `docs/TDD.md` (decisões); quando divergirem, corrija os dois. São temporários: no fim, o que durar vira doc permanente via `/docs-generator`.
+- Issues com título `Portão de aprovação:` são do Patrick: pare nelas, espere por ele e deixe que ele as feche.
+- Commits e PRs saem sem linhas de atribuição (`Co-authored-by` ou similares).
+
+## Docs por assunto
+
+- [Rotas e i18n](docs/agents/rotas-e-i18n.md): ao criar página, rota, link ou string de UI, ou ao formatar datas.
+- [Conteúdo](docs/agents/conteudo.md): ao mexer em Posts, projetos, palestras, config e feature flags, ou na Importação do Hashnode.
+- [Estilo](docs/agents/estilo.md): ao mexer em UI, tokens, fontes ou no `/styleguide`.
+- [Testes e CI](docs/agents/testes-e-ci.md): ao escrever testes, fazer checagem visual ou depurar o CI.
+- [Git](docs/agents/git.md): antes de criar branch ou PR, ou de escolher a próxima issue.
 
 ## Agent skills
 
-### Issue tracker
-
-Issues live in GitHub Issues for `cpatrickalves/personal-site` (via the `gh` CLI). See `docs/agents/issue-tracker.md`.
-
-### Triage labels
-
-Default label vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
-
-### Domain docs
-
-Single-context: one root `GLOSSARY.md` plus `docs/adr/`. See `docs/agents/domain.md`.
+- Issue tracker: GitHub Issues de `cpatrickalves/personal-site` via `gh`. Ver [docs/agents/issue-tracker.md](docs/agents/issue-tracker.md).
+- Labels de triagem: ver [docs/agents/triage-labels.md](docs/agents/triage-labels.md).
+- Domínio: single-context, um `GLOSSARY.md` na raiz e `docs/adr/`. Ver [docs/agents/domain.md](docs/agents/domain.md).
