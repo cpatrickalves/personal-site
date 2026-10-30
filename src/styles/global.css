@@ -1,24 +1,39 @@
 @import "tailwindcss";
 @import "./theme.css";
 @import "./typography.css";
-@import "rehype-callouts/theme/obsidian";
+@import "./motion.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer base {
   * {
-    @apply border-border outline-accent/75;
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
+    @apply border-border outline-accent-ink;
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted-foreground) transparent;
+  }
+  html {
+    font-feature-settings: "ss01";
+    caret-color: var(--accent-ink);
+    accent-color: var(--accent-ink);
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
   a,
   button,
+  summary,
   #main-content {
-    @apply outline-accent outline-offset-1 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    @apply outline-offset-3 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-solid;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+  time,
+  table,
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -34,6 +49,56 @@
   @apply underline decoration-wavy decoration-2 underline-offset-8;
 }
 
+/*
+ * The plate: the site's one container. Square corners, a 2px outline in the
+ * text colour and a hard offset shadow. `plate-lift` adds the hover lift,
+ * where the shadow grows and turns to the accent.
+ */
+@utility plate {
+  background-color: var(--card);
+  border: 2px solid var(--foreground);
+  box-shadow: var(--plate-offset, 6px) var(--plate-offset, 6px) 0 0
+    var(--shadow);
+}
+
+@utility plate-lift {
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    box-shadow 0.4s var(--ease-out-expo);
+  &:hover,
+  &:focus-within {
+    transform: translate(-2px, -6px);
+    box-shadow: 11px 11px 0 0 var(--accent);
+  }
+}
+
+/* The detail face: numbers and dates, never words */
+@utility detail {
+  font-family: var(--font-detail-face);
+  font-weight: var(--detail-weight);
+  letter-spacing: var(--detail-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
 :target {
   scroll-margin-block: 1rem;
+}
+
+/*
+ * Scroll cue for horizontal overflow (tables, code, nav rows): shadows at the
+ * edges that still have content, drawn with local/scroll backgrounds.
+ */
+@utility scroll-cue {
+  --cue-fill: var(--cue-bg, var(--background));
+  --cue-shadow: color-mix(in oklab, var(--foreground) 28%, transparent);
+  background:
+    linear-gradient(to right, var(--cue-fill) 40%, transparent) left center /
+      2.5rem 100% no-repeat local,
+    linear-gradient(to left, var(--cue-fill) 40%, transparent) right center /
+      2.5rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--cue-shadow), transparent) left
+      center / 0.75rem 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--cue-shadow), transparent)
+      right center / 0.75rem 100% no-repeat scroll;
+  background-color: var(--cue-fill);
 }

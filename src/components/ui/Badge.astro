@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"span"> & {
+  /** `tag` prefixes a #, `stack` is a plain label, `accent` is filled. */
+  variant?: "tag" | "stack" | "accent";
+  href?: string;
+};
+
+const { variant = "stack", href, class: className, ...attrs } = Astro.props;
+
+const Tag = href ? "a" : "span";
+---
+
+<Tag
+  href={href}
+  data-variant={variant}
+  class:list={["ds-badge", href && "ds-badge-link", className]}
+  {...attrs}
+>
+  {
+    variant === "tag" && (
+      <span aria-hidden="true" class="opacity-60">
+        #
+      </span>
+    )
+  }
+  <slot />
+</Tag>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .ds-badge {
+    @apply inline-flex min-h-7 items-center gap-px px-2 text-[0.8125rem] leading-none font-medium;
+    border: 1.5px solid var(--border);
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  [data-variant="tag"] {
+    @apply text-accent-ink;
+  }
+
+  [data-variant="accent"] {
+    @apply bg-accent text-accent-foreground;
+    border-color: var(--accent);
+  }
+
+  .ds-badge-link {
+    transition:
+      border-color 0.2s,
+      transform 0.25s var(--ease-out-back);
+  }
+
+  .ds-badge-link:hover {
+    border-color: var(--foreground);
+    transform: translateY(-2px);
+  }
+</style>

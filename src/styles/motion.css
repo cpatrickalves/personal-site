@@ -1,0 +1,60 @@
+/*
+ * Motion primitives. Content is visible by default; motion only runs when the
+ * visitor has not asked for reduced motion, and reveal only arms once the
+ * script in src/scripts/reveal.ts has marked <html> with `reveal-ready`.
+ */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Reveal on scroll: [data-reveal], staggered by --reveal-delay */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal] {
+    transition:
+      opacity 0.7s var(--ease-out-expo),
+      transform 0.7s var(--ease-out-expo),
+      filter 0.7s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal-ready [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+}
+
+/* Page transitions (Astro ClientRouter): the outgoing page sinks, the new one rises */
+@keyframes vt-sink {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes vt-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  .plate-lift:hover,
+  .plate-lift:focus-within {
+    transform: none;
+  }
+}

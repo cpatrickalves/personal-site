@@ -1,0 +1,62 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+
+// The palette in both themes at once.
+const themes = [
+  { theme: "light", label: "Claro" },
+  { theme: "dark", label: "Escuro" },
+] as const;
+---
+
+<div class="grid gap-6 md:grid-cols-2">
+  {
+    themes.map(({ theme, label }) => (
+      <div
+        data-theme={theme}
+        role="group"
+        aria-label={`Tema ${label.toLowerCase()}`}
+        class="bg-background text-foreground border-outline border-2 p-6 sm:p-8"
+      >
+        <h3 class="text-[1.75rem] leading-[1.15] font-semibold tracking-[-0.03em] text-balance">
+          Agentes que <span class="text-accent-ink">leem</span> documentos
+        </h3>
+        <p class="text-muted-foreground mt-3 leading-relaxed">
+          Texto secundário sobre o fundo, para descrições e metadados. Um{" "}
+          <a
+            href="#cor"
+            class="text-accent-ink underline decoration-2 underline-offset-4"
+          >
+            link no texto
+          </a>{" "}
+          usa a tinta do accent.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <Button size="sm">
+            Ler o blog <IconArrowRight aria-hidden="true" />
+          </Button>
+          <Button size="sm" variant="secondary">
+            Projetos
+          </Button>
+        </div>
+        <div class="plate mt-8 p-5" style="--plate-offset: 5px">
+          <div class="flex items-baseline justify-between gap-4">
+            <span class="detail text-accent-ink text-xl">17.03.2025</span>
+            <span class="text-muted-foreground text-sm">
+              <span class="detail text-foreground text-xl">6</span> min
+            </span>
+          </div>
+          <p class="mt-2 text-lg leading-snug font-semibold">
+            The "Vibe Coding" Revolution: Redefining Software Development in
+            2025
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <Badge variant="tag">vibecoding</Badge>
+            <Badge variant="tag">ai</Badge>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

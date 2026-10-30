@@ -1,0 +1,33 @@
+---
+import IconInfoCircle from "@/assets/icons/IconInfoCircle.svg";
+import IconBulb from "@/assets/icons/IconBulb.svg";
+import IconAlertTriangle from "@/assets/icons/IconAlertTriangle.svg";
+import IconAlertOctagon from "@/assets/icons/IconAlertOctagon.svg";
+
+// Same markup as rehype-callouts, so Markdown callouts and this component
+// share the styles in src/styles/typography.css.
+type Props = {
+  type?: "note" | "tip" | "warning" | "danger";
+  title?: string;
+};
+
+const defaults = {
+  note: { title: "Nota", Icon: IconInfoCircle },
+  tip: { title: "Dica", Icon: IconBulb },
+  warning: { title: "Atenção", Icon: IconAlertTriangle },
+  danger: { title: "Cuidado", Icon: IconAlertOctagon },
+} as const;
+
+const { type = "note", title } = Astro.props;
+const { Icon, title: defaultTitle } = defaults[type];
+---
+
+<div class="callout" data-callout={type}>
+  <div class="callout-title">
+    <span class="callout-title-icon"><Icon aria-hidden="true" /></span>
+    <span class="callout-title-text">{title ?? defaultTitle}</span>
+  </div>
+  <div class="callout-content">
+    <slot />
+  </div>
+</div>

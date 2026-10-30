@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"div"> & {
+  /** Element to render; a plate with `href` renders as a link. */
+  as?: "div" | "article" | "section" | "li" | "aside";
+  href?: string;
+  /** Lift on hover and focus, with the shadow turning to the accent. */
+  lift?: boolean;
+  /** Offset of the hard shadow, in px. */
+  offset?: 4 | 6 | 8;
+};
+
+const {
+  as = "div",
+  href,
+  lift = Boolean(href),
+  offset = 6,
+  class: className,
+  style,
+  ...attrs
+} = Astro.props;
+
+const Tag = href ? "a" : as;
+---
+
+<Tag
+  href={href}
+  class:list={[
+    "plate group/plate",
+    href && !String(className ?? "").includes("flex") && "block",
+    lift && "plate-lift",
+    href && "focus-visible:outline-offset-4",
+    className,
+  ]}
+  style={`--plate-offset: ${offset}px;${style ?? ""}`}
+  {...attrs}
+>
+  <slot />
+</Tag>

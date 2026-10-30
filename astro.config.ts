@@ -27,7 +27,9 @@ export default defineConfig({
     mdx(),
     sitemap({
       filter: page =>
-        config.features?.showArchives !== false || !page.endsWith("/archives/"),
+        !page.includes("/styleguide/") &&
+        (config.features?.showArchives !== false ||
+          !page.endsWith("/archives/")),
     }),
   ],
   i18n: {
@@ -46,8 +48,8 @@ export default defineConfig({
       rehypePlugins: [rehypeCallouts],
     }),
     shikiConfig: {
-      themes: { light: "min-light", dark: "night-owl" },
-      defaultColor: false,
+      // Syntax colours come from the palette tokens in src/styles/theme.css.
+      theme: "css-variables",
       wrap: false,
       transformers: [
         transformerFileName({ style: "v2", hideDot: false }),
@@ -62,13 +64,35 @@ export default defineConfig({
   },
   fonts: [
     {
-      name: "Google Sans Code",
-      cssVariable: "--font-google-sans-code",
+      // Everything that is read.
+      name: "Outfit",
+      cssVariable: "--font-outfit",
+      provider: fontProviders.google(),
+      fallbacks: ["sans-serif"],
+      weights: ["100 900"],
+      styles: ["normal"],
+      formats: ["woff2"],
+    },
+    {
+      // Static ttf copies for the OG image generator only (satori reads
+      // neither woff2 nor variable fonts); never loaded by a page.
+      name: "Outfit",
+      cssVariable: "--font-outfit-og",
+      provider: fontProviders.google(),
+      fallbacks: ["sans-serif"],
+      weights: [400, 700],
+      styles: ["normal"],
+      formats: ["ttf"],
+    },
+    {
+      // Detail face (numbers, dates, one emphasis word per title) and code.
+      name: "Martian Mono",
+      cssVariable: "--font-martian-mono",
       provider: fontProviders.google(),
       fallbacks: ["monospace"],
-      weights: [300, 400, 500, 600, 700],
-      styles: ["normal", "italic"],
-      formats: ["woff", "ttf"],
+      weights: ["100 800"],
+      styles: ["normal"],
+      formats: ["woff2"],
     },
   ],
   env: {
