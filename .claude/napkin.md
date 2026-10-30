@@ -12,6 +12,11 @@
 5. **[2026-10-30] Visual checks need a Playwright library, which the repo doesn't have**
    Do instead: `npm i playwright-core` in the scratchpad, launch with the `chromium_headless_shell-1248` binary from `~/.cache/ms-playwright`, against `pnpm preview` (it serves under `/personal-site`).
 
+6. **[2026-10-30] A YAML date with no time is midnight UTC**
+   Do instead: format it with `formatDate(date, "UTC")`; in America/Sao_Paulo it shows the day before.
+7. **[2026-10-30] Internal links and routes go through the locale helpers**
+   Do instead: build links with `localeUrl(locale, route)` / `getPostUrl(post)` from `@/i18n/urls`; a new page is a view in `src/views/` plus a thin route in `src/pages/` and `src/pages/en/`.
+
 ## Issue Tracker & Git
 1. **[2026-10-29] Build output lingers across branches**
    Do instead: stage explicit paths (never `git add -A`) and check `git show --stat HEAD` before pushing; `node_modules/`, `dist/`, `.astro/` and `public/pagefind/` stay in the tree after switching to a branch whose `.gitignore` lacks them.
