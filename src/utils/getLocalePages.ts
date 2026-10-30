@@ -1,10 +1,8 @@
-import { getCollection } from "astro:content";
 import { LOCALES, type Locale } from "@/i18n/locales";
 import { listPageCount, type LocalePages } from "@/i18n/routes";
 import { getLocalePosts } from "./getLocalePosts";
+import { getLocaleTags } from "./getLocaleTags";
 import { getPostSlug } from "./getPostPaths";
-import { getUniqueTags } from "./getUniqueTags";
-import { slugifyAll } from "./slugify";
 import config from "@/config";
 
 // Every page's head asks for both locales, so the build counts each locale's
@@ -13,22 +11,15 @@ const cache = new Map<Locale, Promise<LocalePages>>();
 
 async function countLocalePages(locale: Locale): Promise<LocalePages> {
   const { perPage } = config.posts;
+  // The same lists `blogListPaths` and `tagPaths` paginate.
   const posts = await getLocalePosts(locale);
-  // Same lists as `blogListPaths` and `tagPaths` in src/views/staticPaths.ts.
-  const tags = getUniqueTags(await getCollection("posts"));
+  const tags = await getLocaleTags(locale);
 
   return {
     postSlugs: new Set(posts.map(getPostSlug)),
     blogPages: listPageCount(posts.length, perPage),
     tagPages: new Map(
-      tags.map(({ tag }) => [
-        tag,
-        listPageCount(
-          posts.filter(({ data }) => slugifyAll(data.tags).includes(tag))
-            .length,
-          perPage
-        ),
-      ])
+      tags.map(({ tag, posts }) => [tag, listPageCount(posts.length, perPage)])
     ),
   };
 }
