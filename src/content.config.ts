@@ -3,11 +3,10 @@ import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 import config from "@/config";
 import { LOCALES } from "@/i18n/locales";
+import { BLOG_PATH } from "@/utils/postPath";
 
 // Posts and pages live in one folder per locale (`pt-br/`, `en/`): the locale
 // comes from the folder, and both Versões of a Post share the file name.
-export const BLOG_PATH = "src/content/posts";
-
 const posts = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
   schema: ({ image }) =>

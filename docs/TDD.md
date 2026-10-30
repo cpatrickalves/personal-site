@@ -162,10 +162,10 @@ O feed `/rss.xml` era o do Hashnode, em inglês. Depois da Virada, ele passa a s
 | `ogImage` | imagem | opcional; sem ela, a OG image é gerada |
 | `draft` | boolean | fora do build quando verdadeiro |
 | `featured` | boolean | destaque na home |
-| `translationReviewed` | boolean | opcional. `false` nos rascunhos de tradução gerados pelo agente; o Patrick muda para `true` ao aprovar. Ausente nas versões originais. |
+| `translationReviewed` | boolean | opcional, em qualquer idioma: fica na versão que é tradução. `false` nos rascunhos de tradução gerados pelo agente; o Patrick muda para `true` ao aprovar. Ausente nas versões originais. |
 | `fake` | boolean | marca os dados fake, que saem do build no início da Fase 7 |
 
-O idioma de um post vem da pasta onde ele está (`posts/pt-br/` ou `posts/en/`), não de um campo no frontmatter. Um post fora de uma pasta de idioma quebra o build. As datas são guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas (uma data YAML sem hora é meia-noite UTC e é formatada em UTC, senão aparece o dia anterior), como `AAAA-MM-DD` (por exemplo, `2026-02-28`) em PT-BR e em EN. As datas ficam em Outfit, com algarismos tabulares (ver Typography no `DESIGN.md`), e o ISO evita a ambiguidade do `MM/DD` americano. O idioma muda só as palavras em volta ("Atualizado", "Updated").
+O idioma de um post vem da pasta onde ele está (`posts/pt-br/` ou `posts/en/`), não de um campo no frontmatter. Um post fora de uma pasta de idioma quebra o build. O slug também sai só do caminho (`src/utils/postPath.ts`): as subpastas depois da pasta de idioma, menos as que começam com `_`, e o nome do arquivo, passados pelo slugify (o nome do arquivo também perde a pontuação). Um `slug:` no frontmatter não muda a URL. As datas são guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas (uma data YAML sem hora é meia-noite UTC e é formatada em UTC, senão aparece o dia anterior), como `AAAA-MM-DD` (por exemplo, `2026-02-28`) em PT-BR e em EN. As datas ficam em Outfit, com algarismos tabulares (ver Typography no `DESIGN.md`), e o ISO evita a ambiguidade do `MM/DD` americano. O idioma muda só as palavras em volta ("Atualizado", "Updated").
 
 **Projeto** (um YAML por item, com campos bilíngues):
 
@@ -290,7 +290,7 @@ O site é estático: não tem autenticação, formulários, backend nem dados de
 | Links externos | Links externos do HTML gerado | relatório | não; um job semanal abre issue | todo PR e semanal |
 | Lighthouse (a11y e SEO) | Páginas representativas (home, lista, post, projetos) nos dois idiomas | > 95 | sim | todo PR a partir da Fase 6 |
 | Lighthouse (performance) | As mesmas páginas, mediana de 3 execuções | > 95 | não; aviso no PR e portão manual no pré-lançamento | todo PR a partir da Fase 6 |
-| Traduções pendentes | Posts sem versão no outro idioma ou com `translationReviewed: false` | relatório no CI; zero no lançamento | não | todo PR |
+| Traduções pendentes | Posts sem versão no outro idioma, nos dois sentidos, ou com uma versão em `translationReviewed: false`; rascunhos não entram (`pnpm translations`) | relatório no Job Summary do CI; zero no lançamento | não | todo PR |
 | Fidelidade da importação | Datas de cada post importado comparadas com o JSON-LD do snapshot | nenhuma diferença | — | Fase 7 |
 | i18n | Toda página existe nos dois idiomas, com `hreflang` recíproco e seletor apontando para a versão equivalente | sem página órfã | — | Fase 2 em diante |
 | Preview × produção | HTML de um build sem `base` comparado com o do preview | Umami e sem `noindex` só na produção; `/styleguide` só no preview | — | Fase 6 |
@@ -335,7 +335,7 @@ Todos os itens precisam estar ok antes de tirar o domínio do Hashnode:
 
 - [ ] Os critérios de pronto das Fases 0 a 7 passam no preview.
 - [ ] Os 18 posts estão importados, com imagens locais, e o teste de datas não acha diferença.
-- [ ] Zero traduções pendentes (toda versão PT-BR com `translationReviewed: true`).
+- [ ] Zero traduções pendentes no relatório do CI (nenhum post sem a outra versão e nenhuma versão com `translationReviewed: false`).
 - [ ] Simulação sem `base` feita; o link-checker passa.
 - [ ] Backup completo do Hashnode (snapshot da Fase 0, com Markdown, HTML e imagens) no repo.
 - [ ] Script do Umami presente no build de produção e ausente no preview; meta de Lighthouse (incluindo performance) batida.
@@ -381,7 +381,7 @@ O detalhamento de tarefas e os critérios de pronto estão no [`PLAN.md`](PLAN.m
 | Posts do `*.hashnode.dev` competem com os novos no Google (o blog fica como está) | Médio | Média | Acompanhar no Search Console; se acontecer, pôr URL canônica nos posts do Hashnode apontando para o site novo |
 | Links antigos do Hashnode (`/<slug>`) dão 404 | Médio | Alta | Aceito: redirects fora do escopo. Acompanhar os 404 no Search Console. |
 | Revisão das versões PT-BR atrasa o lançamento | Médio | Média | Rascunhos do agente logo após a Importação; a revisão pode correr em paralelo com ajustes finais |
-| Rascunho de tradução mal revisado vai ao ar | Médio | Baixa | O script de pendências só conta uma versão como pronta com `translationReviewed: true` |
+| Rascunho de tradução mal revisado vai ao ar | Médio | Baixa | O script de pendências aponta toda versão com `translationReviewed: false`, em qualquer idioma, e o lançamento exige zero |
 | Repo público expõe rascunhos ou anotações | Baixo | Média | Nada que não possa ser público entra num commit |
 | Snapshot do AstroPaper fica parado na `v7.0.0` enquanto o tema evolui | Baixo | Média | Origem registrada em `THIRD_PARTY_NOTICES.md`; correções do tema que valerem a pena entram à mão |
 | Links internos quebram ao remover o `base` | Médio | Média | Helpers de URL em todo link e simulação sem `base` no portão de pré-lançamento |
