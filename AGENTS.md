@@ -15,6 +15,7 @@ Site pessoal bilíngue do Patrick Alves (blog, projetos e palestras) que substit
 - Siga `docs/PLAN.md` (fases) e `docs/TDD.md` (decisões); quando divergirem, corrija os dois. São temporários: no fim, o que durar vira doc permanente via `/docs-generator`.
 - Issues com título `Portão de aprovação:` são do Patrick: pare nelas, espere por ele e deixe que ele as feche.
 - Commits e PRs saem sem linhas de atribuição (`Co-authored-by` ou similares).
+- Para criar ou alterar qualquer página, componente ou estilo, use a skill `impeccable`.
 
 ## Docs por assunto
 
