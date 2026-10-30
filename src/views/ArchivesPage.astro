@@ -8,14 +8,15 @@ import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
 import { getLocalePosts } from "@/utils/getLocalePosts";
 import { getPostsByGroupCondition } from "@/utils/getPostsByGroupCondition";
-import { toLocale } from "@/i18n/locales";
+import { DEFAULT_LOCALE, toLocale } from "@/i18n/locales";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
 const locale = toLocale(Astro.currentLocale);
 
 // Redirect to 404 page if `showArchives` config is false
-const notFoundUrl = getRelativeLocaleUrl(locale, "404");
+// The 404 page exists only at the root, not under /en/.
+const notFoundUrl = getRelativeLocaleUrl(DEFAULT_LOCALE, "404");
 if (!config.features.showArchives && notFoundUrl) {
   return Astro.rewrite(notFoundUrl);
 }

@@ -7,7 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import { getAssetPath } from "@/utils/withBase";
-import { toLocale } from "@/i18n/locales";
+import { DEFAULT_LOCALE, toLocale } from "@/i18n/locales";
 import { localeUrl } from "@/i18n/urls";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
@@ -15,7 +15,8 @@ import config from "@/config";
 const locale = toLocale(Astro.currentLocale);
 
 // Redirect to 404 page if `search` feature is not enabled
-const notFoundUrl = getRelativeLocaleUrl(locale, "404");
+// The 404 page exists only at the root, not under /en/.
+const notFoundUrl = getRelativeLocaleUrl(DEFAULT_LOCALE, "404");
 if (config.features.search !== "pagefind" && notFoundUrl) {
   return Astro.rewrite(notFoundUrl);
 }

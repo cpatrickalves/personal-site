@@ -33,17 +33,29 @@ const navLabels: Record<string, string> = {
   search: t.nav.search,
 };
 
-// A trailing page number joins the item before it:
-// Home > Blog > 2 => Home > Blog (page 2)
+// Only the paginated lists (/blog/2, /blog/tags/<tag>/2) end in a page
+// number, which joins the item before it: Home > Blog (page 2). A tag or a
+// Post slug made of digits stays an item.
+const isPaginated =
+  (segments.length === 2 && segments[0] === "blog") ||
+  (segments.length === 4 && segments[0] === "blog" && segments[1] === "tags");
 const pageNumber =
-  segments.length > 1 && /^\d+$/.test(segments.at(-1) ?? "")
+  isPaginated && /^\d+$/.test(segments.at(-1) ?? "")
     ? segments.pop()
     : undefined;
 
+// Section names sit at the top level and at /blog/tags; anywhere else a
+// segment is a tag or a slug, even when it matches a section name.
+const isSectionAt = (segment: string, index: number) =>
+  Object.hasOwn(navLabels, segment) &&
+  (index === 0 || (index === 1 && segment === "tags"));
+
 const breadcrumbList = segments.map((segment, index) => ({
   // Section names are capitalised; tag names keep their case.
-  isSection: segment in navLabels,
-  label: navLabels[segment] ?? decodeSegment(segment),
+  isSection: isSectionAt(segment, index),
+  label: isSectionAt(segment, index)
+    ? navLabels[segment]
+    : decodeSegment(segment),
   href: localePathUrl(locale, `${segments.slice(0, index + 1).join("/")}/`),
 }));
 
