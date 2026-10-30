@@ -186,7 +186,7 @@ Estes itens ainda dependem de você. Só o primeiro bloqueia o início da Fase 0
 
 - [ ] Tornar o repo `personal-site` público (antes da Fase 0)
 - [x] Nome do repositório: personal-site
-- [ ] Escolha da paleta entre as 3 propostas (Fase 1)
+- [x] Escolha da paleta entre as 3 propostas (Fase 1): Gelo, com Outfit e Martian Mono
 - [ ] Dados do autor (antes da Fase 5; o backup traz as páginas about e hire-me do Hashnode como ponto de partida)
 - [ ] Conta no Umami Cloud e o ID do site (Fase 6)
 - [ ] Decisão sobre as duplicatas e o link dos projetos da série portfólio (Fase 7)

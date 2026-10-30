@@ -1,0 +1,36 @@
+---
+// A styleguide section: a heading with one emphasis word in the accent ink, a short
+// description, then the specimens.
+type Props = {
+  id: string;
+  title: string;
+  emphasis: string;
+  description?: string;
+};
+
+const { id, title, emphasis, description } = Astro.props;
+---
+
+<section
+  id={id}
+  aria-labelledby={`${id}-title`}
+  class="scroll-mt-24 py-16 sm:py-20"
+>
+  <div class="mb-10 max-w-2xl">
+    <h2
+      id={`${id}-title`}
+      class="text-[2rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance sm:text-[2.5rem]"
+    >
+      {title}{" "}
+      <span class="text-accent-ink">{emphasis}</span>
+    </h2>
+    {
+      description && (
+        <p class="text-muted-foreground mt-3 text-[1.0625rem] leading-relaxed">
+          {description}
+        </p>
+      )
+    }
+  </div>
+  <slot />
+</section>

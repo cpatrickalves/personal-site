@@ -1,0 +1,773 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T00:00:00+00:00",
+  "title": "Design System: cpatrickalves.com",
+  "extensions": {
+    "colorMeta": {
+      "light-background": {
+        "role": "neutral",
+        "displayName": "Chão (claro)",
+        "canonical": "#e8edf1",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232527",
+          "#3f4245",
+          "#5e6265",
+          "#7f8386",
+          "#a2a5a8",
+          "#c6c9cc",
+          "#eceff1"
+        ],
+        "theme": "light",
+        "cssVar": "--background"
+      },
+      "light-card": {
+        "role": "neutral",
+        "displayName": "Placa (claro)",
+        "canonical": "#f7f9fb",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242526",
+          "#414243",
+          "#606163",
+          "#818284",
+          "#a4a5a7",
+          "#c8c9ca",
+          "#edeeef"
+        ],
+        "theme": "light",
+        "cssVar": "--card"
+      },
+      "light-foreground": {
+        "role": "neutral",
+        "displayName": "Tinta (claro)",
+        "canonical": "#13212f",
+        "tonalRamp": [
+          "#060c12",
+          "#1d262f",
+          "#384350",
+          "#546372",
+          "#758494",
+          "#99a7b5",
+          "#bfcbd7",
+          "#e6f0f9"
+        ],
+        "theme": "light",
+        "cssVar": "--foreground"
+      },
+      "light-muted-foreground": {
+        "role": "neutral",
+        "displayName": "Tinta secundária (claro)",
+        "canonical": "#4e596c",
+        "tonalRamp": [
+          "#070b12",
+          "#1f2530",
+          "#3a4250",
+          "#576274",
+          "#788396",
+          "#9ca6b6",
+          "#c1cad8",
+          "#e8effa"
+        ],
+        "theme": "light",
+        "cssVar": "--muted-foreground"
+      },
+      "light-accent": {
+        "role": "primary",
+        "displayName": "Azul-Gelo (claro)",
+        "canonical": "#9edcf1",
+        "tonalRamp": [
+          "#000e15",
+          "#052a34",
+          "#1b4956",
+          "#326a7b",
+          "#558b9d",
+          "#7fadbd",
+          "#abd0de",
+          "#d7f4ff"
+        ],
+        "theme": "light",
+        "cssVar": "--accent"
+      },
+      "light-accent-foreground": {
+        "role": "primary",
+        "displayName": "Texto sobre accent (claro)",
+        "canonical": "#13212f",
+        "tonalRamp": [
+          "#060c12",
+          "#1d262f",
+          "#384350",
+          "#546372",
+          "#758494",
+          "#99a7b5",
+          "#bfcbd7",
+          "#e6f0f9"
+        ],
+        "theme": "light",
+        "cssVar": "--accent-foreground"
+      },
+      "light-accent-ink": {
+        "role": "primary",
+        "displayName": "Gelo Profundo (claro)",
+        "canonical": "#0b6688",
+        "tonalRamp": [
+          "#000e1b",
+          "#002a3c",
+          "#074861",
+          "#1f6a89",
+          "#468cad",
+          "#75aecb",
+          "#a2d1e9",
+          "#d1f5ff"
+        ],
+        "theme": "light",
+        "cssVar": "--accent-ink"
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Preenchimento quieto (claro)",
+        "canonical": "#d9e1e8",
+        "tonalRamp": [
+          "#090b0e",
+          "#222629",
+          "#3e4347",
+          "#5c6268",
+          "#7d8389",
+          "#a0a6ab",
+          "#c5cace",
+          "#ebeff2"
+        ],
+        "theme": "light",
+        "cssVar": "--muted"
+      },
+      "light-border": {
+        "role": "neutral",
+        "displayName": "Filete (claro)",
+        "canonical": "#c5d0da",
+        "tonalRamp": [
+          "#080c0f",
+          "#20262a",
+          "#3c4349",
+          "#5a626b",
+          "#7a848c",
+          "#9ea6ae",
+          "#c3cad0",
+          "#eaeff4"
+        ],
+        "theme": "light",
+        "cssVar": "--border"
+      },
+      "light-shadow": {
+        "role": "neutral",
+        "displayName": "Sombra dura (claro)",
+        "canonical": "rgb(19 33 47 / 0.85)",
+        "tonalRamp": [
+          "#060c12",
+          "#1d262f",
+          "#384350",
+          "#546372",
+          "#758494",
+          "#99a7b5",
+          "#bfcbd7",
+          "#e6f0f9"
+        ],
+        "theme": "light",
+        "cssVar": "--shadow"
+      },
+      "dark-background": {
+        "role": "neutral",
+        "displayName": "Chão (escuro)",
+        "canonical": "#0e1822",
+        "tonalRamp": [
+          "#070c10",
+          "#1f262d",
+          "#3a434c",
+          "#57636e",
+          "#788490",
+          "#9ca6b1",
+          "#c2cad3",
+          "#e8eff7"
+        ],
+        "theme": "dark",
+        "cssVar": "--background"
+      },
+      "dark-card": {
+        "role": "neutral",
+        "displayName": "Placa (escuro)",
+        "canonical": "#152230",
+        "tonalRamp": [
+          "#070c12",
+          "#1e262f",
+          "#38434f",
+          "#556372",
+          "#758494",
+          "#9aa7b5",
+          "#c0cad7",
+          "#e7f0f9"
+        ],
+        "theme": "dark",
+        "cssVar": "--card"
+      },
+      "dark-foreground": {
+        "role": "neutral",
+        "displayName": "Tinta (escuro)",
+        "canonical": "#f3f3ec",
+        "tonalRamp": [
+          "#0b0b09",
+          "#252522",
+          "#42423e",
+          "#62625c",
+          "#83837d",
+          "#a5a5a0",
+          "#c9c9c5",
+          "#efefeb"
+        ],
+        "theme": "dark",
+        "cssVar": "--foreground"
+      },
+      "dark-muted-foreground": {
+        "role": "neutral",
+        "displayName": "Tinta secundária (escuro)",
+        "canonical": "#9ca6b8",
+        "tonalRamp": [
+          "#080b11",
+          "#20252e",
+          "#3c424e",
+          "#596271",
+          "#7a8393",
+          "#9ea5b3",
+          "#c3c9d5",
+          "#e9eff8"
+        ],
+        "theme": "dark",
+        "cssVar": "--muted-foreground"
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "Azul-Gelo (escuro)",
+        "canonical": "#a8e4f5",
+        "tonalRamp": [
+          "#000e14",
+          "#072a32",
+          "#1d4954",
+          "#356a78",
+          "#578c9a",
+          "#81adba",
+          "#acd0db",
+          "#d8f4fd"
+        ],
+        "theme": "dark",
+        "cssVar": "--accent"
+      },
+      "dark-accent-foreground": {
+        "role": "primary",
+        "displayName": "Texto sobre accent (escuro)",
+        "canonical": "#0e1822",
+        "tonalRamp": [
+          "#070c10",
+          "#1f262d",
+          "#3a434c",
+          "#57636e",
+          "#788490",
+          "#9ca6b1",
+          "#c2cad3",
+          "#e8eff7"
+        ],
+        "theme": "dark",
+        "cssVar": "--accent-foreground"
+      },
+      "dark-accent-ink": {
+        "role": "primary",
+        "displayName": "Gelo Profundo (escuro)",
+        "canonical": "#a8e4f5",
+        "tonalRamp": [
+          "#000e14",
+          "#072a32",
+          "#1d4954",
+          "#356a78",
+          "#578c9a",
+          "#81adba",
+          "#acd0db",
+          "#d8f4fd"
+        ],
+        "theme": "dark",
+        "cssVar": "--accent-ink"
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Preenchimento quieto (escuro)",
+        "canonical": "#1d2d3f",
+        "tonalRamp": [
+          "#060c13",
+          "#1c2631",
+          "#364352",
+          "#526376",
+          "#738498",
+          "#98a7b8",
+          "#becbd9",
+          "#e5f0fc"
+        ],
+        "theme": "dark",
+        "cssVar": "--muted"
+      },
+      "dark-border": {
+        "role": "neutral",
+        "displayName": "Filete (escuro)",
+        "canonical": "#26384b",
+        "tonalRamp": [
+          "#050c13",
+          "#1b2631",
+          "#354353",
+          "#516377",
+          "#728499",
+          "#96a7b9",
+          "#bdcbda",
+          "#e5f0fc"
+        ],
+        "theme": "dark",
+        "cssVar": "--border"
+      },
+      "dark-shadow": {
+        "role": "neutral",
+        "displayName": "Sombra dura (escuro)",
+        "canonical": "rgb(243 243 236 / 0.28)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#252522",
+          "#42423e",
+          "#62625c",
+          "#83837d",
+          "#a5a5a0",
+          "#c9c9c5",
+          "#efefeb"
+        ],
+        "theme": "dark",
+        "cssVar": "--shadow"
+      },
+      "warning-light": {
+        "role": "semantic",
+        "displayName": "Atenção (claro)",
+        "canonical": "#8a4b00",
+        "tonalRamp": [
+          "#1b0400",
+          "#3d1a00",
+          "#633501",
+          "#8b5117",
+          "#b0723d",
+          "#ce986c",
+          "#edbf9b",
+          "#ffe7ca"
+        ],
+        "theme": "light",
+        "cssVar": "--warning"
+      },
+      "danger-light": {
+        "role": "semantic",
+        "displayName": "Perigo (claro)",
+        "canonical": "#b42318",
+        "tonalRamp": [
+          "#260000",
+          "#4f0000",
+          "#7c1109",
+          "#ac2a1f",
+          "#d45141",
+          "#f17f6f",
+          "#ffac9d",
+          "#ffd9cc"
+        ],
+        "theme": "light",
+        "cssVar": "--danger"
+      },
+      "warning-dark": {
+        "role": "semantic",
+        "displayName": "Atenção (escuro)",
+        "canonical": "#f2b45a",
+        "tonalRamp": [
+          "#1a0500",
+          "#3b1c00",
+          "#603700",
+          "#885400",
+          "#ac761c",
+          "#ca9c5a",
+          "#e9c28d",
+          "#ffe9c0"
+        ],
+        "theme": "dark",
+        "cssVar": "--warning"
+      },
+      "danger-dark": {
+        "role": "semantic",
+        "displayName": "Perigo (escuro)",
+        "canonical": "#ff8f85",
+        "tonalRamp": [
+          "#200000",
+          "#470d0c",
+          "#702522",
+          "#9d3e39",
+          "#c36159",
+          "#e08a82",
+          "#fdb4ac",
+          "#ffded7"
+        ],
+        "theme": "dark",
+        "cssVar": "--danger"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título único da página (desktop); uma palavra em Martian Mono no accent-ink."
+      },
+      "display-mobile": {
+        "displayName": "Display (celular)",
+        "purpose": "Display abaixo de 640px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de seção, com uma palavra de ênfase em Outfit no accent-ink, caixa normal."
+      },
+      "headline-mobile": {
+        "displayName": "Headline (celular)",
+        "purpose": "Headline abaixo de 640px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de bloco, card e item de lista."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Coluna de leitura, medida de 70ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navegação e rótulos de controle."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Metadados e legendas."
+      },
+      "data": {
+        "displayName": "Detalhe (Martian Mono)",
+        "purpose": "Números, datas e tempo de leitura, nunca palavras; utilitário `detail`."
+      },
+      "data-hero": {
+        "displayName": "Detalhe grande (Martian Mono)",
+        "purpose": "O maior número de uma vista."
+      },
+      "data-min": {
+        "displayName": "Detalhe mínimo (Martian Mono)",
+        "purpose": "Menor uso observado, em metadados; Martian Mono vale em qualquer tamanho, menos nos números de tabela, que ficam em Outfit tabular."
+      },
+      "code": {
+        "displayName": "Código",
+        "purpose": "Blocos de código e código inline (0.88em sobre muted), em Martian Mono."
+      }
+    },
+    "fontSources": [
+      {
+        "family": "Outfit",
+        "cssVar": "--font-outfit",
+        "weights": "100 900",
+        "format": "woff2",
+        "provider": "Astro Fonts API (google)",
+        "preload": true
+      },
+      {
+        "family": "Martian Mono",
+        "cssVar": "--font-martian-mono",
+        "weights": "100 800",
+        "format": "woff2",
+        "provider": "Astro Fonts API (google)",
+        "aliases": [
+          "--font-mono",
+          "--font-detail-face"
+        ]
+      },
+      {
+        "family": "Outfit",
+        "cssVar": "--font-outfit-og",
+        "weights": "400, 700",
+        "format": "ttf",
+        "provider": "Astro Fonts API (google)",
+        "buildOnly": true,
+        "note": "Cópia estática só para o gerador de imagens OG (satori); nenhuma página carrega."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "plate",
+        "value": "6px 6px 0 0 var(--shadow)",
+        "purpose": "Toda placa em repouso; offset por --plate-offset (4, 6 ou 8px)."
+      },
+      {
+        "name": "plate-tight",
+        "value": "5px 5px 0 0 var(--shadow)",
+        "purpose": "Blocos de código, callouts e o card dentro de um espécime de tema."
+      },
+      {
+        "name": "plate-lift",
+        "value": "11px 11px 0 0 var(--accent)",
+        "purpose": "Hover e foco de placa clicável, com transform translate(-2px, -6px)."
+      },
+      {
+        "name": "button",
+        "value": "5px 5px 0 0 var(--shadow)",
+        "purpose": "Botões primário e secundário; 3px no tamanho pequeno."
+      },
+      {
+        "name": "button-hover",
+        "value": "9px 9px 0 0 var(--shadow)",
+        "purpose": "Hover de botão (offset + 4px), com translate(-2px, -3px)."
+      },
+      {
+        "name": "button-active",
+        "value": "0 0 0 0 var(--shadow)",
+        "purpose": "Clique: o botão desce translate(5px, 5px) até a sombra em 60ms."
+      },
+      {
+        "name": "scroll-cue",
+        "value": "radial-gradient(farthest-side, color-mix(in oklab, var(--foreground) 28%, transparent), transparent)",
+        "purpose": "Sombra de borda em blocos com rolagem horizontal (fundos local/scroll)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Reveal, levantamento de placa, entrada de página."
+      },
+      {
+        "name": "ease-out-back",
+        "value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Botões e badges: resposta curta e elástica."
+      },
+      {
+        "name": "ease-in-sink",
+        "value": "cubic-bezier(0.7, 0, 0.84, 0)",
+        "purpose": "Saída de página (vt-sink)."
+      },
+      {
+        "name": "button-press",
+        "value": "180ms ease-out-back; active 60ms",
+        "purpose": "Hover e clique de botão."
+      },
+      {
+        "name": "plate-lift",
+        "value": "400ms ease-out-expo",
+        "purpose": "Placa sobe e a sombra vira accent."
+      },
+      {
+        "name": "reveal",
+        "value": "700ms ease-out-expo; translateY(16px), blur(4px), opacity 0; delay var(--reveal-delay)",
+        "purpose": "Entrada ao rolar, só depois de reveal-ready e nunca na primeira dobra."
+      },
+      {
+        "name": "page-sink",
+        "value": "180ms; translateY(-8px), opacity 0",
+        "purpose": "Página que sai (Astro ClientRouter)."
+      },
+      {
+        "name": "page-rise",
+        "value": "500ms ease-out-expo, delay 80ms; translateY(12px)",
+        "purpose": "Página que entra."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "prefers-reduced-motion: reduce desliga transições, animações, View Transitions e levantamento."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ],
+    "containers": [
+      {
+        "name": "app",
+        "value": "48rem"
+      },
+      {
+        "name": "styleguide",
+        "value": "72rem"
+      },
+      {
+        "name": "prose",
+        "value": "70ch"
+      }
+    ],
+    "detailTokens": [
+      {
+        "name": "--font-detail-face",
+        "value": "var(--font-martian-mono)"
+      },
+      {
+        "name": "--detail-weight",
+        "value": "500"
+      },
+      {
+        "name": "--detail-tracking",
+        "value": "-0.03em"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal: preenchimento no accent, sombra dura que cresce no hover e some no clique.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Ler o blog <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M17 7l-10 10\"/><path d=\"M8 7h9v9\"/></svg></button>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 20px; font-family:var(--font-outfit), sans-serif; font-size:1.0625rem; font-weight:500; letter-spacing:-0.01em; border:2px solid var(--foreground); border-radius:0; cursor:pointer; transition: transform .18s cubic-bezier(0.2,0.8,0.2,1), box-shadow .18s cubic-bezier(0.2,0.8,0.2,1), background-color .2s, color .2s; } .ds-btn:focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; } .ds-btn-primary { background:var(--accent); color:var(--accent-foreground); border-color:var(--accent); box-shadow:5px 5px 0 0 var(--shadow); } .ds-btn svg { transition:transform .2s; } .ds-btn:hover svg { transform:translateX(3px); } .ds-btn-primary:hover { transform:translate(-2px,-3px); box-shadow:9px 9px 0 0 var(--shadow); } .ds-btn-primary:active { transform:translate(5px,5px); box-shadow:0 0 0 0 var(--shadow); transition-duration:.06s; }"
+    },
+    {
+      "name": "Botão secundário",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação de apoio: placa no card com contorno na cor do texto.",
+      "html": "<button class=\"ds-btn ds-btn-secondary\">Ver projetos</button>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 20px; font-family:var(--font-outfit), sans-serif; font-size:1.0625rem; font-weight:500; letter-spacing:-0.01em; border:2px solid var(--foreground); border-radius:0; cursor:pointer; transition: transform .18s cubic-bezier(0.2,0.8,0.2,1), box-shadow .18s cubic-bezier(0.2,0.8,0.2,1), background-color .2s, color .2s; } .ds-btn:focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; } .ds-btn-secondary { background:var(--card); color:var(--foreground); box-shadow:5px 5px 0 0 var(--shadow); } .ds-btn-secondary:hover { transform:translate(-2px,-3px); box-shadow:9px 9px 0 0 var(--shadow); } .ds-btn-secondary:active { transform:translate(5px,5px); box-shadow:0 0 0 0 var(--shadow); transition-duration:.06s; }"
+    },
+    {
+      "name": "Botão quieto",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Ação terciária sem placa; o texto vira accent-ink no hover.",
+      "html": "<button class=\"ds-btn ds-btn-quiet\">Todos os posts</button>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 20px; font-family:var(--font-outfit), sans-serif; font-size:1.0625rem; font-weight:500; letter-spacing:-0.01em; border:2px solid var(--foreground); border-radius:0; cursor:pointer; transition: transform .18s cubic-bezier(0.2,0.8,0.2,1), box-shadow .18s cubic-bezier(0.2,0.8,0.2,1), background-color .2s, color .2s; } .ds-btn:focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; } .ds-btn-quiet { background:transparent; color:var(--foreground); border-color:transparent; padding:0 4px; } .ds-btn-quiet:hover { color:var(--accent-ink); }"
+    },
+    {
+      "name": "Badges",
+      "kind": "chip",
+      "refersTo": "badge-stack",
+      "description": "Rótulos de stack, tags com # e o badge de destaque preenchido.",
+      "html": "<span class=\"ds-badge\">Python</span> <a href=\"#\" class=\"ds-badge ds-badge-tag ds-badge-link\"><span style=\"opacity:.6\">#</span>agentes</a> <span class=\"ds-badge ds-badge-accent\">Novo</span>",
+      "css": ".ds-badge { display:inline-flex; align-items:center; gap:1px; min-height:28px; padding:0 8px; font-family:var(--font-outfit), sans-serif; font-size:0.8125rem; font-weight:500; line-height:1; border:1.5px solid var(--border); border-radius:0; background:var(--background); color:var(--foreground); text-decoration:none; } .ds-badge-tag { color:var(--accent-ink); } .ds-badge-accent { background:var(--accent); color:var(--accent-foreground); border-color:var(--accent); } .ds-badge-link { transition:border-color .2s, transform .25s cubic-bezier(0.2,0.8,0.2,1); } .ds-badge-link:hover { border-color:var(--foreground); transform:translateY(-2px); } .ds-badge-link:focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; }"
+    },
+    {
+      "name": "Placa com link",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "O contêiner do sistema; clicável, levanta e a sombra vira accent.",
+      "html": "<a href=\"#\" class=\"ds-plate\"><span class=\"ds-plate-title\">O que é um pipeline de ML?</span><span class=\"ds-plate-meta\"><span class=\"ds-detail\">17.03.2025</span><span>6 min de leitura</span></span></a>",
+      "css": ".ds-plate { display:block; max-width:420px; padding:24px; background:var(--card); color:var(--foreground); border:2px solid var(--foreground); border-radius:0; box-shadow:6px 6px 0 0 var(--shadow); text-decoration:none; font-family:var(--font-outfit), sans-serif; transition:transform .4s cubic-bezier(0.16,1,0.3,1), box-shadow .4s cubic-bezier(0.16,1,0.3,1); } .ds-plate:hover, .ds-plate:focus-visible { transform:translate(-2px,-6px); box-shadow:11px 11px 0 0 var(--accent); } .ds-plate:focus-visible { outline:2px solid var(--accent-ink); outline-offset:4px; } .ds-plate-title { display:block; font-size:2rem; font-weight:600; line-height:1.1; letter-spacing:-0.03em; transition:color .2s; } .ds-plate:hover .ds-plate-title { color:var(--accent-ink); } .ds-plate-meta { display:flex; align-items:baseline; justify-content:space-between; margin-top:24px; color:var(--muted-foreground); font-size:0.875rem; font-variant-numeric:tabular-nums; } .ds-detail { font-family:var(--font-martian-mono), monospace; font-weight:500; letter-spacing:-0.03em; font-size:1.5rem; color:var(--accent-ink); font-variant-numeric:tabular-nums; }"
+    },
+    {
+      "name": "Callout",
+      "kind": "custom",
+      "refersTo": "callout",
+      "description": "Placa justa com ícone e título no accent-ink (ou warning/danger).",
+      "html": "<div class=\"ds-callout\"><div class=\"ds-callout-title\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"/><path d=\"M12 9h.01\"/><path d=\"M11 12h1v4h1\"/></svg><span>Nota</span></div><div class=\"ds-callout-body\">O mesmo markup do rehype-callouts serve ao Markdown e ao componente.</div></div>",
+      "css": ".ds-callout { padding:16px 20px; background:var(--card); color:var(--foreground); border:2px solid var(--foreground); border-radius:0; box-shadow:5px 5px 0 0 var(--shadow); font-family:var(--font-outfit), sans-serif; font-size:0.97em; line-height:1.625; } .ds-callout-title { display:flex; align-items:center; gap:8px; font-weight:600; color:var(--accent-ink); } .ds-callout-body { margin-top:8px; }"
+    },
+    {
+      "name": "Bloco de código",
+      "kind": "custom",
+      "refersTo": "code-block",
+      "description": "Placa justa com barra de arquivo e botão Copiar; sintaxe pela paleta.",
+      "html": "<figure class=\"ds-code\"><figcaption class=\"ds-code-bar\"><span>classify.py</span><button class=\"ds-code-copy\">Copiar</button></figcaption><pre class=\"ds-code-body\"><span class=\"k\">def</span> classify(text): <span class=\"c\"># rótulo</span>\n    <span class=\"k\">return</span> <span class=\"s\">\"ok\"</span></pre></figure>",
+      "css": ".ds-code { margin:0; background:var(--card); color:var(--foreground); border:2px solid var(--foreground); border-radius:0; box-shadow:5px 5px 0 0 var(--shadow); } .ds-code-bar { display:flex; align-items:center; justify-content:space-between; min-height:44px; padding:6px 8px 6px 20px; border-bottom:2px solid var(--border); font-family:var(--font-martian-mono), monospace; font-size:0.8125rem; color:var(--muted-foreground); } .ds-code-copy { min-height:36px; padding:0 8px; background:none; border:0; color:var(--muted-foreground); font:500 0.875rem var(--font-outfit), sans-serif; cursor:pointer; } .ds-code-copy:hover { color:var(--foreground); } .ds-code-copy:focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; } .ds-code-body { margin:0; padding:16px 20px; overflow-x:auto; font-family:var(--font-martian-mono), monospace; font-size:0.875rem; line-height:1.7; } .ds-code-body .k { color:var(--accent-ink); } .ds-code-body .c { color:var(--muted-foreground); } .ds-code-body .s { color:color-mix(in oklab, var(--accent-ink) 50%, var(--foreground)); }"
+    },
+    {
+      "name": "Controle de tema",
+      "kind": "nav",
+      "description": "Grupo de botões quadrados na barra superior; o pressionado inverte as cores.",
+      "html": "<div class=\"ds-theme\" role=\"group\" aria-label=\"Tema\"><button aria-pressed=\"true\">Claro</button><button aria-pressed=\"false\">Escuro</button><button aria-pressed=\"false\">Sistema</button></div>",
+      "css": ".ds-theme { display:inline-flex; border:2px solid var(--foreground); background:var(--background); } .ds-theme button { min-height:40px; padding:0 12px; background:transparent; color:var(--foreground); border:0; border-radius:0; font:500 0.875rem var(--font-outfit), sans-serif; cursor:pointer; } .ds-theme button:hover { background:var(--card); } .ds-theme button[aria-pressed=true] { background:var(--foreground); color:var(--background); } .ds-theme button:focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; }"
+    },
+    {
+      "name": "Espécime de tema",
+      "kind": "custom",
+      "description": "Os dois temas lado a lado, cada painel com o próprio data-theme, título com palavra de ênfase e botão.",
+      "html": "<div class=\"ds-pair\"><div class=\"ds-pair-panel\"><h3 class=\"ds-pair-title\">Agentes que <span class=\"ds-pair-detail\">leem</span> documentos</h3><p class=\"ds-pair-text\">Texto secundário com um <a href=\"#\">link no texto</a>.</p></div></div>",
+      "css": ".ds-pair { display:grid; gap:24px; } .ds-pair-panel { padding:24px; background:var(--background); color:var(--foreground); border:2px solid var(--foreground); border-radius:0; font-family:var(--font-outfit), sans-serif; } .ds-pair-title { margin:0; font-size:1.75rem; line-height:1.15; font-weight:600; letter-spacing:-0.03em; } .ds-pair-detail { font-family:var(--font-martian-mono), monospace; font-weight:500; letter-spacing:-0.03em; color:var(--accent-ink); } .ds-pair-text { margin:12px 0 0; color:var(--muted-foreground); line-height:1.625; } .ds-pair-text a { color:var(--accent-ink); text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; } .ds-pair-text a:focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Bancada de Placas",
+    "overview": "Uma bancada de quem constrói agentes. Cada peça é uma placa recortada: canto reto, contorno de 2px na cor do texto e uma sombra dura deslocada na diagonal, apoiada sobre um fundo tingido um tom abaixo dela. A paleta é a Gelo, navy e azul-gelo do logo antigo, irmã da Cognicode, em claro e escuro. Há um único accent forte, e ele aparece como preenchimento (botão primário, badge de destaque, seleção de texto) ou, na versão `accent-ink`, como texto e link. O resto é tinta e papel da mesma família de cor.\n\nA densidade é de oficina, não de revista: placas lado a lado, títulos curtos em Outfit seminegrito com tracking negativo, e os detalhes (números, datas, tempo de leitura) em Martian Mono. A assinatura do sistema é essa dupla: Outfit em tudo que se lê, Martian Mono onde há um número ou uma data, em qualquer tamanho, e no código. Palavras ficam sempre em Outfit. O movimento é físico e curto: placas levantam no hover, botões afundam no clique, o conteúdo sobe ao entrar.\n\nO sistema recusa o blog de dev padrão: cards arredondados, glow, gradiente no nome. A linguagem de cards, sombras e animação vem da referência Rubric, tornada obrigatória pelo Patrick, mas nunca o logo, o cursor hexagonal nem os textos dela.",
+    "keyCharacteristics": [
+      "Placas de canto reto, contorno de 2px na cor do texto e sombra dura sem desfoque.",
+      "Fundo tingido, card um tom acima, um único accent.",
+      "Outfit para leitura; Martian Mono 500 para números, datas e o código, nunca para palavras.",
+      "Paleta Gelo em claro e escuro, com os mesmos papéis de cor.",
+      "Movimento visível por padrão e desligado inteiro sob `prefers-reduced-motion`."
+    ],
+    "rules": [
+      {
+        "name": "The Raw Token Rule",
+        "body": "CSS escrito à mão referencia os tokens crus (`var(--card)`, `var(--foreground)`, `var(--accent-ink)`), nunca os aliases do Tailwind (`var(--color-card)`). Os aliases são resolvidos no `:root` e vazam o tema raiz para dentro de espécimes aninhados; utilitários do Tailwind são seguros porque o tema é `inline`.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Accent Rule",
+        "body": "A paleta tem um accent e só um. Se uma tela precisa de uma segunda cor de destaque, a resposta é tinta, contorno ou Martian Mono, não uma nova cor.",
+        "section": "colors"
+      },
+      {
+        "name": "The Syntax Follows Palette Rule",
+        "body": "O realce de código usa o tema Shiki `css-variables`, mapeado para os papéis da paleta: palavras-chave e constantes em `accent-ink`, strings numa mistura de `accent-ink` com `foreground`, comentários em `muted-foreground`. Nenhuma cor de sintaxe fora da paleta.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Accent Word Rule",
+        "body": "Num título, no máximo uma palavra vai no `accent-ink`, na mesma Outfit e no mesmo peso do resto. É a palavra sobre a qual o título fala, não um enfeite. Martian Mono nunca entra em palavras.",
+        "section": "typography"
+      },
+      {
+        "name": "The Outfit Table Rule",
+        "body": "Martian Mono serve a números, datas e tempo de leitura em qualquer tamanho, inclusive em metadados pequenos; nas tabelas, os números ficam em Outfit com algarismos tabulares.",
+        "section": "typography"
+      },
+      {
+        "name": "The Visible-by-Default Rule",
+        "body": "O conteúdo está sempre visível sem JavaScript. O reveal ao rolar só se arma quando o script marca `<html>` com `reveal-ready`, nunca anima o que já está na primeira dobra, e não roda com `prefers-reduced-motion`.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hard Shadow Rule",
+        "body": "Toda sombra é um bloco deslocado sem desfoque. Uma sombra com blur não pertence a este mundo.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Lift Rule",
+        "body": "Elevar é uma resposta: placas sobem só no hover ou foco, e a sombra levantada sempre muda para o accent. Em repouso, todas as placas estão no mesmo plano.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Corner Rule",
+        "body": "Nenhum raio de borda. Um canto arredondado desfaz o recorte de placa que define o sistema. Cantos de 16px com sombra mais clara foram testados no styleguide e recusados pelo Patrick.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** usar a placa (canto reto, contorno de 2px em `foreground`, sombra dura de 6px) como o único contêiner do site.",
+      "**Do** escrever cores de tema só em `:root, [data-theme=\"light\"]` e `[data-theme=\"dark\"]`, com os mesmos papéis nos dois.",
+      "**Do** referenciar tokens crus (`var(--card)`, `var(--foreground)`) em CSS escrito à mão.",
+      "**Do** usar `accent-ink` para todo texto na cor do accent e `accent` só como preenchimento.",
+      "**Do** usar o detalhe (Martian Mono 500) para números, datas e tempo de leitura, em qualquer tamanho. **Don't** usar Martian Mono em palavras; a ênfase de título é Outfit no `accent-ink`.",
+      "**Do** fazer a sombra crescer e virar accent quando uma placa clicável recebe hover ou foco.",
+      "**Do** manter todo conteúdo visível sem JavaScript e desligar o movimento sob `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** usar cantos arredondados, glow ou gradiente no nome.",
+      "**Don't** usar sombras com desfoque ou espalhamento.",
+      "**Don't** pôr os números de tabela em Martian Mono; ali ficam em Outfit com algarismos tabulares.",
+      "**Don't** colocar mais de uma palavra em Martian Mono num título, nem passá-la para caixa alta.",
+      "**Don't** carregar uma terceira família de fonte; Outfit e Martian Mono cobrem leitura, detalhe e código.",
+      "**Don't** referenciar os aliases `--color-*` do Tailwind em CSS escrito à mão.",
+      "**Don't** introduzir um segundo accent ou cores de sintaxe fora da paleta.",
+      "**Don't** usar eyebrows ou kickers (rótulos pequenos acima de títulos).",
+      "**Don't** copiar o logo, o cursor hexagonal ou os textos do Rubric."
+    ]
+  }
+}

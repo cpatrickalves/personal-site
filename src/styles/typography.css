@@ -1,20 +1,24 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
-  /* ===== Override default Tailwind Typography styles ===== */
+  /* ===== Reading column: Outfit, real contrast, a 70ch measure ===== */
   .app-prose {
-    @apply prose;
+    @apply prose max-w-[70ch] text-[1.0625rem] leading-[1.75];
+    color: var(--foreground);
 
     h1,
     h2,
     h3,
-    h4,
-    th {
-      @apply text-foreground mb-3;
+    h4 {
+      @apply text-foreground font-semibold tracking-tight text-balance;
+    }
+
+    h2 {
+      @apply mt-[2.4em] mb-[0.7em] text-[1.6em] leading-tight;
     }
 
     h3 {
-      @apply italic;
+      @apply mt-[2em] mb-[0.6em] text-[1.25em];
     }
 
     p,
@@ -22,13 +26,12 @@
     ol,
     ul,
     figcaption,
-    table,
-    code {
+    table {
       @apply text-foreground;
     }
 
     a {
-      @apply text-foreground hover:text-accent wrap-break-word decoration-dashed underline-offset-4 focus-visible:no-underline;
+      @apply text-accent-ink decoration-accent-ink/40 hover:decoration-accent-ink wrap-break-word underline decoration-2 underline-offset-[0.2em] transition-[text-decoration-color] focus-visible:no-underline;
     }
 
     ul {
@@ -36,37 +39,63 @@
     }
 
     li {
-      @apply marker:text-accent;
+      @apply marker:text-accent-ink;
+    }
+
+    ol > li::marker {
+      @apply font-semibold;
     }
 
     hr {
-      @apply border-border;
+      @apply border-border my-12 border-t-2;
     }
 
     img {
-      @apply border-border mx-auto border;
+      @apply border-outline mx-auto border-2;
     }
 
     img[role="button"] {
       @apply cursor-zoom-in;
 
       &:focus-visible {
-        @apply outline-2 outline-offset-2 outline-dashed;
+        @apply outline-2 outline-offset-2 outline-solid;
       }
     }
 
     figcaption {
-      @apply opacity-75;
+      @apply text-muted-foreground text-center text-sm;
     }
 
+    blockquote {
+      @apply text-muted-foreground border-s-2 border-s-current ps-5 font-normal wrap-break-word not-italic;
+      quotes: none;
+    }
+
+    blockquote p::before,
+    blockquote p::after {
+      content: none;
+    }
+
+    /* Inline code */
+    :not(pre) > code {
+      @apply bg-muted text-foreground px-1.5 py-0.5 font-mono text-[0.88em] font-normal wrap-break-word before:content-none after:content-none;
+    }
+
+    /* Tables: header on a 2px rule, hairlines between rows */
     table {
+      @apply my-0 w-full text-[0.94em];
+
       th,
       td {
-        @apply border-border border p-2;
+        @apply px-3 py-2.5 align-top;
       }
 
-      th {
-        @apply py-1.5;
+      thead th {
+        @apply text-foreground border-outline border-b-2 font-semibold;
+      }
+
+      tbody tr {
+        @apply border-border border-b;
       }
 
       th[align="center"],
@@ -85,54 +114,89 @@
       }
     }
 
-    code {
-      @apply bg-muted/75 text-foreground rounded p-1 wrap-break-word before:content-none after:content-none;
-    }
-
-    .astro-code code {
-      @apply flex-[1_0_100%] bg-inherit p-0;
-    }
-
-    blockquote {
-      @apply border-s-accent/80 wrap-break-word opacity-80;
-    }
-
     details:not(.callout) {
       @apply text-foreground inline-block cursor-pointer select-none [&_p]:hidden [&_ul]:my-0!;
     }
 
-    summary {
-      @apply focus-visible:outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-dashed;
-    }
-
     pre {
-      @apply focus-visible:outline-accent focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-dashed;
+      @apply focus-visible:outline-2 focus-visible:outline-solid;
     }
   }
 
-  /* ===== Code Blocks & Syntax Highlighting ===== */
+  /* ===== Code blocks: a plate with Shiki's css-variables theme ===== */
   .astro-code {
-    @apply outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
-  }
+    @apply plate scroll-cue relative my-8 overflow-x-auto px-5 py-4 font-mono text-[0.875rem] leading-[1.7];
+    --plate-offset: 5px;
+    --cue-bg: var(--astro-code-background);
+    color: var(--astro-code-foreground);
 
-  html[data-theme="dark"] .astro-code {
-    @apply bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
-  }
+    code {
+      @apply bg-transparent p-0 font-mono text-inherit;
+    }
 
-  /* Styles for Shiki transformers */
-  /* https://shiki.style/packages/transformers */
-  .astro-code {
     .line.diff.add {
-      @apply relative inline-block w-full bg-green-400/20 before:absolute before:-left-3 before:text-green-500 before:content-['+'];
+      @apply bg-accent/15 relative inline-block w-full before:absolute before:-left-3 before:content-['+'];
     }
     .line.diff.remove {
-      @apply relative inline-block w-full bg-red-500/20 before:absolute before:-left-3 before:text-red-500 before:content-['-'];
+      @apply bg-danger/15 relative inline-block w-full before:absolute before:-left-3 before:content-['-'];
     }
     .line.highlighted {
-      @apply inline-block w-full bg-slate-400/20;
+      @apply bg-muted inline-block w-full;
     }
     .highlighted-word {
-      @apply border-border rounded-sm border px-0.5 py-px;
+      @apply border-outline border px-0.5 py-px;
     }
+  }
+
+  /* ===== Callouts (rehype-callouts markup, also used by Callout.astro) ===== */
+  .callout {
+    @apply plate my-8 px-5 py-4 text-[0.97em] leading-relaxed;
+    --plate-offset: 5px;
+    --callout-ink: var(--accent-ink);
+  }
+
+  .callout:is(
+    [data-callout="warning"],
+    [data-callout="attention"],
+    [data-callout="caution"]
+  ) {
+    --callout-ink: var(--warning);
+  }
+
+  .callout:is(
+    [data-callout="danger"],
+    [data-callout="error"],
+    [data-callout="bug"],
+    [data-callout="failure"],
+    [data-callout="fail"],
+    [data-callout="missing"]
+  ) {
+    --callout-ink: var(--danger);
+  }
+
+  .callout-title {
+    @apply flex items-center gap-2 font-semibold;
+    color: var(--callout-ink);
+    list-style: none;
+  }
+
+  .callout-title::-webkit-details-marker {
+    display: none;
+  }
+
+  .callout-title-icon {
+    @apply flex shrink-0 items-center [&_svg]:size-5;
+  }
+
+  .callout-content {
+    @apply text-foreground mt-2 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0;
+  }
+
+  .callout-fold-icon {
+    @apply ms-auto flex items-center transition-transform [&_svg]:size-4;
+  }
+
+  details.callout[open] .callout-fold-icon {
+    @apply rotate-90;
   }
 }

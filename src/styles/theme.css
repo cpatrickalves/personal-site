@@ -2,33 +2,98 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-ink: var(--accent-ink);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-google-sans-code);
+  --color-outline: var(--foreground);
+  --color-shadow: var(--shadow);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-app: var(--font-outfit);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-martian-mono);
 }
 
-/* Light theme values */
+/*
+ * Palette "Gelo" (chosen in issue #10). The same roles in both themes:
+ * - background / card: the ground and the plate one step above it
+ * - foreground: text, and also the 2px plate outline (outline-* utilities)
+ * - muted-foreground: secondary text (AA on background and card)
+ * - accent: fills and highlights; accent-foreground is text on an accent fill;
+ *   accent-ink is accent-coloured text on background or card (AA)
+ * - muted: quiet fills (inline code, table stripes); border: hairlines
+ * - shadow: the hard offset shadow under plates and buttons
+ */
+
+/* Gelo: navy and ice blue from the old logo, sibling of Cognicode */
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --background: #e8edf1;
+  --card: #f7f9fb;
+  --foreground: #13212f;
+  --muted-foreground: #4e596c;
+  --accent: #9edcf1;
+  --accent-foreground: #13212f;
+  --accent-ink: #0b6688;
+  --muted: #d9e1e8;
+  --border: #c5d0da;
+  --shadow: rgb(19 33 47 / 0.85);
 }
 
-/* Dark theme values */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #0e1822;
+  --card: #152230;
+  --foreground: #f3f3ec;
+  --muted-foreground: #9ca6b8;
+  --accent: #a8e4f5;
+  --accent-foreground: #0e1822;
+  --accent-ink: #a8e4f5;
+  --muted: #1d2d3f;
+  --border: #26384b;
+  --shadow: rgb(243 243 236 / 0.28);
+}
+
+/* Detail face: numbers, dates and code, never words */
+:root {
+  --font-detail-face: var(--font-martian-mono);
+  --detail-weight: 500;
+  --detail-tracking: -0.03em;
+}
+
+/* Semantic colours for callouts */
+[data-theme="light"],
+:root {
+  --warning: #8a4b00;
+  --danger: #b42318;
+}
+
+[data-theme="dark"] {
+  --warning: #f2b45a;
+  --danger: #ff8f85;
+}
+
+/* Syntax colours follow the palette (Shiki "css-variables" theme) */
+:root,
+[data-theme] {
+  --astro-code-foreground: var(--foreground);
+  --astro-code-background: var(--card);
+  --astro-code-token-comment: var(--muted-foreground);
+  --astro-code-token-keyword: var(--accent-ink);
+  --astro-code-token-constant: var(--accent-ink);
+  --astro-code-token-string: color-mix(
+    in oklab,
+    var(--accent-ink) 50%,
+    var(--foreground)
+  );
+  --astro-code-token-string-expression: var(--astro-code-token-string);
+  --astro-code-token-function: var(--foreground);
+  --astro-code-token-parameter: var(--foreground);
+  --astro-code-token-punctuation: var(--muted-foreground);
+  --astro-code-token-link: var(--accent-ink);
+  --astro-code-token-inserted: var(--accent-ink);
+  --astro-code-token-deleted: var(--danger);
 }

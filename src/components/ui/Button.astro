@@ -1,0 +1,118 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = Omit<HTMLAttributes<"a"> & HTMLAttributes<"button">, "type"> & {
+  variant?: "primary" | "secondary" | "quiet";
+  size?: "md" | "sm";
+  href?: string;
+  type?: "button" | "submit";
+  disabled?: boolean;
+};
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  disabled = false,
+  class: className,
+  ...attrs
+} = Astro.props;
+
+const Tag = href && !disabled ? "a" : "button";
+---
+
+<Tag
+  href={Tag === "a" ? href : undefined}
+  type={Tag === "button" ? type : undefined}
+  disabled={Tag === "button" ? disabled : undefined}
+  aria-disabled={disabled || undefined}
+  data-variant={variant}
+  class:list={[
+    "ds-button group/button",
+    size === "sm" ? "ds-button-sm" : "ds-button-md",
+    className,
+  ]}
+  {...attrs}
+>
+  <slot />
+</Tag>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .ds-button {
+    @apply inline-flex items-center justify-center gap-2 font-medium tracking-[-0.01em] whitespace-nowrap select-none;
+    --button-offset: 5px;
+    border: 2px solid var(--foreground);
+    transition:
+      transform 0.18s var(--ease-out-back),
+      box-shadow 0.18s var(--ease-out-back),
+      background-color 0.2s,
+      color 0.2s;
+
+    :global(svg) {
+      @apply size-[1.1em] shrink-0 transition-transform duration-200;
+    }
+  }
+
+  .ds-button-md {
+    @apply min-h-12 px-5 text-[1.0625rem];
+  }
+
+  .ds-button-sm {
+    @apply min-h-10 px-3.5 text-[0.9375rem];
+    --button-offset: 3px;
+  }
+
+  [data-variant="primary"] {
+    @apply bg-accent text-accent-foreground;
+    border-color: var(--accent);
+    box-shadow: var(--button-offset) var(--button-offset) 0 0 var(--shadow);
+  }
+
+  [data-variant="secondary"] {
+    @apply bg-card text-foreground;
+    box-shadow: var(--button-offset) var(--button-offset) 0 0 var(--shadow);
+  }
+
+  [data-variant="quiet"] {
+    @apply text-foreground hover:text-accent-ink border-transparent bg-transparent px-1;
+  }
+
+  :is([data-variant="primary"], [data-variant="secondary"]):not(
+      :disabled,
+      [aria-disabled]
+    ):hover {
+    transform: translate(-2px, -3px);
+    box-shadow: calc(var(--button-offset) + 4px)
+      calc(var(--button-offset) + 4px) 0 0 var(--shadow);
+  }
+
+  :is([data-variant="primary"], [data-variant="secondary"]):not(
+      :disabled,
+      [aria-disabled]
+    ):active {
+    transform: translate(var(--button-offset), var(--button-offset));
+    box-shadow: 0 0 0 0 var(--shadow);
+    transition-duration: 0.06s;
+  }
+
+  .ds-button:not(:disabled, [aria-disabled]):hover :global(svg:last-child) {
+    transform: translateX(3px);
+  }
+
+  .ds-button:is(:disabled, [aria-disabled]) {
+    @apply bg-muted text-muted-foreground cursor-not-allowed;
+    border-color: var(--border);
+    box-shadow: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ds-button:hover,
+    .ds-button:active,
+    .ds-button:hover :global(svg) {
+      transform: none !important;
+    }
+  }
+</style>

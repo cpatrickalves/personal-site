@@ -1,0 +1,90 @@
+---
+import { Code } from "astro:components";
+import type { ComponentProps } from "astro/types";
+import IconCopy from "@/assets/icons/IconCopy.svg";
+import IconCheck from "@/assets/icons/IconCheck.svg";
+
+// Standalone code block with a file bar and a copy button. Markdown code in
+// posts uses the same `.astro-code` plate; Expressive Code replaces both in
+// Fase 3.
+type Props = {
+  code: string;
+  lang: string;
+  file?: string;
+};
+
+const { code, lang, file } = Astro.props;
+
+type Transformer = NonNullable<
+  ComponentProps<typeof Code>["transformers"]
+>[number];
+
+const stripFrame: Transformer = {
+  pre(node) {
+    node.properties.class = "astro-code ds-code-body";
+  },
+};
+---
+
+<figure class="ds-code plate" style="--plate-offset: 5px">
+  <figcaption
+    class="border-border flex min-h-11 items-center justify-between gap-4 border-b-2 py-1.5 ps-5 pe-2"
+  >
+    <span class="text-muted-foreground truncate font-mono text-[0.8125rem]">
+      {file ?? lang}
+    </span>
+    <button
+      type="button"
+      class="ds-copy text-muted-foreground hover:text-foreground flex min-h-9 items-center gap-1.5 px-2 text-sm font-medium"
+      data-code={code}
+    >
+      <IconCopy class="ds-copy-idle size-4" aria-hidden="true" />
+      <IconCheck class="ds-copy-done hidden size-4" aria-hidden="true" />
+      <span class="ds-copy-label">Copiar</span>
+    </button>
+  </figcaption>
+  <Code
+    code={code}
+    lang={lang as never}
+    theme="css-variables"
+    transformers={[stripFrame]}
+  />
+</figure>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .ds-code {
+    @apply my-8;
+
+    :global(.ds-code-body) {
+      @apply m-0 border-0 shadow-none;
+    }
+  }
+</style>
+
+<script>
+  function setup() {
+    document.querySelectorAll<HTMLButtonElement>(".ds-copy").forEach(btn => {
+      if (btn.dataset.ready) return;
+      btn.dataset.ready = "true";
+      btn.addEventListener("click", async () => {
+        const label = btn.querySelector(".ds-copy-label");
+        try {
+          await navigator.clipboard.writeText(btn.dataset.code ?? "");
+          btn.querySelector(".ds-copy-idle")?.classList.add("hidden");
+          btn.querySelector(".ds-copy-done")?.classList.remove("hidden");
+          if (label) label.textContent = "Copiado";
+        } catch {
+          if (label) label.textContent = "Não copiou";
+        }
+        setTimeout(() => {
+          btn.querySelector(".ds-copy-idle")?.classList.remove("hidden");
+          btn.querySelector(".ds-copy-done")?.classList.add("hidden");
+          if (label) label.textContent = "Copiar";
+        }, 1800);
+      });
+    });
+  }
+  document.addEventListener("astro:page-load", setup);
+</script>

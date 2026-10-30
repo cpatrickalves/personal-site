@@ -1,0 +1,837 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/styleguide/Section.astro";
+import ThemePair from "@/components/styleguide/ThemePair.astro";
+import Plate from "@/components/ui/Plate.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Callout from "@/components/ui/Callout.astro";
+import CodeBlock from "@/components/ui/CodeBlock.astro";
+import ResponsiveTable from "@/components/ResponsiveTable.astro";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import IconArrowUpRight from "@/assets/icons/IconArrowUpRight.svg";
+import IconMoon from "@/assets/icons/IconMoon.svg";
+import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
+import IconDeviceDesktop from "@/assets/icons/IconDeviceDesktop.svg";
+import basketCover from "../../../archive/hashnode/posts/basket-icon-detector/cover.png";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { pageRise } from "@/utils/transitions";
+
+// The styleguide exists in dev and in the Preview (with `base`), never in
+// Produção: without `base` no path is generated.
+export function getStaticPaths() {
+  const isPreview = import.meta.env.BASE_URL !== "/";
+  return isPreview ? [{ params: { path: undefined } }] : [];
+}
+
+const tokens = [
+  { name: "background", role: "Fundo da página", text: false },
+  { name: "card", role: "Placa, um tom acima do fundo", text: false },
+  { name: "foreground", role: "Texto e contorno das placas", text: true },
+  { name: "muted-foreground", role: "Texto secundário", text: true },
+  { name: "accent", role: "Preenchimento e destaque", text: false },
+  { name: "accent-foreground", role: "Texto sobre o accent", text: false },
+  {
+    name: "accent-ink",
+    role: "Texto no accent, sobre fundo e placa",
+    text: true,
+  },
+  {
+    name: "muted",
+    role: "Preenchimento quieto (código, listras)",
+    text: false,
+  },
+  { name: "border", role: "Fios finos", text: false },
+  { name: "shadow", role: "Sombra dura deslocada", text: false },
+];
+
+const sampleCode = `from anthropic import Anthropic
+
+client = Anthropic()
+
+def classify_ticket(text: str) -> str:
+    """Classifica um chamado de suporte em uma das filas."""
+    response = client.messages.create(
+        model="claude-sonnet-5-5",
+        max_tokens=64,
+        system="Responda só com: billing, bug ou outro.",
+        messages=[{"role": "user", "content": text}],
+    )
+    return response.content[0].text.strip()`;
+
+const homeHref = getRelativeLocaleUrl("en", "");
+---
+
+<Layout
+  title="Styleguide · cpatrickalves"
+  description="Design system do site: paleta, tipografia, componentes e movimento."
+>
+  <header class="bg-background border-border sticky top-0 z-20 border-b-2">
+    <div
+      class="mx-auto flex min-h-16 max-w-6xl items-center gap-6 px-4 sm:px-6"
+    >
+      <a href="#topo" class="text-lg font-semibold tracking-[-0.02em]">
+        cpatrickalves<span class="text-muted-foreground">.com</span>
+      </a>
+      <nav aria-label="Seções do styleguide" class="ms-auto hidden lg:block">
+        <ul
+          class="text-muted-foreground flex gap-6 text-[0.9375rem] font-medium"
+        >
+          <li><a class="hover:text-foreground" href="#temas">Temas</a></li>
+          <li><a class="hover:text-foreground" href="#cor">Cor</a></li>
+          <li>
+            <a class="hover:text-foreground" href="#tipografia">Tipografia</a>
+          </li>
+          <li>
+            <a class="hover:text-foreground" href="#componentes">Componentes</a>
+          </li>
+          <li><a class="hover:text-foreground" href="#leitura">Leitura</a></li>
+          <li>
+            <a class="hover:text-foreground" href="#movimento">Movimento</a>
+          </li>
+        </ul>
+      </nav>
+      <div
+        role="group"
+        aria-label="Tema"
+        class="border-outline ms-auto flex border-2 lg:ms-0"
+      >
+        {
+          [
+            { choice: "light", label: "Claro", Icon: IconSunHigh },
+            { choice: "dark", label: "Escuro", Icon: IconMoon },
+            { choice: "system", label: "Sistema", Icon: IconDeviceDesktop },
+          ].map(({ choice, label, Icon }) => (
+            <button
+              type="button"
+              data-theme-choice={choice}
+              aria-pressed="false"
+              class="sg-theme hover:bg-card aria-pressed:bg-foreground aria-pressed:text-background flex min-h-10 items-center gap-1.5 px-3 text-sm font-medium"
+            >
+              <Icon class="size-4" aria-hidden="true" />
+              <span class="max-sm:sr-only">{label}</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+    <nav
+      aria-label="Seções do styleguide"
+      class="border-border scroll-cue overflow-x-auto border-t lg:hidden"
+    >
+      <ul
+        class="text-muted-foreground flex w-max gap-5 px-4 py-2.5 text-[0.9375rem] font-medium sm:px-6"
+      >
+        <li><a class="hover:text-foreground" href="#temas">Temas</a></li>
+        <li><a class="hover:text-foreground" href="#cor">Cor</a></li>
+        <li>
+          <a class="hover:text-foreground" href="#tipografia">Tipografia</a>
+        </li>
+        <li>
+          <a class="hover:text-foreground" href="#componentes">Componentes</a>
+        </li>
+        <li><a class="hover:text-foreground" href="#leitura">Leitura</a></li>
+        <li>
+          <a class="hover:text-foreground" href="#movimento">Movimento</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main
+    id="topo"
+    class="mx-auto w-full max-w-6xl px-4 sm:px-6"
+    transition:animate={pageRise}
+  >
+    <!-- Abertura: a paleta nos dois temas -->
+    <section
+      id="temas"
+      aria-labelledby="sg-title"
+      class="scroll-mt-24 pt-14 pb-16 sm:pt-20"
+    >
+      <div class="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
+        <h1
+          id="sg-title"
+          class="max-w-3xl text-[2.75rem] leading-[1.02] font-semibold tracking-[-0.04em] text-balance sm:text-[4rem]"
+        >
+          O <span class="text-accent-ink">sistema</span> visual do site
+        </h1>
+        <p
+          class="text-muted-foreground max-w-sm text-[1.0625rem] leading-relaxed"
+        >
+          Paleta Gelo, Outfit e Martian Mono, em claro e escuro, com cada
+          componente em uso. O site segue o tema do sistema até o leitor
+          escolher.
+        </p>
+      </div>
+      <div class="mt-12">
+        <ThemePair />
+      </div>
+    </section>
+
+    <Section
+      id="cor"
+      title="Tokens de"
+      emphasis="cor"
+      description="Valores da paleta Gelo no tema atual. O contraste é medido contra o fundo; texto pede 4,5:1 (AA)."
+    >
+      <ResponsiveTable class="plate [--cue-bg:var(--card)]">
+        <table class="sg-tokens w-full min-w-xl text-start text-[0.9375rem]">
+          <thead>
+            <tr class="border-outline border-b-2 text-start">
+              <th class="px-4 py-3 text-start font-semibold">Token</th>
+              <th class="px-4 py-3 text-start font-semibold">Papel</th>
+              <th class="px-4 py-3 text-start font-semibold">Valor</th>
+              <th class="px-4 py-3 text-end font-semibold">Contraste</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              tokens.map(t => (
+                <tr
+                  class="border-border border-b last:border-b-0"
+                  data-token={t.name}
+                  data-text={t.text ? "true" : undefined}
+                >
+                  <td class="px-4 py-3">
+                    <span class="flex items-center gap-3">
+                      <span
+                        class="border-outline size-6 shrink-0 border-2"
+                        style={`background: var(--${t.name})`}
+                      />
+                      <code class="font-mono text-[0.8125rem]">--{t.name}</code>
+                    </span>
+                  </td>
+                  <td class="text-muted-foreground px-4 py-3">{t.role}</td>
+                  <td class="px-4 py-3 font-mono text-[0.8125rem]" data-value>
+                    …
+                  </td>
+                  <td class="px-4 py-3 text-end" data-contrast>
+                    {t.text ? (
+                      "…"
+                    ) : (
+                      <span class="text-muted-foreground">—</span>
+                    )}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </ResponsiveTable>
+    </Section>
+
+    <Section
+      id="tipografia"
+      title="Duas fontes, cada uma no seu"
+      emphasis="lugar"
+      description="Outfit em tudo que se lê. A fonte de detalhe só em números, datas e código, nunca em palavras."
+    >
+      <div class="grid gap-8 lg:grid-cols-[1.4fr_1fr] [&>*]:min-w-0">
+        <Plate class="p-6 sm:p-8">
+          <dl class="divide-border flex flex-col divide-y">
+            <div class="pb-6">
+              <dt class="text-muted-foreground mb-2 text-sm">
+                Display · Outfit 600 · 64px
+              </dt>
+              <dd
+                class="text-[2.5rem] leading-[1.02] font-semibold tracking-[-0.04em] sm:text-[4rem]"
+              >
+                Agentes de <span class="text-accent-ink">IA</span>
+              </dd>
+            </div>
+            <div class="py-6">
+              <dt class="text-muted-foreground mb-2 text-sm">
+                Título de seção · 40px
+              </dt>
+              <dd
+                class="text-[2.5rem] leading-[1.1] font-semibold tracking-[-0.03em]"
+              >
+                Posts recentes
+              </dd>
+            </div>
+            <div class="py-6">
+              <dt class="text-muted-foreground mb-2 text-sm">
+                Título de post · 26px
+              </dt>
+              <dd
+                class="text-[1.625rem] leading-tight font-semibold tracking-tight"
+              >
+                MLOps: What it is and why does it Matter?
+              </dd>
+            </div>
+            <div class="py-6">
+              <dt class="text-muted-foreground mb-2 text-sm">
+                Corpo · Outfit 400 · 17px / 1.75
+              </dt>
+              <dd class="max-w-[62ch] text-[1.0625rem] leading-[1.75]">
+                Machine learning systems are awesome. They have been applied to
+                a variety of problems and have increased the value of solutions
+                in areas such as healthcare, finance and retail.
+              </dd>
+            </div>
+            <div class="pt-6">
+              <dt class="text-muted-foreground mb-2 text-sm">
+                Código · Martian Mono · 14px
+              </dt>
+              <dd class="font-mono text-[0.875rem] wrap-anywhere">
+                client.messages.create(model="claude-sonnet-5-5")
+              </dd>
+            </div>
+          </dl>
+        </Plate>
+
+        <Plate class="flex flex-col p-6 sm:p-8">
+          <p class="text-muted-foreground text-sm">
+            Martian Mono · 500, do maior ao menor
+          </p>
+          <dl class="mt-4 flex flex-1 flex-col justify-between gap-5">
+            {
+              [
+                {
+                  text: "2026",
+                  size: 88,
+                  cls: "text-accent-ink text-[5.5rem] leading-[0.9]",
+                },
+                {
+                  text: "18",
+                  unit: "posts",
+                  size: 48,
+                  cls: "text-[3rem] leading-none",
+                },
+                {
+                  text: "17.03.2025",
+                  size: 32,
+                  cls: "text-[2rem] leading-none",
+                },
+                {
+                  text: "6",
+                  unit: "min",
+                  size: 24,
+                  cls: "text-2xl leading-none",
+                },
+              ].map(row => (
+                <div class="flex items-baseline justify-between gap-4">
+                  <dt class="text-muted-foreground tabular order-last shrink-0 text-sm">
+                    {row.size}px
+                  </dt>
+                  <dd class:list={["detail", row.cls]}>
+                    {row.text}
+                    {row.unit && (
+                      <span class="font-app text-muted-foreground ms-[0.3em] text-[0.5em] font-medium tracking-normal">
+                        {row.unit}
+                      </span>
+                    )}
+                  </dd>
+                </div>
+              ))
+            }
+            <div
+              class="border-border flex items-baseline justify-between gap-4 border-t-2 pt-5"
+            >
+              <dt
+                class="text-muted-foreground tabular order-last shrink-0 text-sm"
+              >
+                15px
+              </dt>
+              <dd class="flex items-baseline gap-4 text-[0.9375rem]">
+                <span class="detail">17.03.2025</span>
+                <span class="text-muted-foreground">Outfit:</span>
+                <time class="tabular font-medium">17.03.2025</time>
+              </dd>
+            </div>
+          </dl>
+          <p
+            class="text-muted-foreground mt-5 text-[0.9375rem] leading-relaxed"
+          >
+            Em metadados a Martian Mono segue legível pequena. Em tabelas, os
+            números ficam na Outfit com algarismos tabulares.
+          </p>
+        </Plate>
+      </div>
+    </Section>
+
+    <Section
+      id="componentes"
+      title="Componentes"
+      emphasis="base"
+      description="Botões, badges, cards, callouts, código e tabela. Passe o mouse ou use o teclado para ver os estados."
+    >
+      <div class="flex flex-col gap-16">
+        <!-- Botões -->
+        <div>
+          <h3 class="mb-6 text-xl font-semibold">Botões</h3>
+          <div class="flex flex-wrap items-center gap-6">
+            <Button href="#componentes">
+              Ler o blog <IconArrowRight aria-hidden="true" />
+            </Button>
+            <Button variant="secondary" href="#componentes">Ver projetos</Button
+            >
+            <Button variant="quiet" href="#componentes">
+              Todos os posts <IconArrowRight aria-hidden="true" />
+            </Button>
+            <Button disabled>Indisponível</Button>
+          </div>
+          <div class="mt-6 flex flex-wrap items-center gap-5">
+            <Button size="sm">
+              GitHub <IconArrowUpRight aria-hidden="true" />
+            </Button>
+            <Button size="sm" variant="secondary">LinkedIn</Button>
+            <Button size="sm" variant="quiet">RSS</Button>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div>
+          <h3 class="mb-6 text-xl font-semibold">Badges</h3>
+          <div class="flex flex-wrap gap-2.5">
+            <Badge variant="tag" href="#componentes">agents</Badge>
+            <Badge variant="tag" href="#componentes">mlops</Badge>
+            <Badge variant="tag" href="#componentes">python</Badge>
+            <Badge>TensorFlow</Badge>
+            <Badge>Deep Learning</Badge>
+            <Badge>Python</Badge>
+            <Badge variant="accent">Novo</Badge>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div>
+          <h3 class="mb-6 text-xl font-semibold">Cards</h3>
+          <div class="grid gap-8 lg:grid-cols-[1.25fr_1fr]">
+            <Plate href="#componentes" class="flex flex-col p-6 sm:p-7">
+              <span
+                class="group-hover/plate:text-accent-ink text-[2rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance transition-colors"
+              >
+                The "Vibe Coding" Revolution: Redefining Software Development in
+                2025
+              </span>
+              <span
+                class="text-muted-foreground mt-3 text-[1.0625rem] leading-relaxed"
+              >
+                How AI-Driven Programming is Transforming the Tech Industry and
+                Reshaping Developer Roles
+              </span>
+              <span class="mt-6 mb-8 flex flex-wrap gap-2">
+                <Badge variant="tag">vibecoding</Badge>
+                <Badge variant="tag">ai</Badge>
+                <Badge variant="tag">prompt-engineering</Badge>
+              </span>
+              <span
+                class="border-border mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 border-t-2 pt-5"
+              >
+                <span class="detail text-accent-ink text-2xl">17.03.2025</span>
+                <span class="text-muted-foreground text-sm">
+                  <span class="detail text-foreground text-xl">6</span> min de leitura
+                </span>
+                <IconArrowUpRight
+                  class="border-outline ms-auto size-10 border-2 p-2 transition-transform group-hover/plate:translate-x-0.5 group-hover/plate:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+              </span>
+            </Plate>
+
+            <Plate as="article" class="flex flex-col overflow-hidden">
+              <Image
+                src={basketCover}
+                alt="Capa do projeto Basket Icon Detector"
+                widths={[480, 800]}
+                sizes="(min-width: 1024px) 460px, 100vw"
+                class="border-outline aspect-[16/8] w-full border-b-2 object-cover"
+              />
+              <div class="flex flex-1 flex-col p-6">
+                <h4 class="text-xl font-semibold">Basket Icon Detector</h4>
+                <p class="text-muted-foreground mt-2 leading-relaxed">
+                  A Computer Vision model to find basket icons in e-commerces.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <Badge>TensorFlow</Badge>
+                  <Badge>Deep Learning</Badge>
+                  <Badge>Python</Badge>
+                </div>
+                <div class="mt-auto flex gap-4 pt-6">
+                  <Button size="sm" variant="secondary" href="#componentes">
+                    Ler o post <IconArrowRight aria-hidden="true" />
+                  </Button>
+                  <Button size="sm" variant="quiet" href="#componentes">
+                    Repositório <IconArrowUpRight aria-hidden="true" />
+                  </Button>
+                </div>
+              </div>
+            </Plate>
+          </div>
+
+          <h3 class="mt-16 mb-6 text-xl font-semibold">Lista de posts</h3>
+          <ol class="border-outline border-t-2">
+            {
+              [
+                {
+                  date: "12.05.2023",
+                  title: "Automated Tests: The Secret to Peaceful Nights",
+                  desc: "How Automated Tests Can Transform Your Nights From Stressful to Restful",
+                  tags: ["testing", "python"],
+                  min: 7,
+                },
+                {
+                  date: "17.05.2022",
+                  title: "MLOps: What it is and why does it Matter?",
+                  desc: "Machine Learning Operations is a process of automating and productionalizing machine learning applications and workflows.",
+                  tags: ["ml", "devops"],
+                  min: 9,
+                },
+              ].map(post => (
+                <li class="border-border border-b">
+                  <a
+                    href="#componentes"
+                    class="group grid gap-x-8 gap-y-2 py-6 sm:grid-cols-[9.5rem_1fr_auto]"
+                  >
+                    <span class="detail text-accent-ink text-xl leading-tight">
+                      {post.date}
+                    </span>
+                    <span>
+                      <span class="group-hover:text-accent-ink block text-xl leading-snug font-semibold transition-colors">
+                        {post.title}
+                      </span>
+                      <span class="text-muted-foreground mt-1.5 block leading-relaxed">
+                        {post.desc}
+                      </span>
+                      <span class="text-accent-ink mt-3 flex gap-3 text-sm font-medium">
+                        {post.tags.map(t => (
+                          <span>#{t}</span>
+                        ))}
+                      </span>
+                    </span>
+                    <span class="text-muted-foreground text-sm whitespace-nowrap">
+                      <span class="detail text-foreground text-xl">
+                        {post.min}
+                      </span>{" "}
+                      min
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+
+        <!-- Callouts -->
+        <div class="max-w-[70ch]">
+          <h3 class="mb-2 text-xl font-semibold">Callouts</h3>
+          <Callout type="note">
+            O mesmo markup do <code
+              class="bg-muted px-1.5 py-0.5 font-mono text-[0.88em]"
+              >rehype-callouts</code
+            >: um <code class="bg-muted px-1.5 py-0.5 font-mono text-[0.88em]"
+              >&gt; [!NOTE]</code
+            > no Markdown sai igual a este.
+          </Callout>
+          <Callout type="tip"
+            >Rode o importador duas vezes: o resultado é o mesmo.</Callout
+          >
+          <Callout type="warning"
+            >A Virada não tem volta. Confira o portão de pré-lançamento antes.</Callout
+          >
+          <Callout type="danger" title="Não faça commit de segredos">
+            O repositório é público. Rascunhos e histórico ficam visíveis para
+            todos.
+          </Callout>
+        </div>
+
+        <!-- Código -->
+        <div class="max-w-[70ch]">
+          <h3 class="mb-2 text-xl font-semibold">Bloco de código</h3>
+          <CodeBlock code={sampleCode} lang="python" file="classify.py" />
+          <p class="text-muted-foreground text-sm">
+            As cores da sintaxe saem da paleta. O Expressive Code substitui este
+            bloco na Fase 3.
+          </p>
+        </div>
+
+        <!-- Tabela -->
+        <div class="max-w-[70ch]">
+          <h3 class="mb-6 text-xl font-semibold">Tabela</h3>
+          <div class="app-prose max-w-none">
+            <ResponsiveTable>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Modelo</th>
+                    <th align="right">Acurácia</th>
+                    <th align="right">Recall</th>
+                    <th align="right">Treino</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    ><td>Regressão logística</td><td align="right">0,77</td><td
+                      align="right">0,58</td
+                    ><td align="right">2 s</td></tr
+                  >
+                  <tr
+                    ><td>Random forest</td><td align="right">0,79</td><td
+                      align="right">0,63</td
+                    ><td align="right">11 s</td></tr
+                  >
+                  <tr
+                    ><td>Gradient boosting</td><td align="right">0,81</td><td
+                      align="right">0,66</td
+                    ><td align="right">38 s</td></tr
+                  >
+                </tbody>
+              </table>
+            </ResponsiveTable>
+          </div>
+          <p class="text-muted-foreground mt-4 text-sm">
+            Valores ilustrativos.
+          </p>
+        </div>
+      </div>
+    </Section>
+
+    <Section
+      id="leitura"
+      title="A coluna de"
+      emphasis="leitura"
+      description="O texto de um post fica calmo: Outfit, contraste real e cerca de 70 caracteres por linha. O mundo do site fica na moldura."
+    >
+      <article class="app-prose">
+        <blockquote>
+          <p>
+            “The real problem with a Machine learning system will be found while
+            you are continuously operating it for the long term.” Google.
+          </p>
+        </blockquote>
+        <p>
+          Despite ML is maturing from research to applied business solutions,
+          many companies haven't figured out how to realize their AI ambitions,
+          according to a <a href="#leitura">report by Algorithmia</a>. Bridging
+          the gap between ML model building and practical deployments is still a
+          challenging task.
+        </p>
+        <h2>The typical ML workflow</h2>
+        <p>
+          You start defining your prediction task. Then, you need to collect the
+          data (<code>data ingestion</code>), and analyze and transform it (<code
+            >pre-processing</code
+          >). Once you have the data cleaned you:
+        </p>
+        <ol>
+          <li>create and train your model;</li>
+          <li>evaluate it, and optimize it;</li>
+          <li>deploy it to make predictions.</li>
+        </ol>
+        <h3>What is a machine learning pipeline?</h3>
+        <p>
+          A pipeline is a way of modeling workflows as a set of connected steps.
+          Each step takes as input the output of the previous step and performs
+          some additional computations.
+        </p>
+        <p class="text-muted-foreground text-sm">
+          Trecho do post “MLOps: What it is and why does it Matter?” (2022).
+        </p>
+      </article>
+    </Section>
+
+    <Section
+      id="movimento"
+      title="Movimento com"
+      emphasis="propósito"
+      description="Reveal ao rolar, hover que levanta a placa e transição entre páginas. Com redução de movimento ativa no sistema, nada disso roda."
+    >
+      <div class="grid gap-8 lg:grid-cols-3">
+        <Plate class="flex flex-col p-6">
+          <h3 class="text-xl font-semibold">Reveal ao rolar</h3>
+          <p class="text-muted-foreground mt-2 leading-relaxed">
+            Os blocos sobem e ganham foco ao entrar na tela, em sequência.
+          </p>
+          <div
+            class="sg-reveal-demo mt-6 grid grid-cols-3 gap-3"
+            aria-hidden="true"
+          >
+            {
+              [0, 1, 2].map(i => (
+                <span
+                  data-reveal
+                  class="plate detail text-accent-ink flex aspect-square items-center justify-center text-3xl"
+                  style={`--plate-offset: 4px; --reveal-delay: ${i * 90}ms`}
+                >
+                  {i + 1}
+                </span>
+              ))
+            }
+          </div>
+          <Button
+            size="sm"
+            variant="secondary"
+            class="sg-replay mt-6 self-start"
+          >
+            Repetir
+          </Button>
+        </Plate>
+
+        <Plate href="#movimento" class="flex flex-col p-6">
+          <span class="text-xl font-semibold">Hover</span>
+          <span class="text-muted-foreground mt-2 leading-relaxed">
+            Passe o mouse ou foque com o teclado: a placa levanta e a sombra
+            vira accent. Botões fazem o mesmo, menor, e afundam no clique.
+          </span>
+          <span class="mt-auto pt-6 text-sm font-medium"
+            >Esta placa é um link</span
+          >
+        </Plate>
+
+        <Plate class="flex flex-col p-6">
+          <h3 class="text-xl font-semibold">Entre páginas</h3>
+          <p class="text-muted-foreground mt-2 leading-relaxed">
+            A página atual afunda e some; a próxima sobe. Só o conteúdo se move;
+            a barra do topo fica parada.
+          </p>
+          <div class="mt-auto pt-6">
+            <Button size="sm" href={homeHref}>
+              Ir para a home <IconArrowRight aria-hidden="true" />
+            </Button>
+          </div>
+        </Plate>
+      </div>
+      <p class="text-muted-foreground mt-8 text-sm">
+        Redução de movimento no seu sistema: <strong
+          class="sg-motion-status text-foreground">…</strong
+        >
+      </p>
+    </Section>
+  </main>
+
+  <footer class="border-border mt-8 border-t-2">
+    <div
+      class="text-muted-foreground mx-auto flex max-w-6xl flex-wrap justify-between gap-4 px-4 py-8 text-sm sm:px-6"
+    >
+      <span>Styleguide do Preview. Fica fora do build de Produção.</span>
+      <a href="#topo" class="hover:text-foreground">Voltar ao topo</a>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  function contrast(a: number[], b: number[]): number {
+    const lum = ([r, g, b]: number[]) => {
+      const f = (c: number) => {
+        const s = c / 255;
+        return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+      };
+      return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+    };
+    const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+    return (hi + 0.05) / (lo + 0.05);
+  }
+
+  // Resolve any CSS colour to [r, g, b, a] through a canvas pixel.
+  const ctx = document.createElement("canvas").getContext("2d", {
+    willReadFrequently: true,
+  });
+  function rgba(color: string): number[] {
+    if (!ctx) return [0, 0, 0, 1];
+    ctx.clearRect(0, 0, 1, 1);
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, 1, 1);
+    const [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
+    return [r, g, b, a / 255];
+  }
+  const hex = ([r, g, b, a]: number[]) =>
+    "#" +
+    [r, g, b].map(v => v.toString(16).padStart(2, "0")).join("") +
+    (a < 1 ? ` · ${Math.round(a * 100)}%` : "");
+
+  function updateTokens(): void {
+    const style = getComputedStyle(document.documentElement);
+    const bg = rgba(style.getPropertyValue("--background").trim());
+    document.querySelectorAll<HTMLElement>("[data-token]").forEach(row => {
+      const value = rgba(
+        style.getPropertyValue(`--${row.dataset.token}`).trim()
+      );
+      const valueCell = row.querySelector("[data-value]");
+      if (valueCell) valueCell.textContent = hex(value);
+      if (!row.dataset.text) return;
+      const ratio = contrast(value, bg);
+      const cell = row.querySelector("[data-contrast]");
+      if (cell)
+        cell.innerHTML = `<span class="tabular text-lg font-semibold">${ratio.toFixed(1)}</span> <span class="text-muted-foreground text-sm">${ratio >= 4.5 ? "AA" : "abaixo de AA"}</span>`;
+    });
+  }
+
+  type ThemeChoice = "light" | "dark" | "system";
+
+  // Claro, escuro or sistema. "Sistema" forgets the stored choice and follows
+  // prefers-color-scheme, the same rule as the inline script in Layout.astro.
+  function reflectTheme(choice: ThemeChoice): void {
+    const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = choice === "system" ? (dark ? "dark" : "light") : choice;
+    const root = document.documentElement;
+    root.dataset.theme = theme;
+    root.classList.toggle("dark", theme === "dark");
+    (window as unknown as { __theme?: { value: string } }).__theme = {
+      value: theme,
+    };
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-theme-choice]")
+      .forEach(btn =>
+        btn.setAttribute(
+          "aria-pressed",
+          String(btn.dataset.themeChoice === choice)
+        )
+      );
+    document
+      .querySelector("meta[name='theme-color']")
+      ?.setAttribute(
+        "content",
+        getComputedStyle(document.body).backgroundColor
+      );
+    updateTokens();
+  }
+
+  function applyTheme(choice: ThemeChoice): void {
+    try {
+      if (choice === "system") localStorage.removeItem("theme");
+      else localStorage.setItem("theme", choice);
+    } catch {}
+    reflectTheme(choice);
+  }
+
+  function setup(): void {
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem("theme");
+    } catch {}
+    reflectTheme(stored === "light" || stored === "dark" ? stored : "system");
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-theme-choice]")
+      .forEach(btn =>
+        btn.addEventListener("click", () =>
+          applyTheme(btn.dataset.themeChoice as ThemeChoice)
+        )
+      );
+
+    document.querySelector(".sg-replay")?.addEventListener("click", () => {
+      const blocks = document.querySelectorAll(".sg-reveal-demo [data-reveal]");
+      blocks.forEach(el => el.classList.remove("is-revealed"));
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() =>
+          blocks.forEach(el => el.classList.add("is-revealed"))
+        )
+      );
+    });
+
+    const status = document.querySelector(".sg-motion-status");
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const showStatus = () => {
+      if (status)
+        status.textContent = media.matches
+          ? "ativa (animações desligadas)"
+          : "inativa";
+    };
+    showStatus();
+    media.addEventListener("change", showStatus);
+  }
+
+  document.addEventListener("astro:page-load", setup);
+</script>
