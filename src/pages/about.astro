@@ -7,11 +7,12 @@ import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import config from "@/config";
 
-const about = await getEntry("pages", "about");
+// The EN route comes with the skeleton routes (#14).
+const about = await getEntry("pages", "pt-br/about");
 
 if (!about) {
   throw new Error(
-    "Missing content entry: `about.md` or `about.mdx` in `src/content/pages/`"
+    "Missing content entry: `about.md` or `about.mdx` in `src/content/pages/pt-br/`"
   );
 }
 
