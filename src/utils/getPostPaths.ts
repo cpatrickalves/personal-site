@@ -1,18 +1,17 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { BLOG_PATH } from "@/content.config";
+import { splitLocalePath } from "@/i18n/contentPath";
 import { slugifyStr } from "./slugify";
 import config from "@/config";
 
+// The locale folder (`pt-br/`, `en/`) is dropped: both Versões of a Post
+// share the slug, and the locale goes in the URL prefix instead.
 function getPostPathSegments(filePath: string | undefined): string[] {
-  return (
-    filePath
-      ?.replace(BLOG_PATH, "")
-      .split("/")
-      .filter(path => path !== "")
-      .filter(path => !path.startsWith("_"))
-      .slice(0, -1)
-      .map(segment => slugifyStr(segment)) ?? []
-  );
+  if (!filePath) return [];
+  return splitLocalePath(filePath.replace(BLOG_PATH, ""))
+    .segments.filter(path => !path.startsWith("_"))
+    .slice(0, -1)
+    .map(segment => slugifyStr(segment));
 }
 
 function getIdSlug(id: string): string {

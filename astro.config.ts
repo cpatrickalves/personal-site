@@ -18,6 +18,7 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
+import { DEFAULT_LOCALE, LOCALES } from "./src/i18n/locales";
 
 export default defineConfig({
   site: config.site.url,
@@ -34,8 +35,8 @@ export default defineConfig({
   ],
   i18n: {
     // PT-BR at the root, EN under /en.
-    locales: ["pt-br", "en"],
-    defaultLocale: "pt-br",
+    locales: [...LOCALES],
+    defaultLocale: DEFAULT_LOCALE,
     routing: {
       prefixDefaultLocale: false,
     },

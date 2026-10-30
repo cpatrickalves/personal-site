@@ -1,0 +1,14 @@
+title:
+  pt-br: Projeto de exemplo
+  en: Sample project
+description:
+  pt-br: Projeto mínimo de Dados fake para validar o schema.
+  en: Minimal fake project to validate the schema.
+cover: ./demo-project.jpg
+date: 2026-01-10
+stack: [Python, Astro]
+links:
+  repo: https://github.com/cpatrickalves/personal-site
+  post: hello-world
+featured: true
+fake: true

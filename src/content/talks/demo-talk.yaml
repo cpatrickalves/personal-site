@@ -1,0 +1,13 @@
+title:
+  pt-br: Palestra de exemplo
+  en: Sample talk
+description:
+  pt-br: Palestra mínima de Dados fake para validar o schema.
+  en: Minimal fake talk to validate the schema.
+event: Evento de exemplo
+date: 2025-11-20
+location: online
+language: pt-br
+links:
+  slides: https://example.com/slides
+fake: true
