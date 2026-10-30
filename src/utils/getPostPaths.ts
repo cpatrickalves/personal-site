@@ -1,33 +1,25 @@
 import type { CollectionEntry } from "astro:content";
-import { BLOG_PATH } from "@/content.config";
-import { splitLocalePath } from "@/i18n/contentPath";
 import type { Locale } from "@/i18n/locales";
-import { slugifyStr } from "./slugify";
+import { BLOG_PATH, parsePostPath } from "./postPath";
 
-export type PostRef = Pick<CollectionEntry<"posts">, "id" | "filePath">;
+export type PostRef = Pick<CollectionEntry<"posts">, "filePath">;
 
-function splitPostPath(filePath: string | undefined) {
+function parsePostRef({ filePath }: PostRef) {
   if (!filePath) {
     throw new Error("Post without a file path: its locale is unknown.");
   }
-  return splitLocalePath(filePath.replace(BLOG_PATH, ""));
+  return parsePostPath(filePath.replace(BLOG_PATH, ""));
 }
 
 /** The locale of a Post, taken from its folder (`pt-br/`, `en/`). */
-export function getPostLocale({ filePath }: PostRef): Locale {
-  return splitPostPath(filePath).locale;
+export function getPostLocale(post: PostRef): Locale {
+  return parsePostRef(post).locale;
 }
 
 /**
- * The slug of a Post, the same in both Versões: the subfolders after the
- * locale folder plus the file name, with no leading slash.
+ * The slug of a Post, the same in both Versões, with no leading slash.
  * e.g. `en/series/part-1.md` → `series/part-1`
  */
-export function getPostSlug({ id, filePath }: PostRef): string {
-  const folders = splitPostPath(filePath)
-    .segments.filter(path => !path.startsWith("_"))
-    .slice(0, -1)
-    .map(segment => slugifyStr(segment));
-  const idSlug = id.split("/").at(-1) ?? id;
-  return [...folders, idSlug].join("/");
+export function getPostSlug(post: PostRef): string {
+  return parsePostRef(post).slug;
 }

@@ -29,7 +29,6 @@ export async function postPaths(locale: Locale) {
       prevPost:
         index < sortedPosts.length - 1
           ? {
-              id: sortedPosts[index + 1].id,
               title: sortedPosts[index + 1].data.title,
               filePath: sortedPosts[index + 1].filePath,
             }
@@ -37,7 +36,6 @@ export async function postPaths(locale: Locale) {
       nextPost:
         index > 0
           ? {
-              id: sortedPosts[index - 1].id,
               title: sortedPosts[index - 1].data.title,
               filePath: sortedPosts[index - 1].filePath,
             }

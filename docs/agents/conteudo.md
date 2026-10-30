@@ -5,7 +5,7 @@ As coleções estão em `src/content.config.ts`.
 ## Posts e páginas
 
 - `posts` e `pages`: Markdown/MDX numa pasta por locale (`src/content/posts/pt-br/`, `.../en/`). O locale vem da pasta: `splitLocalePath` lança erro para um arquivo fora de uma pasta de locale.
-- As duas Versões de um Post têm o mesmo nome de arquivo, logo o mesmo slug (`src/utils/getPostPaths.ts`).
+- As duas Versões de um Post têm o mesmo nome de arquivo, logo o mesmo slug. O slug sai só do caminho, sem o `id` do Astro: `parsePostPath` em `src/utils/postPath.ts`, embrulhado por `getPostSlug` (`src/utils/getPostPaths.ts`).
 - Cada locale lista só os seus Posts (`getLocalePosts`), sem rascunhos nem agendados (`postFilter`).
 
 ## Projetos e palestras
@@ -15,7 +15,7 @@ As coleções estão em `src/content.config.ts`.
 ## Marcadores
 
 - `fake: true`: Dados fake (placeholders de design, removidos antes do lançamento).
-- `translationReviewed: false`: tradução feita por agente, esperando a revisão do Patrick.
+- `translationReviewed: false`: tradução feita por agente, esperando a revisão do Patrick. Vale em qualquer idioma; a versão original não tem o campo. `pnpm translations` lista essas Versões e os Posts sem a Versão no outro idioma.
 
 ## Config e feature flags
 
