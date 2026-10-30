@@ -50,7 +50,7 @@ O que um site vizinho não copia com verdade: um blog técnico escrito por quem 
 ## Brand Commitments
 
 - **Nome e domínio:** Patrick Alves, cpatrickalves.com, GitHub `cpatrickalves`. O nome de exibição final ainda está na tabela de dados do autor.
-- **Referência visual tornada obrigatória pelo Patrick:** a linguagem do [Rubric](https://www.getrubric.app/) (cards, sombras, animações, estética de IA e agentes), com as fontes Outfit (corpo) e Doto (títulos e detalhes) e uma paleta própria. A paleta do Rubric serve só de referência de contraste. Nunca copiar o logo, o cursor hexagonal nem os textos do Rubric.
+- **Referência visual tornada obrigatória pelo Patrick:** a linguagem do [Rubric](https://www.getrubric.app/) (cards, sombras, animações, estética de IA e agentes), com a fonte Outfit (todo texto; Martian Mono só no código) e uma paleta própria. A paleta do Rubric serve só de referência de contraste. Nunca copiar o logo, o cursor hexagonal nem os textos do Rubric.
 - **Peças herdadas:** base AstroPaper e, do karhdo.dev, a barra superior, a busca ⌘K, o tema claro/escuro e o Expressive Code. Créditos em `THIRD_PARTY_NOTICES.md`.
 - **Voz:** ainda não confirmada. O texto antigo do Hashnode era informal e em primeira pessoa ("Hello there! 👋"); não tratar isso como decisão.
 

@@ -16,7 +16,7 @@ O novo cpatrickalves.com é um site pessoal bilíngue em Astro 7, estático, no 
 | Analytics | Umami Cloud Hobby (posts mais acessados, origem, países, dispositivos); sem contador público de views. O Google Analytics do Hashnode fica como arquivo do período antigo |
 | Mermaid | astro-mermaid (blocos ```` ```mermaid ```` no Markdown, renderizados no navegador, tema claro/escuro automático) |
 | Animações | View Transitions + CSS no site; MP4/WebM para demos; SVG animado ou React + Motion em posts MDX para diagramas |
-| Design | Linguagem do [Rubric](https://www.getrubric.app/): fontes Outfit + Doto, cards, sombras, animações, estética de IA e agentes; paleta própria |
+| Design | Linguagem do [Rubric](https://www.getrubric.app/): fontes Outfit + Martian Mono (só código), cards, sombras, animações, estética de IA e agentes; paleta própria |
 | Conteúdo | Todos os posts com versão PT-BR antes do lançamento: rascunho do agente, revisão do Patrick |
 | Redirects | Fora do escopo: links antigos do Hashnode (`/<slug>`) deixam de funcionar |
 | Blog do Hashnode | Fica como está em `*.hashnode.dev` depois da Virada, com um post curto de aviso |
@@ -85,7 +85,7 @@ São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeir
 
 - Tokens em CSS com tema claro e escuro: fundo, card, texto, texto suave, accent, bordas e sombras.
 - Paleta própria: 3 propostas para você escolher (a do Rubric serve só de referência de contraste).
-- Fontes Outfit (corpo) e Doto (títulos e detalhes) pela Fonts API do Astro (chave `fonts`, estável desde o Astro 6).
+- Fontes Outfit (todo texto, inclusive números e datas) e Martian Mono (só código) pela Fonts API do Astro (chave `fonts`, estável desde o Astro 6).
 - Componentes base: card, botão, badge/tag, callout, bloco de código, tabela.
 - Primitivas de animação: reveal ao rolar, hover, View Transitions entre páginas; tudo respeita `prefers-reduced-motion`.
 - Página `/styleguide` com todos os componentes nos dois temas e um seletor para as 3 propostas de paleta. Ela é publicada no preview (com `noindex`) e fica fora dos builds de produção. O seletor de paleta é descartado depois da escolha.
@@ -246,7 +246,7 @@ Não trazer: Spotify, token burn, relógio, snowfall, career, views, reações, 
 
 **Referência de design ([getrubric.app](https://www.getrubric.app/))**
 
-- Fontes: Outfit (corpo, pesos 100 a 900) e Doto (títulos e detalhes em matriz de pontos, pesos 400 a 900), ambas do Google Fonts.
+- Fontes: o Rubric usa Outfit e Doto; aqui ficou Outfit (todo texto, pesos 100 a 900) e Martian Mono (só código), escolhidas com a paleta Gelo na Fase 1.
 - Estilo: cards sobre fundo, sombras, accent forte único, estética de IA e agentes.
 - Paleta de referência (não usar como final): fundo `#f2efe8`/`#131311`, card `#faf8f2`/`#1c1a16`, texto `#1c1a16`/`#e8e2d2`, accent `#ff6b1a`.
 - Não copiar logo, cursor hexagonal nem textos do Rubric.
