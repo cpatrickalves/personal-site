@@ -201,12 +201,12 @@ Os YAML de Projeto e Palestra rejeitam chaves desconhecidas: um erro de digitaç
 
 ### Regras de comportamento
 
-- **Seletor de idioma:** leva à versão equivalente da página atual. Numa página de tag, leva à mesma tag no outro idioma. Se não houver versão no outro idioma, leva à lista da mesma seção no outro idioma.
+- **Seletor de idioma:** leva à versão equivalente da página atual. Numa página de tag, leva à mesma tag no outro idioma. Se não houver versão no outro idioma, leva à lista da mesma seção no outro idioma; uma página de lista que o outro idioma não tem (`/blog/2/`) leva à primeira página dessa lista.
 - **Listas:** cada idioma mostra só os seus próprios posts. Toda lista tem um estado vazio desenhado (idioma sem posts, tag sem posts, Palestras sem itens).
 - **Flag `features.talks = false`:** a seção sai do menu e da home, a rota não é gerada e não entra no sitemap.
 - **Dados fake:** aparecem no preview até a Fase 7. No início dela, saem do build e são apagados. Enquanto as versões PT-BR não chegam, as listas PT-BR mostram o estado vazio.
 - **Preview × produção:** derivado do config. Com `base` é preview; sem `base` é produção. No preview há `noindex`, o `/styleguide` é publicado e não há Umami. Na produção não há `noindex`, o `/styleguide` fica fora do build e o script do Umami entra, com `data-domains="cpatrickalves.com"` como segunda trava. Remover o `base` na Fase 8 vira tudo de uma vez.
-- **SEO:** `<html lang>` correto, `hreflang` recíproco entre PT-BR e EN, sitemap com os dois idiomas e OG image por idioma.
+- **SEO:** `<html lang>` correto (`pt-BR`, `en`), `hreflang` recíproco entre PT-BR e EN, sitemap com os dois idiomas e OG image por idioma. Uma página leva `hreflang` (para si e para o outro idioma, sem `x-default`) só quando o outro idioma gera a mesma rota: um Post sem Versão e uma página de lista que só existe num idioma (`/blog/2/`) ficam sem `hreflang`. Tags sem posts num idioma contam como página. O sitemap pareia as URLs pela mesma regra, então `<head>` e sitemap dizem o mesmo. A 404 e o `/styleguide` não têm `hreflang`. Cada feed declara o seu `<language>`.
 
 ```mermaid
 flowchart TD

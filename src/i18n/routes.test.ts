@@ -1,6 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { equivalentRoute, localePath, routePath } from "./routes.ts";
+import {
+  equivalentRoute,
+  hreflangLocales,
+  listPageCount,
+  localePath,
+  routePath,
+  type LocalePages,
+} from "./routes.ts";
 
 test("PT-BR stays at the root and EN goes under /en", () => {
   assert.equal(routePath("pt-br", { page: "home" }), "/");
@@ -49,20 +56,64 @@ test("localePath prefixes any path with the locale", () => {
   assert.equal(localePath("en", ""), "/en/");
 });
 
-test("a Post with a Versão in the other locale leads to that Versão", () => {
-  const route = { page: "post", slug: "hello-world" } as const;
-  assert.deepEqual(equivalentRoute(route, new Set(["hello-world"])), route);
+test("list pages after the first get their number in the path", () => {
+  assert.equal(routePath("pt-br", { page: "blog", pageNumber: 1 }), "/blog/");
+  assert.equal(routePath("en", { page: "blog", pageNumber: 2 }), "/en/blog/2/");
+  assert.equal(
+    routePath("pt-br", { page: "tag", tag: "python", pageNumber: 3 }),
+    "/blog/tags/python/3/"
+  );
 });
 
-test("a tag page leads to the same tag", () => {
-  const route = { page: "tag", tag: "python" } as const;
-  assert.deepEqual(equivalentRoute(route, new Set()), route);
+test("a list has as many pages as Astro's paginate builds, at least one", () => {
+  assert.equal(listPageCount(0, 4), 1);
+  assert.equal(listPageCount(4, 4), 1);
+  assert.equal(listPageCount(5, 4), 2);
+});
+
+// PT-BR has two Posts, one with an EN Versão, and two pages of blog list;
+// EN has one page and no Posts tagged "python".
+const ptPages: LocalePages = {
+  postSlugs: new Set(["hello-world", "only-pt"]),
+  blogPages: 2,
+  tagPages: new Map([
+    ["python", 2],
+    ["astro", 1],
+  ]),
+};
+const enPages: LocalePages = {
+  postSlugs: new Set(["hello-world"]),
+  blogPages: 1,
+  tagPages: new Map([
+    ["python", 1],
+    ["astro", 1],
+  ]),
+};
+
+test("a Post with a Versão in the other locale leads to that Versão", () => {
+  const route = { page: "post", slug: "hello-world" } as const;
+  assert.deepEqual(equivalentRoute(route, enPages), route);
 });
 
 test("a Post without a Versão in the other locale leads to the blog list", () => {
   assert.deepEqual(
-    equivalentRoute({ page: "post", slug: "only-here" }, new Set(["other"])),
+    equivalentRoute({ page: "post", slug: "only-pt" }, enPages),
     { page: "blog" }
+  );
+});
+
+test("a tag page leads to the same tag, even with no Posts there", () => {
+  const route = { page: "tag", tag: "python" } as const;
+  assert.deepEqual(equivalentRoute(route, enPages), route);
+});
+
+test("a list page missing in the other locale leads to its first page", () => {
+  assert.deepEqual(equivalentRoute({ page: "blog", pageNumber: 2 }, enPages), {
+    page: "blog",
+  });
+  assert.deepEqual(
+    equivalentRoute({ page: "tag", tag: "python", pageNumber: 2 }, enPages),
+    { page: "tag", tag: "python" }
   );
 });
 
@@ -78,6 +129,30 @@ test("pages that exist in both locales lead to themselves", () => {
     "search",
     "rss",
   ] as const) {
-    assert.deepEqual(equivalentRoute({ page }, new Set()), { page });
+    assert.deepEqual(equivalentRoute({ page }, enPages), { page });
+  }
+});
+
+const pages = { "pt-br": ptPages, en: enPages };
+
+test("a page built in both locales gets hreflang for both", () => {
+  for (const route of [
+    { page: "home" },
+    { page: "post", slug: "hello-world" },
+    { page: "blog" },
+    { page: "tag", tag: "python" },
+    { page: "tags" },
+  ] as const) {
+    assert.deepEqual(hreflangLocales(route, pages), ["pt-br", "en"]);
+  }
+});
+
+test("a page built in one locale only gets no hreflang", () => {
+  for (const route of [
+    { page: "post", slug: "only-pt" },
+    { page: "blog", pageNumber: 2 },
+    { page: "tag", tag: "python", pageNumber: 2 },
+  ] as const) {
+    assert.deepEqual(hreflangLocales(route, pages), []);
   }
 });

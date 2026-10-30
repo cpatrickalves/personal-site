@@ -24,7 +24,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const homePath = localeUrl(locale, { page: "home" });
 ---
 
-<Layout>
+<Layout route={{ page: "home" }}>
   <Header />
   <main
     id="main-content"

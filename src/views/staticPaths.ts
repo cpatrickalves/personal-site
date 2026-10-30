@@ -74,7 +74,7 @@ export async function tagPaths(
       posts.filter(({ data }) => slugifyAll(data.tags).includes(tag)),
       {
         params: { tag },
-        props: { tagName },
+        props: { tag, tagName },
         pageSize: config.posts.perPage,
       }
     )

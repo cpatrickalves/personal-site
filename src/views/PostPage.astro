@@ -6,6 +6,7 @@ import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
 import Tag from "@/components/Tag.astro";
 import { getPostUrl } from "@/i18n/urls";
+import { getPostSlug } from "@/utils/getPostPaths";
 import { slugifyStr } from "@/utils/slugify";
 import { toTransitionName } from "@/utils/toTransitionName";
 import EditPost from "./post/EditPost.astro";
@@ -67,6 +68,7 @@ const ogImage = ogImageUrl
   canonicalURL={canonicalURL}
   pubDatetime={pubDatetime}
   modDatetime={modDatetime}
+  route={{ page: "post", slug: getPostSlug(post) }}
 >
   <Header />
 

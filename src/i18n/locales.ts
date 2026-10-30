@@ -6,6 +6,9 @@ export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "pt-br";
 
+/** The BCP 47 tag of each locale, for `<html lang>`, `hreflang`, the sitemap and the feeds. */
+export const LANG_TAGS: Record<Locale, string> = { "pt-br": "pt-BR", en: "en" };
+
 export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value);
 }

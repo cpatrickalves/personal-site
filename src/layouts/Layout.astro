@@ -3,8 +3,9 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
-import { toLocale } from "@/i18n/locales";
-import { localeUrl } from "@/i18n/urls";
+import { LANG_TAGS, toLocale } from "@/i18n/locales";
+import type { Route } from "@/i18n/routes";
+import { getHreflangLinks, localeUrl } from "@/i18n/urls";
 import config from "@/config";
 import "@/styles/global.css";
 
@@ -13,6 +14,8 @@ type Props = {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
+  /** The page without its locale; without it (404, styleguide) no `hreflang`. */
+  route?: Route;
 };
 
 const { site } = config;
@@ -22,18 +25,21 @@ const {
   description = site.description,
   ogImage = resolveDefaultOgImagePath(config),
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  route,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
 // With a `base`, the build is the Preview, which must stay out of search engines.
 const isPreview = import.meta.env.BASE_URL !== "/";
-const rssHref = localeUrl(toLocale(Astro.currentLocale), { page: "rss" });
+const locale = toLocale(Astro.currentLocale);
+const rssHref = localeUrl(locale, { page: "rss" });
+const hreflangLinks = route ? await getHreflangLinks(route) : [];
 ---
 
 <!doctype html>
 <html
   dir={site.dir ?? "ltr"}
-  lang={Astro.currentLocale ?? site.lang}
+  lang={LANG_TAGS[locale]}
   class="overflow-y-scroll scroll-smooth"
 >
   <head>
@@ -42,6 +48,15 @@ const rssHref = localeUrl(toLocale(Astro.currentLocale), { page: "rss" });
     <link rel="icon" type="image/svg+xml" href={getAssetPath("favicon.svg")} />
     <link rel="icon" href={getAssetPath("favicon.ico")} />
     <link rel="canonical" href={canonicalURL} />
+    {
+      hreflangLinks.map(({ lang, href }) => (
+        <link
+          rel="alternate"
+          hreflang={lang}
+          href={new URL(href, Astro.site)}
+        />
+      ))
+    }
     <meta name="generator" content={Astro.generator} />
     {isPreview && <meta name="robots" content="noindex, nofollow" />}
 

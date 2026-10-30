@@ -13,15 +13,19 @@ import config from "@/config";
 
 type Props = {
   page: Page<CollectionEntry<"posts">>;
+  tag: string;
   tagName: string;
 };
 
-const { page, tagName } = Astro.props;
+const { page, tag, tagName } = Astro.props;
 
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<Layout title={`${t.pages.tagTitle}: ${tagName} | ${config.site.title}`}>
+<Layout
+  title={`${t.pages.tagTitle}: ${tagName} | ${config.site.title}`}
+  route={{ page: "tag", tag, pageNumber: page.currentPage }}
+>
   <Header />
 
   <Breadcrumb />

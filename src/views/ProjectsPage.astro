@@ -29,7 +29,10 @@ const postHref = (slug: string | undefined) =>
     : undefined;
 ---
 
-<Layout title={`${t.pages.projectsTitle} | ${config.site.title}`}>
+<Layout
+  title={`${t.pages.projectsTitle} | ${config.site.title}`}
+  route={{ page: "projects" }}
+>
   <Header />
 
   <Breadcrumb />

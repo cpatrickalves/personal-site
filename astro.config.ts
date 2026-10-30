@@ -18,7 +18,7 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
-import { DEFAULT_LOCALE, LOCALES } from "./src/i18n/locales";
+import { DEFAULT_LOCALE, LANG_TAGS, LOCALES } from "./src/i18n/locales";
 
 export default defineConfig({
   site: config.site.url,
@@ -31,6 +31,9 @@ export default defineConfig({
         !page.includes("/styleguide/") &&
         (config.features?.showArchives !== false ||
           !page.endsWith("/archives/")),
+      // Pairs each page with the same path in the other locale (xhtml:link),
+      // as the hreflang links in Layout.astro do.
+      i18n: { defaultLocale: DEFAULT_LOCALE, locales: LANG_TAGS },
     }),
   ],
   i18n: {
