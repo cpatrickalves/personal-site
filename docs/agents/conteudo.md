@@ -8,6 +8,8 @@ As coleções estão em `src/content.config.ts`.
 - As duas Versões de um Post têm o mesmo nome de arquivo, logo o mesmo slug. O slug sai só do caminho, sem o `id` do Astro: `parsePostPath` em `src/utils/postPath.ts`, embrulhado por `getPostSlug` (`src/utils/getPostPaths.ts`).
 - Cada locale lista só os seus Posts (`getLocalePosts`), sem rascunhos nem agendados (`postFilter`).
 
+- Para ler frontmatter fora do Astro (num script), use `parseFrontmatter` de `@astrojs/markdown-remark`, o parser do build: ele aceita BOM e as variações de cerca que uma regex própria perde.
+
 ## Projetos e palestras
 
 `projects` e `talks`: um YAML por item, com os campos de texto como `{ "pt-br": ..., en: ... }`. Os schemas são estritos: uma chave errada quebra o build.
