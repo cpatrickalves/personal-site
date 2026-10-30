@@ -416,7 +416,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Título único da página (desktop); uma palavra em Martian Mono no accent-ink."
+        "purpose": "Título único da página (desktop); uma palavra de ênfase em Outfit no accent-ink."
       },
       "display-mobile": {
         "displayName": "Display (celular)",
@@ -447,16 +447,16 @@
         "purpose": "Metadados e legendas."
       },
       "data": {
-        "displayName": "Detalhe (Martian Mono)",
-        "purpose": "Números, datas e tempo de leitura, nunca palavras; utilitário `detail`."
+        "displayName": "Detalhe (Outfit 500)",
+        "purpose": "Números e tempo de leitura, nunca palavras nem datas; utilitário `detail`, em Outfit 500 com algarismos tabulares."
       },
       "data-hero": {
-        "displayName": "Detalhe grande (Martian Mono)",
+        "displayName": "Detalhe grande (Outfit 500)",
         "purpose": "O maior número de uma vista."
       },
       "data-min": {
-        "displayName": "Detalhe mínimo (Martian Mono)",
-        "purpose": "Menor uso observado, em metadados; Martian Mono vale em qualquer tamanho, menos nos números de tabela, que ficam em Outfit tabular."
+        "displayName": "Detalhe mínimo (Outfit 500)",
+        "purpose": "Menor uso observado, em metadados; nos números de tabela o detalhe não entra, eles ficam em Outfit 400 tabular."
       },
       "code": {
         "displayName": "Código",
@@ -479,8 +479,7 @@
         "format": "woff2",
         "provider": "Astro Fonts API (google)",
         "aliases": [
-          "--font-mono",
-          "--font-detail-face"
+          "--font-mono"
         ]
       },
       {
@@ -608,7 +607,7 @@
     "detailTokens": [
       {
         "name": "--font-detail-face",
-        "value": "var(--font-martian-mono)"
+        "value": "var(--font-outfit)"
       },
       {
         "name": "--detail-weight",
@@ -694,11 +693,11 @@
   ],
   "narrative": {
     "northStar": "A Bancada de Placas",
-    "overview": "Uma bancada de quem constrói agentes. Cada peça é uma placa recortada: canto reto, contorno de 2px na cor do texto e uma sombra dura deslocada na diagonal, apoiada sobre um fundo tingido um tom abaixo dela. A paleta é a Gelo, navy e azul-gelo do logo antigo, irmã da Cognicode, em claro e escuro. Há um único accent forte, e ele aparece como preenchimento (botão primário, badge de destaque, seleção de texto) ou, na versão `accent-ink`, como texto e link. O resto é tinta e papel da mesma família de cor.\n\nA densidade é de oficina, não de revista: placas lado a lado, títulos curtos em Outfit seminegrito com tracking negativo, e os detalhes (números, datas, tempo de leitura) em Martian Mono. A assinatura do sistema é essa dupla: Outfit em tudo que se lê, Martian Mono onde há um número ou uma data, em qualquer tamanho, e no código. Palavras ficam sempre em Outfit. O movimento é físico e curto: placas levantam no hover, botões afundam no clique, o conteúdo sobe ao entrar.\n\nO sistema recusa o blog de dev padrão: cards arredondados, glow, gradiente no nome. A linguagem de cards, sombras e animação vem da referência Rubric, tornada obrigatória pelo Patrick, mas nunca o logo, o cursor hexagonal nem os textos dela.",
+    "overview": "Uma bancada de quem constrói agentes. Cada peça é uma placa recortada: canto reto, contorno de 2px na cor do texto e uma sombra dura deslocada na diagonal, apoiada sobre um fundo tingido um tom abaixo dela. A paleta é a Gelo, navy e azul-gelo do logo antigo, irmã da Cognicode, em claro e escuro. Há um único accent forte, e ele aparece como preenchimento (botão primário, badge de destaque, seleção de texto) ou, na versão `accent-ink`, como texto e link. O resto é tinta e papel da mesma família de cor.\n\nA densidade é de oficina, não de revista: placas lado a lado, títulos curtos em Outfit seminegrito com tracking negativo, e os detalhes (números, tempo de leitura) em Outfit 500 com algarismos tabulares. Outfit está em tudo que se lê, inclusive números e datas; a Martian Mono fica só no código. O movimento é físico e curto: placas levantam no hover, botões afundam no clique, o conteúdo sobe ao entrar.\n\nO sistema recusa o blog de dev padrão: cards arredondados, glow, gradiente no nome. A linguagem de cards, sombras e animação vem da referência Rubric, tornada obrigatória pelo Patrick, mas nunca o logo, o cursor hexagonal nem os textos dela.",
     "keyCharacteristics": [
       "Placas de canto reto, contorno de 2px na cor do texto e sombra dura sem desfoque.",
       "Fundo tingido, card um tom acima, um único accent.",
-      "Outfit para leitura; Martian Mono 500 para números, datas e o código, nunca para palavras.",
+      "Outfit em tudo, inclusive números e datas; Martian Mono só no código.",
       "Paleta Gelo em claro e escuro, com os mesmos papéis de cor.",
       "Movimento visível por padrão e desligado inteiro sob `prefers-reduced-motion`."
     ],
@@ -710,7 +709,7 @@
       },
       {
         "name": "The One Accent Rule",
-        "body": "A paleta tem um accent e só um. Se uma tela precisa de uma segunda cor de destaque, a resposta é tinta, contorno ou Martian Mono, não uma nova cor.",
+        "body": "A paleta tem um accent e só um. Se uma tela precisa de uma segunda cor de destaque, a resposta é tinta, contorno ou peso, não uma nova cor.",
         "section": "colors"
       },
       {
@@ -725,7 +724,7 @@
       },
       {
         "name": "The Outfit Table Rule",
-        "body": "Martian Mono serve a números, datas e tempo de leitura em qualquer tamanho, inclusive em metadados pequenos; nas tabelas, os números ficam em Outfit com algarismos tabulares.",
+        "body": "Números e datas ficam em Outfit, em qualquer tamanho, com algarismos tabulares. Números de destaque e o tempo de leitura vão no detalhe (500); datas ficam no peso do texto em volta, no `accent-ink` quando em destaque; nas tabelas, os números ficam em Outfit 400. A Martian Mono foi testada em números e datas e recusada pelo Patrick (2026-10-30): ao lado de texto, no mesmo tamanho, ela parece 15% maior e quebra a linha.",
         "section": "typography"
       },
       {
@@ -754,16 +753,16 @@
       "**Do** escrever cores de tema só em `:root, [data-theme=\"light\"]` e `[data-theme=\"dark\"]`, com os mesmos papéis nos dois.",
       "**Do** referenciar tokens crus (`var(--card)`, `var(--foreground)`) em CSS escrito à mão.",
       "**Do** usar `accent-ink` para todo texto na cor do accent e `accent` só como preenchimento.",
-      "**Do** usar o detalhe (Martian Mono 500) para números, datas e tempo de leitura, em qualquer tamanho. **Don't** usar Martian Mono em palavras; a ênfase de título é Outfit no `accent-ink`.",
+      "**Do** usar o detalhe (Outfit 500, algarismos tabulares) para números e tempo de leitura, e Outfit no peso do texto para datas. **Don't** usar Martian Mono fora do código; a ênfase de título é Outfit no `accent-ink`.",
       "**Do** fazer a sombra crescer e virar accent quando uma placa clicável recebe hover ou foco.",
       "**Do** manter todo conteúdo visível sem JavaScript e desligar o movimento sob `prefers-reduced-motion`."
     ],
     "donts": [
       "**Don't** usar cantos arredondados, glow ou gradiente no nome.",
       "**Don't** usar sombras com desfoque ou espalhamento.",
-      "**Don't** pôr os números de tabela em Martian Mono; ali ficam em Outfit com algarismos tabulares.",
-      "**Don't** colocar mais de uma palavra em Martian Mono num título, nem passá-la para caixa alta.",
-      "**Don't** carregar uma terceira família de fonte; Outfit e Martian Mono cobrem leitura, detalhe e código.",
+      "**Don't** usar o detalhe em números de tabela; ali ficam em Outfit 400 com algarismos tabulares.",
+      "**Don't** colocar mais de uma palavra no `accent-ink` num título, nem passá-la para caixa alta.",
+      "**Don't** carregar uma terceira família de fonte; Outfit cobre leitura, números e datas, e Martian Mono, o código.",
       "**Don't** referenciar os aliases `--color-*` do Tailwind em CSS escrito à mão.",
       "**Don't** introduzir um segundo accent ou cores de sintaxe fora da paleta.",
       "**Don't** usar eyebrows ou kickers (rótulos pequenos acima de títulos).",

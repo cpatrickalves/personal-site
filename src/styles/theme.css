@@ -57,9 +57,9 @@
   --shadow: rgb(243 243 236 / 0.28);
 }
 
-/* Detail face: numbers, dates and code, never words */
+/* Detail face: numbers, never words or dates; code keeps Martian Mono */
 :root {
-  --font-detail-face: var(--font-martian-mono);
+  --font-detail-face: var(--font-outfit);
   --detail-weight: 500;
   --detail-tracking: -0.03em;
 }
