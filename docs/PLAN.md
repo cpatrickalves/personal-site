@@ -51,7 +51,7 @@ PT-BR fica sem prefixo e EN em `/en`; os nomes das seções ficam em inglês nos
 - Seletor de idioma leva à versão equivalente da página atual; numa página de tag, à mesma tag no outro idioma; sem versão no outro idioma, leva à lista do outro idioma.
 - Cada lista mostra só os posts do seu idioma. Toda lista tem um estado vazio desenhado.
 - Tags são as mesmas nas duas versões de um post (termos técnicos em inglês).
-- Datas guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas.
+- Datas guardadas em UTC e exibidas no fuso America/Sao_Paulo nos dois idiomas, como `AAAA-MM-DD`.
 - Sem nota de "traduzido do inglês": as duas versões têm o mesmo peso.
 - SEO: `<html lang>`, `hreflang` entre PT-BR e EN, sitemap com os dois idiomas, OG image por idioma.
 - Preview × produção vem do config: com `base` é preview (`noindex`, `/styleguide` publicado, sem Umami); sem `base` é produção (indexado, sem `/styleguide`, com Umami).
@@ -91,7 +91,7 @@ São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeir
 **Fase 2: i18n**
 
 - Config do Astro: `locales: ["pt-br", "en"]`, `defaultLocale: "pt-br"`, sem prefixo para o padrão.
-- Strings de UI em `pt-br.ts` e `en.ts`, datas formatadas por idioma, no fuso America/Sao_Paulo.
+- Strings de UI em `pt-br.ts` e `en.ts`; datas como `AAAA-MM-DD` nos dois idiomas, no fuso America/Sao_Paulo.
 - Coleções de conteúdo por idioma e helpers de URL (que também aplicam o `base`). Daqui em diante, todo link interno usa os helpers.
 - `hreflang`, sitemap e RSS por idioma; script de CI de traduções pendentes.
 - Pronto quando: as rotas-esqueleto existem nos dois idiomas e a troca de idioma leva à rota equivalente.

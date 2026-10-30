@@ -17,6 +17,8 @@ import IconDeviceDesktop from "@/assets/icons/IconDeviceDesktop.svg";
 import basketCover from "../../../archive/hashnode/posts/basket-icon-detector/cover.png";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { pageRise } from "@/utils/transitions";
+import { formatDate, useTranslations } from "@/i18n";
+import config from "@/config";
 
 // The styleguide exists in dev and in the Preview (with `base`), never in
 // Produção: without `base` no path is generated.
@@ -60,7 +62,18 @@ def classify_ticket(text: str) -> str:
     )
     return response.content[0].text.strip()`;
 
-const homeHref = getRelativeLocaleUrl("en", "");
+const homeHref = getRelativeLocaleUrl(config.site.lang, "");
+
+// 02:30 UTC on 1 March is still 28 February in São Paulo.
+const sampleDatetime = "2026-03-01T02:30:00Z";
+const sampleDate = formatDate(sampleDatetime, config.site.timezone);
+const localeSamples = [
+  { label: "PT-BR", locale: "pt-br" },
+  { label: "EN", locale: "en" },
+].map(({ label, locale }) => ({
+  label,
+  publishedAt: useTranslations(locale).post.publishedAt,
+}));
 ---
 
 <Layout
@@ -87,6 +100,7 @@ const homeHref = getRelativeLocaleUrl("en", "");
             <a class="hover:text-foreground" href="#componentes">Componentes</a>
           </li>
           <li><a class="hover:text-foreground" href="#leitura">Leitura</a></li>
+          <li><a class="hover:text-foreground" href="#idiomas">Idiomas</a></li>
           <li>
             <a class="hover:text-foreground" href="#movimento">Movimento</a>
           </li>
@@ -132,6 +146,7 @@ const homeHref = getRelativeLocaleUrl("en", "");
           <a class="hover:text-foreground" href="#componentes">Componentes</a>
         </li>
         <li><a class="hover:text-foreground" href="#leitura">Leitura</a></li>
+        <li><a class="hover:text-foreground" href="#idiomas">Idiomas</a></li>
         <li>
           <a class="hover:text-foreground" href="#movimento">Movimento</a>
         </li>
@@ -301,7 +316,7 @@ const homeHref = getRelativeLocaleUrl("en", "");
                   cls: "text-[3rem] leading-none",
                 },
                 {
-                  text: "17.03.2025",
+                  text: "2025-03-17",
                   size: 32,
                   cls: "text-[2rem] leading-none",
                 },
@@ -336,9 +351,9 @@ const homeHref = getRelativeLocaleUrl("en", "");
                 15px
               </dt>
               <dd class="flex items-baseline gap-4 text-[0.9375rem]">
-                <span class="detail">17.03.2025</span>
+                <span class="detail">2025-03-17</span>
                 <span class="text-muted-foreground">Outfit:</span>
-                <time class="tabular font-medium">17.03.2025</time>
+                <time class="tabular font-medium">2025-03-17</time>
               </dd>
             </div>
           </dl>
@@ -421,7 +436,7 @@ const homeHref = getRelativeLocaleUrl("en", "");
               <span
                 class="border-border mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 border-t-2 pt-5"
               >
-                <span class="detail text-accent-ink text-2xl">17.03.2025</span>
+                <span class="detail text-accent-ink text-2xl">2025-03-17</span>
                 <span class="text-muted-foreground text-sm">
                   <span class="detail text-foreground text-xl">6</span> min de leitura
                 </span>
@@ -631,6 +646,44 @@ const homeHref = getRelativeLocaleUrl("en", "");
           Trecho do post “MLOps: What it is and why does it Matter?” (2022).
         </p>
       </article>
+    </Section>
+
+    <Section
+      id="idiomas"
+      title="A mesma data nos dois"
+      emphasis="idiomas"
+      description="A data é guardada em UTC e aparece no fuso de São Paulo, como AAAA-MM-DD nos dois idiomas. Só as palavras em volta mudam."
+    >
+      <Plate class="max-w-2xl p-6 sm:p-8">
+        <dl class="divide-border flex flex-col divide-y">
+          <div
+            class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 pb-5"
+          >
+            <dt class="text-muted-foreground order-last shrink-0 text-sm">
+              Guardada em UTC
+            </dt>
+            <dd class="detail text-[0.9375rem]">{sampleDatetime}</dd>
+          </div>
+          {
+            localeSamples.map(({ label, publishedAt }) => (
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 pt-5 not-last:pb-5">
+                <dt class="text-muted-foreground order-last shrink-0 text-sm">
+                  {label} · {config.site.timezone}
+                </dt>
+                <dd class="text-[1.0625rem]">
+                  {publishedAt}{" "}
+                  <time
+                    class="detail text-accent-ink"
+                    datetime={sampleDatetime}
+                  >
+                    {sampleDate}
+                  </time>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </Plate>
     </Section>
 
     <Section

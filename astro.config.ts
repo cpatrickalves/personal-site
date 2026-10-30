@@ -33,8 +33,9 @@ export default defineConfig({
     }),
   ],
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    // PT-BR at the root, EN under /en.
+    locales: ["pt-br", "en"],
+    defaultLocale: "pt-br",
     routing: {
       prefixDefaultLocale: false,
     },
