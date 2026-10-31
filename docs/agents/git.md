@@ -1,6 +1,8 @@
 # Git
 
 - Uma issue, uma branch, um PR: branch `<n>-<slug>` a partir do `main`, PR com `Closes #<n>`. O merge é do Patrick.
+- O título do commit e do PR termina com o número da issue, como em `Adiciona a barra superior fixa (#17)`.
+- Antes de abrir um PR, rode a skill `docs-generator` no escopo da branch e atualize a documentação que a mudança afeta.
 - Antes do commit, mostre o resultado ao Patrick: a prova no build e, quando der, as páginas renderizadas (ver [Testes e CI](testes-e-ci.md#checagem-visual)).
 - Adicione ao stage caminhos explícitos e confira `git show --stat HEAD` antes do push: `node_modules/`, `dist/`, `.astro/` e `public/pagefind/` continuam na árvore ao trocar para uma branch cujo `.gitignore` não os lista.
 - Próximas issues livres: abertas, sem responsável e sem bloqueio. Uma chamada lista todas:

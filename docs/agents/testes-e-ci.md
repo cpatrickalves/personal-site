@@ -8,7 +8,7 @@ Um módulo testável importa os irmãos com extensão `.ts` explícita (`./route
 
 ## Checagem visual
 
-O repo não tem Playwright. Instale `playwright-core` numa pasta temporária fora do repo, lance com o binário `chromium_headless_shell-1248` de `~/.cache/ms-playwright` e aponte para o `pnpm preview` (que serve em `/personal-site`).
+O repo não tem Playwright: as capturas e checagens no `pnpm preview` saem da skill local `checagem-visual`, que instala o `playwright-core` na própria pasta.
 
 ## CI
 
