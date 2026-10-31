@@ -9,12 +9,15 @@ Site pessoal bilíngue do Patrick Alves (blog, projetos e palestras) que substit
 
 ## Em toda tarefa
 
-- Confira versões e APIs (Astro 7, AstroPaper, Pagefind, astro-mermaid, Umami) no Context7 ou na documentação oficial antes de usar.
+- Escreva em PT-BR tudo o que vai para o repo e o GitHub: docs, arquivos `.md`, commits, PRs e issues.
+- Para qualquer biblioteca ou API (Astro 7, AstroPaper, Pagefind, astro-mermaid, Umami e as demais), busque a documentação no Context7 MCP por conta própria, sem esperar o pedido: `resolve-library-id` e depois `query-docs`. Se o Context7 não tiver a biblioteca, use a documentação oficial.
 - Use o vocabulário do `GLOSSARY.md` (Post, Versão, Importação, Preview, Produção, Virada, Portão de aprovação, Dados fake) em código, commits e issues.
 - Toda URL interna sai dos helpers de `@/i18n/urls` (`localeUrl`, `getPostUrl`): o `base` `/personal-site` some na Virada.
 - Siga `docs/PLAN.md` (fases) e `docs/TDD.md` (decisões); quando divergirem, corrija os dois. São temporários: no fim, o que durar vira doc permanente via `/docs-generator`.
 - Issues com título `Portão de aprovação:` são do Patrick: pare nelas, espere por ele e deixe que ele as feche.
-- Commits e PRs saem sem linhas de atribuição (`Co-authored-by` ou similares).
+- O título do commit e do PR termina com o número da issue, como em `Adiciona a barra superior fixa (#17)`.
+- Commits e PRs saem sem linhas de atribuição (`Co-authored-by` ou similares) e sem mencionar o Claude.
+- Antes de abrir um PR, rode a skill `docs-generator` no escopo da branch e atualize a documentação que a mudança afeta.
 - Para criar ou alterar qualquer página, componente ou estilo, use a skill `impeccable`.
 
 ## Docs por assunto
