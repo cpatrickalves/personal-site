@@ -1,0 +1,198 @@
+---
+/**
+ * The sticky top bar, adapted from karhdo.dev's `src/components/header/`
+ * (MIT, see THIRD_PARTY_NOTICES.md) to the plate language: an opaque bar on
+ * a 2px rule, the section links from md up and, below md, the full-screen
+ * menu of `MobileNav`. The bar is re-rendered on every page, so its links
+ * and labels always follow the page's locale.
+ */
+import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
+import IconSearch from "@/assets/icons/IconSearch.svg";
+import IconMoon from "@/assets/icons/IconMoon.svg";
+import MobileNav from "./MobileNav.astro";
+import { navItems } from "./navigation";
+import { stripBase, stripLocale } from "@/utils/withBase";
+import { toLocale } from "@/i18n/locales";
+import { localeUrl } from "@/i18n/urls";
+import { useTranslations } from "@/i18n";
+import config from "@/config";
+
+const { site, features } = config;
+
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const homeUrl = localeUrl(locale, { page: "home" });
+const searchUrl = localeUrl(locale, { page: "search" });
+const pathname = Astro.url.pathname.replace(/\/?$/, "/");
+const links = navItems(
+  { talks: features.talks, showArchives: features.showArchives },
+  stripLocale(stripBase(Astro.url.pathname), locale)
+).map(({ key, route, current }) => ({
+  href: localeUrl(locale, route),
+  label: t.nav[key],
+  current,
+}));
+
+const hasSearch = features.search !== false;
+const hasThemeToggle = features.lightAndDarkMode;
+---
+
+<a
+  id="skip-to-content"
+  href="#main-content"
+  class="bg-background text-accent-ink absolute inset-s-16 -top-full z-50 px-3 py-2 transition-all focus:top-4"
+>
+  {t.a11y.skipToContent}
+</a>
+
+<header
+  class="bg-background border-border sticky top-0 z-40 border-b-2"
+  transition:name="site-header"
+  transition:animate="none"
+>
+  <div class="app-layout flex min-h-16 items-center gap-3">
+    <a
+      href={homeUrl}
+      class="me-auto py-2 text-lg font-semibold tracking-[-0.02em] whitespace-nowrap"
+    >
+      {site.title}
+    </a>
+
+    <nav aria-label={t.a11y.mainNav} class="hidden md:block">
+      <ul class="flex items-center">
+        {
+          links.map(({ href, label, current }) => (
+            <li>
+              <a href={href} class="nav-link" aria-current={current}>
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    {
+      /* The tools, one strip of 40px squares: #18 puts the language switch
+        first, #19 replaces the theme button and #20 turns search into the
+        ⌘K palette. Below md the strip ends with the menu button. */
+    }
+    <div
+      class:list={[
+        "border-outline flex border-2 [&>*+*]:border-s-2",
+        { "md:hidden": !hasSearch && !hasThemeToggle },
+      ]}
+    >
+      {
+        hasSearch && (
+          <a
+            href={searchUrl}
+            class="tool-btn"
+            aria-current={pathname === searchUrl ? "page" : undefined}
+            title={t.nav.search}
+          >
+            <IconSearch aria-hidden="true" />
+            <span class="sr-only">{t.nav.search}</span>
+          </a>
+        )
+      }
+      {
+        hasThemeToggle && (
+          <button
+            id="theme-btn"
+            type="button"
+            class="tool-btn relative"
+            title={t.a11y.toggleTheme}
+            aria-label="auto"
+            aria-live="polite"
+          >
+            <IconMoon class="absolute scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90" />
+            <IconSunHigh class="absolute scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0" />
+          </button>
+        )
+      }
+      <MobileNav links={links} homeUrl={homeUrl} title={site.title} />
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  @reference "@/styles/global.css";
+
+  @layer components {
+    /* A square tool of the bar: 40px, filled with the card on hover. */
+    .tool-btn {
+      @apply inline-flex size-10 items-center justify-center;
+      color: var(--foreground);
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--card);
+      }
+
+      &[aria-current] {
+        background-color: var(--foreground);
+        color: var(--background);
+      }
+
+      svg {
+        @apply size-5 shrink-0;
+      }
+    }
+  }
+</style>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .nav-link {
+    @apply inline-flex min-h-10 items-center px-2.5 text-[0.9375rem] font-medium;
+    color: var(--muted-foreground);
+    transition: color 0.2s;
+
+    &:hover,
+    &[aria-current] {
+      color: var(--foreground);
+    }
+
+    &[aria-current] {
+      @apply active-nav;
+      text-decoration-color: var(--accent-ink);
+    }
+  }
+</style>
+
+<script>
+  function handleSkipToContent() {
+    const skipLink = document.getElementById("skip-to-content");
+    if (!skipLink) return;
+    skipLink.addEventListener("click", e => {
+      if (
+        e.defaultPrevented ||
+        e.metaKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.button !== 0
+      )
+        return;
+      e.preventDefault();
+      const target = document.getElementById("main-content");
+      if (target) {
+        target.setAttribute("tabindex", "-1");
+        target.addEventListener(
+          "blur",
+          () => target.removeAttribute("tabindex"),
+          {
+            once: true,
+          }
+        );
+        target.focus();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+
+  handleSkipToContent();
+  document.addEventListener("astro:after-swap", handleSkipToContent);
+</script>

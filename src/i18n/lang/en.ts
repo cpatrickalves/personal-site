@@ -67,6 +67,8 @@ export default {
     skipToContent: "Skip to content",
     openMenu: "Open menu",
     closeMenu: "Close menu",
+    menu: "Menu",
+    mainNav: "Main",
     toggleTheme: "Toggle theme",
     searchPlaceholder: "Search posts...",
     noResults: "No results found",
