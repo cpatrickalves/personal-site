@@ -15,6 +15,8 @@
     font-feature-settings: "ss01";
     caret-color: var(--accent-ink);
     accent-color: var(--accent-ink);
+    /* Anchors and the skip link stop below the sticky header (64px + 2px rule) */
+    scroll-padding-top: calc(4rem + 2px);
   }
   ::selection {
     background: var(--accent);

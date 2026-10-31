@@ -36,6 +36,7 @@ SOFTWARE.
 
 - Origem: https://github.com/Karhdo/karhdo.dev
 - Peças copiadas (barra superior, busca ⌘K, modo claro/escuro, Expressive Code) entram na Fase 3; o commit de origem de cada uma é registrado aqui quando ela entrar.
+- Barra superior: `src/components/header/` (`Header.astro` e `MobileNav.astro`), do commit `ea3cf7ac89df2c70b700273235bd6ba173fb4bad`. Adaptada em `src/components/header/` aos tokens do site: sem vidro nem cantos arredondados, e sem `SearchTrigger`, `ThemeToggle` e `AnalyticsLink`.
 
 ```
 MIT License

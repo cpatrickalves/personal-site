@@ -1,0 +1,175 @@
+---
+/**
+ * The menu below md, on a modal `<dialog>` that covers the screen: the
+ * platform gives the focus trap, Esc and the focus return. While it is open
+ * the page does not scroll; it closes on a link click, on navigation and
+ * when the viewport grows to md, where the bar shows the links itself.
+ */
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
+import IconX from "@/assets/icons/IconX.svg";
+import { toLocale } from "@/i18n/locales";
+import { useTranslations } from "@/i18n";
+
+type Props = {
+  links: { href: string; label: string; current?: "page" | "true" }[];
+  homeUrl: string;
+  title: string;
+};
+
+const { links, homeUrl, title } = Astro.props;
+
+const t = useTranslations(toLocale(Astro.currentLocale));
+---
+
+<button
+  type="button"
+  class="tool-btn md:hidden"
+  aria-label={t.a11y.openMenu}
+  aria-haspopup="dialog"
+  aria-controls="mobile-nav"
+  aria-expanded="false"
+  data-mobile-nav-open
+>
+  <IconMenuDeep aria-hidden="true" />
+</button>
+
+<dialog
+  id="mobile-nav"
+  class="mobile-nav"
+  aria-label={t.a11y.menu}
+  data-mobile-nav
+>
+  <div class="border-border border-b-2">
+    <div class="app-layout flex min-h-16 items-center gap-3">
+      <a
+        href={homeUrl}
+        class="me-auto py-2 text-lg font-semibold tracking-[-0.02em] whitespace-nowrap"
+      >
+        {title}
+      </a>
+      <button
+        type="button"
+        class="tool-btn border-outline size-11 border-2"
+        aria-label={t.a11y.closeMenu}
+        autofocus
+        data-mobile-nav-close
+      >
+        <IconX aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+  <nav aria-label={t.a11y.mainNav} class="app-layout pt-4 pb-10">
+    <ul>
+      {
+        links.map(({ href, label, current }, index) => (
+          <li style={`--item: ${index}`}>
+            <a href={href} class="mobile-link group" aria-current={current}>
+              <span class="mobile-link-label">{label}</span>
+              <IconArrowRight
+                aria-hidden="true"
+                class="size-6 shrink-0 transition-transform duration-200 group-hover:translate-x-[3px]"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</dialog>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .mobile-nav {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    border: 0;
+    background: var(--background);
+    color: var(--foreground);
+
+    &::backdrop {
+      background: var(--background);
+    }
+  }
+
+  .mobile-link {
+    @apply flex min-h-18 items-center justify-between gap-4 text-[2rem] leading-[1.1] font-semibold tracking-[-0.03em];
+    border-bottom: 2px solid var(--border);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--accent-ink);
+    }
+  }
+
+  .mobile-link[aria-current] .mobile-link-label {
+    @apply active-nav;
+    text-decoration-color: var(--accent-ink);
+  }
+
+  /* The links rise one after the other when the menu opens. */
+  @media (prefers-reduced-motion: no-preference) {
+    .mobile-nav[open] li {
+      animation: menu-rise 0.5s var(--ease-out-expo) backwards;
+      animation-delay: calc(var(--item) * 40ms);
+    }
+  }
+
+  @keyframes menu-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+</style>
+
+<script>
+  // Above this width the bar shows the links and the menu has no place.
+  const desktop = window.matchMedia("(min-width: 48rem)");
+
+  function closeMenu(): void {
+    const dialog =
+      document.querySelector<HTMLDialogElement>("[data-mobile-nav]");
+    if (dialog?.open) dialog.close();
+  }
+
+  function initMobileNav(): void {
+    const dialog =
+      document.querySelector<HTMLDialogElement>("[data-mobile-nav]");
+    const opener = document.querySelector<HTMLButtonElement>(
+      "[data-mobile-nav-open]"
+    );
+    if (!dialog || !opener || dialog.dataset.bound) return;
+    dialog.dataset.bound = "true";
+
+    opener.addEventListener("click", () => {
+      dialog.showModal();
+      document.documentElement.style.overflow = "hidden";
+      opener.setAttribute("aria-expanded", "true");
+    });
+    dialog.addEventListener("close", () => {
+      document.documentElement.style.removeProperty("overflow");
+      opener.setAttribute("aria-expanded", "false");
+    });
+    dialog
+      .querySelector("[data-mobile-nav-close]")
+      ?.addEventListener("click", closeMenu);
+    for (const link of dialog.querySelectorAll("a")) {
+      link.addEventListener("click", closeMenu);
+    }
+  }
+
+  desktop.addEventListener("change", ({ matches }) => {
+    if (matches) closeMenu();
+  });
+  document.addEventListener("astro:before-swap", closeMenu);
+  document.addEventListener("astro:page-load", initMobileNav);
+</script>

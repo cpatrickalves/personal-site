@@ -67,6 +67,8 @@ export default {
     skipToContent: "Pular para o conteúdo",
     openMenu: "Abrir menu",
     closeMenu: "Fechar menu",
+    menu: "Menu",
+    mainNav: "Principal",
     toggleTheme: "Alternar tema",
     searchPlaceholder: "Buscar posts...",
     noResults: "Nenhum resultado encontrado",
