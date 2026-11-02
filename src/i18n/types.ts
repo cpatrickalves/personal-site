@@ -8,6 +8,8 @@ export interface UIStrings {
     about: string;
     archives: string;
     search: string;
+    /** The short code the language switch shows, read from the target locale. */
+    languageCode: string;
   };
   post: {
     publishedAt: string;
@@ -69,6 +71,8 @@ export interface UIStrings {
     menu: string;
     mainNav: string;
     toggleTheme: string;
+    /** The language switch's label, read from the target locale, in its language. */
+    switchLanguage: string;
     searchPlaceholder: string;
     noResults: string;
     goToPreviousPage: string;

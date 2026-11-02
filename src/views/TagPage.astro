@@ -10,6 +10,7 @@ import Footer from "@/components/Footer.astro";
 import Pagination from "@/components/Pagination.astro";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 type Props = {
   page: Page<CollectionEntry<"posts">>;
@@ -20,13 +21,14 @@ type Props = {
 const { page, tag, tagName } = Astro.props;
 
 const t = useTranslations(Astro.currentLocale);
+const route: Route = { page: "tag", tag, pageNumber: page.currentPage };
 ---
 
 <Layout
   title={`${t.pages.tagTitle}: ${tagName} | ${config.site.title}`}
-  route={{ page: "tag", tag, pageNumber: page.currentPage }}
+  route={route}
 >
-  <Header />
+  <Header route={route} />
 
   <Breadcrumb />
 

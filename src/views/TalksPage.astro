@@ -8,6 +8,7 @@ import Footer from "@/components/Footer.astro";
 import { formatDate, useTranslations } from "@/i18n";
 import { toLocale } from "@/i18n/locales";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 // Skeleton: the talk list design comes in Fase 5.
 const locale = toLocale(Astro.currentLocale);
@@ -16,13 +17,11 @@ const t = useTranslations(locale);
 const talks = (await getCollection("talks")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
+const route: Route = { page: "talks" };
 ---
 
-<Layout
-  title={`${t.pages.talksTitle} | ${config.site.title}`}
-  route={{ page: "talks" }}
->
-  <Header />
+<Layout title={`${t.pages.talksTitle} | ${config.site.title}`} route={route}>
+  <Header route={route} />
 
   <Breadcrumb />
 

@@ -10,18 +10,17 @@ import { getLocalePosts } from "@/utils/getLocalePosts";
 import { toLocale } from "@/i18n/locales";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 const locale = toLocale(Astro.currentLocale);
 const tags = getUniqueTags(await getLocalePosts(locale));
 
 const t = useTranslations(locale);
+const route: Route = { page: "tags" };
 ---
 
-<Layout
-  title={`${t.pages.tagsTitle} | ${config.site.title}`}
-  route={{ page: "tags" }}
->
-  <Header />
+<Layout title={`${t.pages.tagsTitle} | ${config.site.title}`} route={route}>
+  <Header route={route} />
 
   <Breadcrumb />
 

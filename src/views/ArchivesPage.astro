@@ -11,6 +11,7 @@ import { getPostsByGroupCondition } from "@/utils/getPostsByGroupCondition";
 import { DEFAULT_LOCALE, toLocale } from "@/i18n/locales";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 const locale = toLocale(Astro.currentLocale);
 
@@ -25,13 +26,11 @@ const t = useTranslations(locale);
 
 const filteredPosts = await getLocalePosts(locale);
 const monthFormatter = new Intl.DateTimeFormat(locale, { month: "long" });
+const route: Route = { page: "archives" };
 ---
 
-<Layout
-  title={`${t.pages.archivesTitle} | ${config.site.title}`}
-  route={{ page: "archives" }}
->
-  <Header />
+<Layout title={`${t.pages.archivesTitle} | ${config.site.title}`} route={route}>
+  <Header route={route} />
 
   <Breadcrumb />
 

@@ -12,15 +12,27 @@ import IconMoon from "@/assets/icons/IconMoon.svg";
 import MobileNav from "./MobileNav.astro";
 import { navItems } from "./navigation";
 import { stripBase, stripLocale } from "@/utils/withBase";
-import { toLocale } from "@/i18n/locales";
-import { localeUrl } from "@/i18n/urls";
+import { LANG_TAGS, otherLocale, toLocale } from "@/i18n/locales";
+import type { Route } from "@/i18n/routes";
+import { getEquivalentUrl, localeUrl } from "@/i18n/urls";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
+type Props = {
+  /** The page without its locale, the same the Layout gets for `hreflang`. */
+  route: Route;
+};
+
+const { route } = Astro.props;
 const { site, features } = config;
 
 const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
+
+// The switch speaks the language it leads to: its code, label and `lang`.
+const target = otherLocale(locale);
+const targetT = useTranslations(target);
+const languageUrl = await getEquivalentUrl(route, target);
 
 const homeUrl = localeUrl(locale, { page: "home" });
 const searchUrl = localeUrl(locale, { page: "search" });
@@ -28,8 +40,8 @@ const pathname = Astro.url.pathname.replace(/\/?$/, "/");
 const links = navItems(
   { talks: features.talks, showArchives: features.showArchives },
   stripLocale(stripBase(Astro.url.pathname), locale)
-).map(({ key, route, current }) => ({
-  href: localeUrl(locale, route),
+).map(({ key, route: itemRoute, current }) => ({
+  href: localeUrl(locale, itemRoute),
   label: t.nav[key],
   current,
 }));
@@ -74,16 +86,21 @@ const hasThemeToggle = features.lightAndDarkMode;
     </nav>
 
     {
-      /* The tools, one strip of 40px squares: #18 puts the language switch
-        first, #19 replaces the theme button and #20 turns search into the
-        ⌘K palette. Below md the strip ends with the menu button. */
+      /* The tools, one strip of 40px squares: the language switch first;
+        #19 replaces the theme button and #20 turns search into the ⌘K
+        palette. Below md the strip ends with the menu button. */
     }
-    <div
-      class:list={[
-        "border-outline flex border-2 [&>*+*]:border-s-2",
-        { "md:hidden": !hasSearch && !hasThemeToggle },
-      ]}
-    >
+    <div class="border-outline flex border-2 [&>*+*]:border-s-2">
+      <a
+        href={languageUrl}
+        class="tool-btn lang-btn"
+        hreflang={LANG_TAGS[target]}
+        lang={LANG_TAGS[target]}
+        title={targetT.a11y.switchLanguage}
+      >
+        {targetT.nav.languageCode}
+        <span class="sr-only">{` ${targetT.a11y.switchLanguage}`}</span>
+      </a>
       {
         hasSearch && (
           <a
@@ -145,6 +162,10 @@ const hasThemeToggle = features.lightAndDarkMode;
 
 <style>
   @reference "@/styles/global.css";
+
+  .lang-btn {
+    @apply text-[0.9375rem] font-semibold tracking-[0.04em];
+  }
 
   .nav-link {
     @apply inline-flex min-h-10 items-center px-2.5 text-[0.9375rem] font-medium;
