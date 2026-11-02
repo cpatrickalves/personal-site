@@ -86,21 +86,11 @@ const hasThemeToggle = features.lightAndDarkMode;
     </nav>
 
     {
-      /* The tools, one strip of 40px squares: the language switch first;
-        #19 replaces the theme button and #20 turns search into the ⌘K
-        palette. Below md the strip ends with the menu button. */
+      /* The tools, one strip of 40px squares: search, theme, then the
+        language switch; #19 replaces the theme button and #20 turns search
+        into the ⌘K palette. Below md the strip ends with the menu button. */
     }
     <div class="border-outline flex border-2 [&>*+*]:border-s-2">
-      <a
-        href={languageUrl}
-        class="tool-btn lang-btn"
-        hreflang={LANG_TAGS[target]}
-        lang={LANG_TAGS[target]}
-        title={targetT.a11y.switchLanguage}
-      >
-        {targetT.nav.languageCode}
-        <span class="sr-only">{` ${targetT.a11y.switchLanguage}`}</span>
-      </a>
       {
         hasSearch && (
           <a
@@ -129,6 +119,16 @@ const hasThemeToggle = features.lightAndDarkMode;
           </button>
         )
       }
+      <a
+        href={languageUrl}
+        class="tool-btn lang-btn"
+        hreflang={LANG_TAGS[target]}
+        lang={LANG_TAGS[target]}
+        title={targetT.a11y.switchLanguage}
+      >
+        {targetT.nav.languageCode}
+        <span class="sr-only">{` ${targetT.a11y.switchLanguage}`}</span>
+      </a>
       <MobileNav links={links} homeUrl={homeUrl} title={site.title} />
     </div>
   </div>
