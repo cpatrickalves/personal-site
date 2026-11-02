@@ -10,6 +10,7 @@ export default {
     about: "Sobre",
     archives: "Arquivo",
     search: "Buscar",
+    languageCode: "PT",
   },
   post: {
     publishedAt: "Publicado em",
@@ -70,6 +71,7 @@ export default {
     menu: "Menu",
     mainNav: "Principal",
     toggleTheme: "Alternar tema",
+    switchLanguage: "Ler em português",
     searchPlaceholder: "Buscar posts...",
     noResults: "Nenhum resultado encontrado",
     goToPreviousPage: "Ir para a página anterior",

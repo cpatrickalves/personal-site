@@ -17,3 +17,8 @@ export function isLocale(value: string): value is Locale {
 export function toLocale(value: string | undefined): Locale {
   return value !== undefined && isLocale(value) ? value : DEFAULT_LOCALE;
 }
+
+/** The locale the language switch leads to: the site has two, so the other one. */
+export function otherLocale(locale: Locale): Locale {
+  return locale === "en" ? "pt-br" : "en";
+}

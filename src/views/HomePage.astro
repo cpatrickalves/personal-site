@@ -12,6 +12,7 @@ import { toLocale } from "@/i18n/locales";
 import { localeUrl } from "@/i18n/urls";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 const { socials, posts: postsConfig } = config;
 
@@ -22,10 +23,11 @@ const sortedPosts = await getLocalePosts(locale);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const homePath = localeUrl(locale, { page: "home" });
+const route: Route = { page: "home" };
 ---
 
-<Layout route={{ page: "home" }}>
-  <Header />
+<Layout route={route}>
+  <Header route={route} />
   <main
     id="main-content"
     data-layout="index"

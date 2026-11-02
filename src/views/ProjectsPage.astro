@@ -11,6 +11,7 @@ import { localeUrl } from "@/i18n/urls";
 import { getLocalePosts } from "@/utils/getLocalePosts";
 import { getPostSlug } from "@/utils/getPostPaths";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 // Skeleton: the grid of project cards comes in Fase 5.
 const locale = toLocale(Astro.currentLocale);
@@ -27,13 +28,11 @@ const postHref = (slug: string | undefined) =>
   slug && postSlugs.has(slug)
     ? localeUrl(locale, { page: "post", slug })
     : undefined;
+const route: Route = { page: "projects" };
 ---
 
-<Layout
-  title={`${t.pages.projectsTitle} | ${config.site.title}`}
-  route={{ page: "projects" }}
->
-  <Header />
+<Layout title={`${t.pages.projectsTitle} | ${config.site.title}`} route={route}>
+  <Header route={route} />
 
   <Breadcrumb />
 

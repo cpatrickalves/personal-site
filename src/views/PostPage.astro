@@ -15,6 +15,7 @@ import BackButton from "./post/BackButton.astro";
 import BackToTopButton from "./post/BackToTopButton.astro";
 import AdjacentPostNav from "./post/AdjacentPostNav.astro";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 type AdjacentPost = {
   title: string;
@@ -58,6 +59,7 @@ if (!ogImageUrl && config.features.dynamicOgImage) {
 const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
+const route: Route = { page: "post", slug: getPostSlug(post) };
 ---
 
 <PostLayout
@@ -67,9 +69,9 @@ const ogImage = ogImageUrl
   canonicalURL={canonicalURL}
   pubDatetime={pubDatetime}
   modDatetime={modDatetime}
-  route={{ page: "post", slug: getPostSlug(post) }}
+  route={route}
 >
-  <Header />
+  <Header route={route} />
 
   <BackButton />
 

@@ -22,7 +22,7 @@ Datas passam pelo `formatDate` de `@/i18n`: `AAAA-MM-DD` no fuso America/Sao_Pau
 
 Cada página existe duas vezes: `src/pages/<rota>.astro` (PT-BR) e `src/pages/en/<rota>.astro` (EN). As duas têm poucas linhas: chamam um `getStaticPaths` compartilhado de `src/views/staticPaths.ts` com o seu locale e renderizam um componente de `src/views/`. Toda a lógica fica na view.
 
-Página nova = uma view + duas rotas finas + uma variante de `Route`. A view passa a sua `route` ao `Layout`, que monta o `hreflang` com ela; sem `route` (404, styleguide), a página fica sem `hreflang`.
+Página nova = uma view + duas rotas finas + uma variante de `Route`. A view passa a sua `route` ao `Layout`, que monta o `hreflang` com ela, e ao `Header`, cujo seletor de idioma leva ao mesmo destino via `getEquivalentUrl`. Sem `route` (404, styleguide), a página fica sem `hreflang`; a 404 passa ao `Header` a home, para onde o seletor leva.
 
 O feed segue o mesmo padrão: `src/views/rssFeed.ts` com `src/pages/rss.xml.ts` (PT-BR) e `src/pages/en/rss.xml.ts` (EN).
 

@@ -11,6 +11,7 @@ import { DEFAULT_LOCALE, toLocale } from "@/i18n/locales";
 import { localeUrl } from "@/i18n/urls";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import type { Route } from "@/i18n/routes";
 
 const locale = toLocale(Astro.currentLocale);
 
@@ -28,13 +29,11 @@ const backUrl = config.features.showBackButton
 const pagefindBundlePath = getAssetPath("pagefind/");
 
 const t = useTranslations(locale);
+const route: Route = { page: "search" };
 ---
 
-<Layout
-  title={`${t.pages.searchTitle} | ${config.site.title}`}
-  route={{ page: "search" }}
->
-  <Header />
+<Layout title={`${t.pages.searchTitle} | ${config.site.title}`} route={route}>
+  <Header route={route} />
 
   <Breadcrumb />
 
