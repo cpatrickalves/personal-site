@@ -1,0 +1,12 @@
+#!/bin/sh
+# Prettier on the staged files, so bad formatting stops here and not in CI.
+# `pnpm run prepare` turns this hook on; a fresh `pnpm install` runs it too.
+prettier=node_modules/.bin/prettier
+
+if [ ! -x "$prettier" ]; then
+  echo "pre-commit: sem node_modules, o Prettier não rodou" >&2
+  exit 0
+fi
+
+git diff --cached --name-only --diff-filter=ACMR -z |
+  xargs -0 -r "$prettier" --check --ignore-unknown --no-error-on-unmatched-pattern --log-level warn
