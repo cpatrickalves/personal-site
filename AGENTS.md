@@ -9,7 +9,7 @@ Site pessoal bilíngue do Patrick Alves (blog, projetos e palestras) que substit
 
 ## Em toda tarefa
 
-- Escreva em PT-BR tudo o que vai para o repo e o GitHub: docs, arquivos `.md`, commits, PRs e issues.
+- Fale com o Patrick em PT-BR e escreva em PT-BR tudo o que vai para o repo e o GitHub: docs, arquivos `.md`, commits, PRs e issues.
 - Confira versões e APIs (Astro 7, AstroPaper, Pagefind, astro-mermaid, Umami) no Context7 antes de usar.
 - Use o vocabulário do `GLOSSARY.md` (Post, Versão, Importação, Preview, Produção, Virada, Portão de aprovação, Dados fake) em código, commits e issues.
 - Toda URL interna sai dos helpers de `@/i18n/urls` (`localeUrl`, `getPostUrl`): o `base` `/personal-site` some na Virada.

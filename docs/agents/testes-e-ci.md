@@ -10,6 +10,10 @@ Um módulo testável importa os irmãos com extensão `.ts` explícita (`./route
 
 O repo não tem Playwright: as capturas e checagens no `pnpm preview` saem da skill local `checagem-visual`, que instala o `playwright-core` na própria pasta.
 
+## Pre-commit
+
+`.githooks/pre-commit` roda o Prettier nos arquivos em stage e recusa o commit se algum estiver fora do formato; corrija com `pnpm format`. O `pnpm install` de um clone novo liga o hook; num clone já instalado, rode `pnpm run prepare`. Ele pega o que o hook de formatação do Claude Code não vê: arquivos alterados pela ferramenta Bash.
+
 ## CI
 
 `.github/workflows/ci.yml` roda lint, `format:check`, testes e build em todo PR, e publica `dist/` no GitHub Pages no `main`. Depois deles, mesmo quando um falha, `pnpm translations` escreve o relatório de traduções pendentes no Job Summary, sem falhar o run.
