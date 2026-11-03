@@ -239,7 +239,7 @@ Esta seção existe para que um agente no Claude Code execute o plano sem o chat
 | --- | --- |
 | Barra superior | `src/components/header/` |
 | Busca ⌘K (cmdk + Pagefind, exige `@astrojs/react`) | `src/components/search/CommandPalette.tsx`, `mount-palette.tsx`, `CommandPaletteLoader.astro` |
-| Claro/escuro sem piscar | `src/components/seo/ThemeScript.astro`, `src/components/header/ThemeToggle.astro`, `src/styles/theme-css.ts` |
+| Claro/escuro sem piscar | `src/components/seo/ThemeScript.astro`, `src/components/header/ThemeToggle.astro`, `src/styles/theme-css.ts`, `src/lib/theme.ts` (revelação circular) |
 | Blocos de código | `ec.config.mjs` (Expressive Code) |
 
 Não trazer: Spotify, token burn, relógio, snowfall, career, views, reações, newsletter, banco de dados, adapter do Vercel.
