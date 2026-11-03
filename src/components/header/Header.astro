@@ -6,10 +6,9 @@
  * menu of `MobileNav`. The bar is re-rendered on every page, so its links
  * and labels always follow the page's locale.
  */
-import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
-import IconMoon from "@/assets/icons/IconMoon.svg";
 import MobileNav from "./MobileNav.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 import { navItems } from "./navigation";
 import { stripBase, stripLocale } from "@/utils/withBase";
 import { LANG_TAGS, otherLocale, toLocale } from "@/i18n/locales";
@@ -87,8 +86,7 @@ const hasThemeToggle = features.lightAndDarkMode;
 
     {
       /* The tools, one strip of 40px squares: search, theme, then the
-        language switch; #19 replaces the theme button and #20 turns search
-        into the ⌘K palette. Below md the strip ends with the menu button. */
+        language switch; #20 turns search into the ⌘K palette. Below md the strip ends with the menu button. */
     }
     <div class="border-outline flex border-2 [&>*+*]:border-s-2">
       {
@@ -104,21 +102,7 @@ const hasThemeToggle = features.lightAndDarkMode;
           </a>
         )
       }
-      {
-        hasThemeToggle && (
-          <button
-            id="theme-btn"
-            type="button"
-            class="tool-btn relative"
-            title={t.a11y.toggleTheme}
-            aria-label="auto"
-            aria-live="polite"
-          >
-            <IconMoon class="absolute scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90" />
-            <IconSunHigh class="absolute scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0" />
-          </button>
-        )
-      }
+      {hasThemeToggle && <ThemeToggle />}
       <a
         href={languageUrl}
         class="tool-btn lang-btn"

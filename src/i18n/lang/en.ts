@@ -71,6 +71,11 @@ export default {
     menu: "Menu",
     mainNav: "Main",
     toggleTheme: "Toggle theme",
+    themeAction: {
+      light: "Switch to light theme",
+      dark: "Switch to dark theme",
+      system: "Switch to system theme",
+    },
     switchLanguage: "Read in English",
     searchPlaceholder: "Search posts...",
     noResults: "No results found",

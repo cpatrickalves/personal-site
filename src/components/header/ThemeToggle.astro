@@ -1,0 +1,157 @@
+---
+/**
+ * The bar's theme button, adapted from karhdo.dev's `ThemeToggle.astro` (MIT,
+ * see THIRD_PARTY_NOTICES.md) to the strip's 40px squares. It steps through
+ * light, dark and system, and when the colours change the new theme grows in a
+ * circle from the button. The icon follows `data-theme-pref` on <html>, which
+ * is right before the first paint; the name needs the script, so the served
+ * HTML carries a generic one.
+ */
+import IconDeviceDesktop from "@/assets/icons/IconDeviceDesktop.svg";
+import IconMoon from "@/assets/icons/IconMoon.svg";
+import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
+import { useTranslations } from "@/i18n";
+import { toLocale } from "@/i18n/locales";
+
+const t = useTranslations(toLocale(Astro.currentLocale));
+---
+
+<button
+  type="button"
+  class="tool-btn theme-toggle relative"
+  data-theme-toggle
+  data-label-light={t.a11y.themeAction.light}
+  data-label-dark={t.a11y.themeAction.dark}
+  data-label-system={t.a11y.themeAction.system}
+  aria-label={t.a11y.toggleTheme}
+  title={t.a11y.toggleTheme}
+>
+  <IconSunHigh class="theme-icon" data-for="light" aria-hidden="true" />
+  <IconMoon class="theme-icon" data-for="dark" aria-hidden="true" />
+  <IconDeviceDesktop class="theme-icon" data-for="system" aria-hidden="true" />
+</button>
+
+<style>
+  /* Without JavaScript the button could do nothing. */
+  @media (scripting: none) {
+    .theme-toggle {
+      display: none;
+    }
+  }
+
+  .theme-icon {
+    position: absolute;
+    transform: scale(0) rotate(90deg);
+    transition: transform 0.15s;
+  }
+
+  :global(html[data-theme-pref="light"]) .theme-icon[data-for="light"],
+  :global(html[data-theme-pref="dark"]) .theme-icon[data-for="dark"],
+  :global(html[data-theme-pref="system"]) .theme-icon[data-for="system"] {
+    transform: none;
+  }
+</style>
+
+<style is:global>
+  /* The circle replaces the page transition, only while the button drives it. */
+  html[data-theme-switching]::view-transition-old(root),
+  html[data-theme-switching]::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  /* The whole page is one snapshot: named elements would animate on their own. */
+  html[data-theme-switching] * {
+    view-transition-name: none !important;
+  }
+</style>
+
+<script>
+  import { REVEAL_MS, revealRadius, shouldReveal } from "@/scripts/themeReveal";
+
+  const EASE_OUT_EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
+  const root = document.documentElement;
+
+  let navigating = false;
+  let latestReveal = 0;
+
+  /** The name says what the next press does, in the page's language. */
+  function renderNames(): void {
+    const next = window.__theme.next();
+    const key = `label${next[0].toUpperCase()}${next.slice(1)}`;
+    document
+      .querySelectorAll<HTMLElement>("[data-theme-toggle]")
+      .forEach(button => {
+        const label = button.dataset[key];
+        if (!label) return;
+        button.setAttribute("aria-label", label);
+        button.title = label;
+      });
+  }
+
+  function reveal(button: Element): void {
+    const box = button.getBoundingClientRect();
+    const x = box.left + box.width / 2;
+    const y = box.top + box.height / 2;
+    const radius = revealRadius(x, y, innerWidth, innerHeight);
+
+    const id = ++latestReveal;
+    root.dataset.themeSwitching = "";
+    const transition = document.startViewTransition(() =>
+      window.__theme.cycle()
+    );
+    transition.ready
+      .then(() =>
+        root.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${radius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: REVEAL_MS,
+            easing: EASE_OUT_EXPO,
+            pseudoElement: "::view-transition-new(root)",
+          }
+        )
+      )
+      // A newer transition skipped this one before it was ready.
+      .catch(() => {});
+    transition.finished
+      .catch(() => {})
+      .finally(() => {
+        if (id === latestReveal) delete root.dataset.themeSwitching;
+      });
+  }
+
+  document.addEventListener("click", event => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const button = target.closest("[data-theme-toggle]");
+    if (!button) return;
+
+    const { next, resolve, cycle } = window.__theme;
+    const animate = shouldReveal({
+      coloursChange: resolve(next()) !== root.dataset.theme,
+      reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches,
+      supported: "startViewTransition" in document,
+      navigating,
+    });
+    if (animate) reveal(button);
+    else cycle();
+  });
+
+  document.addEventListener("astro:before-preparation", () => {
+    navigating = true;
+  });
+  document.addEventListener("astro:after-swap", () => {
+    navigating = false;
+    renderNames();
+  });
+  document.addEventListener("astro:page-load", () => {
+    navigating = false;
+    renderNames();
+  });
+  document.addEventListener("theme-change", renderNames);
+</script>

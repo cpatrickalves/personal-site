@@ -1,0 +1,15 @@
+---
+/**
+ * Sets the theme on <html> before the first paint: synchronous, in <head>, and
+ * embedded whole because nothing bundled would run in time. Adapted from
+ * karhdo.dev's `ThemeScript.astro` (MIT, see THIRD_PARTY_NOTICES.md).
+ *
+ * `localStorage.theme` holds the choice: `light` or `dark`, and no key means
+ * "system". <html> carries `data-theme` (the colours) and `data-theme-pref`
+ * (the choice, for the toggle's icon). The script ships in every page, so its
+ * notes live here.
+ */
+import themeInline from "@/scripts/themeInline.js?raw";
+---
+
+<script is:inline set:html={themeInline} />

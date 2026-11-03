@@ -76,6 +76,27 @@
   --danger: #ff8f85;
 }
 
+/*
+ * Without JavaScript nothing sets data-theme, so the system decides. A copy of
+ * the dark tokens: theme-css.test.ts fails if it drifts from the blocks above.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0e1822;
+    --card: #152230;
+    --foreground: #f3f3ec;
+    --muted-foreground: #9ca6b8;
+    --accent: #a8e4f5;
+    --accent-foreground: #0e1822;
+    --accent-ink: #a8e4f5;
+    --muted: #1d2d3f;
+    --border: #26384b;
+    --shadow: rgb(243 243 236 / 0.28);
+    --warning: #f2b45a;
+    --danger: #ff8f85;
+  }
+}
+
 /* Syntax colours follow the palette (Shiki "css-variables" theme) */
 :root,
 [data-theme] {

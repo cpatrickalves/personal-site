@@ -71,6 +71,11 @@ export default {
     menu: "Menu",
     mainNav: "Principal",
     toggleTheme: "Alternar tema",
+    themeAction: {
+      light: "Ativar tema claro",
+      dark: "Ativar tema escuro",
+      system: "Ativar tema do sistema",
+    },
     switchLanguage: "Ler em português",
     searchPlaceholder: "Buscar posts...",
     noResults: "Nenhum resultado encontrado",
