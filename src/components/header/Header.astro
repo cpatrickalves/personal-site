@@ -62,7 +62,7 @@ const hasThemeToggle = features.lightAndDarkMode;
   transition:name="site-header"
   transition:animate="none"
 >
-  <div class="app-layout flex min-h-16 items-center gap-3">
+  <div class="site-bar app-layout flex min-h-16 items-center gap-3">
     <a
       href={homeUrl}
       class="me-auto py-2 text-lg font-semibold tracking-[-0.02em] whitespace-nowrap"
@@ -70,7 +70,7 @@ const hasThemeToggle = features.lightAndDarkMode;
       {site.title}
     </a>
 
-    <nav aria-label={t.a11y.mainNav} class="hidden md:block">
+    <nav aria-label={t.a11y.mainNav} class="site-nav hidden md:block">
       <ul class="flex items-center">
         {
           links.map(({ href, label, current }) => (
@@ -149,6 +149,25 @@ const hasThemeToggle = features.lightAndDarkMode;
 
   .lang-btn {
     @apply text-[0.9375rem] font-semibold tracking-[0.04em];
+  }
+
+  /* Without JavaScript the menu can't open: below md the links take a row. */
+  @media (scripting: none) and (width < 48rem) {
+    .site-bar {
+      flex-wrap: wrap;
+      padding-block: 0.75rem 0.25rem;
+    }
+
+    .site-nav {
+      display: block;
+      order: 1;
+      flex-basis: 100%;
+      margin-inline-start: -0.625rem;
+    }
+
+    .site-nav ul {
+      flex-wrap: wrap;
+    }
   }
 
   .nav-link {

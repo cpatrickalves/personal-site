@@ -81,6 +81,13 @@ const t = useTranslations(toLocale(Astro.currentLocale));
 <style>
   @reference "@/styles/global.css";
 
+  /* It opens through the script; without it, the bar shows the links itself. */
+  @media (scripting: none) {
+    [data-mobile-nav-open] {
+      display: none;
+    }
+  }
+
   .mobile-nav {
     position: fixed;
     inset: 0;

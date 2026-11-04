@@ -57,3 +57,35 @@ test("C23 acusa --card divergente, --warning ausente e --muted só no escuro", (
     ["--muted só no escuro"]
   );
 });
+
+test("C23 acusa --muted só no claro e --extra sobrando na cópia", () => {
+  assert.deepEqual(
+    problems(
+      css("--card: #fff; --muted: #ddd;", "--card: #000;", "--card: #000;")
+    ),
+    ["--muted só no claro"]
+  );
+  assert.deepEqual(
+    problems(
+      css("--card: #fff;", "--card: #000;", "--card: #000; --extra: #123;")
+    ),
+    ["--extra sobrando na cópia"]
+  );
+});
+
+test("C23 acusa a cópia sob um seletor que pintaria quem escolheu claro", () => {
+  for (const selector of [
+    ":root",
+    '[data-theme="light"]',
+    ":root:not([data-theme])",
+  ]) {
+    const source = `
+:root,
+[data-theme="light"] { --card: #fff; }
+[data-theme="dark"] { --card: #000; }
+@media (prefers-color-scheme: dark) {
+  ${selector} { --card: #000; }
+}`;
+    assert.deepEqual(problems(source), ["--card ausente na cópia"], selector);
+  }
+});

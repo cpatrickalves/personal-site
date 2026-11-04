@@ -14,6 +14,8 @@ export type ThemeBlocks = {
 };
 
 const DARK_MEDIA = "@media (prefers-color-scheme: dark)";
+// Any other selector would paint a reader who chose light in dark colours.
+const DARK_MEDIA_SELECTOR = ':root:not([data-theme="light"])';
 
 function declarations(body: string, into: TokenBlock): void {
   for (const declaration of body.split(";")) {
@@ -66,7 +68,8 @@ export function parseThemeBlocks(source: string): ThemeBlocks {
   for (const { selector, body } of rules(css)) {
     if (selector === DARK_MEDIA) {
       for (const inner of rules(body))
-        declarations(inner.body, blocks.darkMedia);
+        if (inner.selector === DARK_MEDIA_SELECTOR)
+          declarations(inner.body, blocks.darkMedia);
       continue;
     }
     const parts = selector.split(",").map(part => part.trim());
