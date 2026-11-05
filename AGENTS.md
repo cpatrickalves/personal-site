@@ -23,6 +23,7 @@ Site pessoal bilíngue do Patrick Alves (blog, projetos e palestras) que substit
 - [Rotas e i18n](docs/agents/rotas-e-i18n.md): ao criar página, rota, link ou string de UI, ou ao formatar datas.
 - [Conteúdo](docs/agents/conteudo.md): ao mexer em Posts, projetos, palestras, config e feature flags, ou na Importação do Hashnode.
 - [Estilo](docs/agents/estilo.md): ao mexer em UI, tokens, fontes ou no `/styleguide`.
+- [ClientRouter](docs/agents/client-router.md): ao escrever script que reage à troca de página ou guarda estado no `<html>`.
 - [Testes e CI](docs/agents/testes-e-ci.md): ao escrever testes, fazer checagem visual ou depurar o CI.
 - [Git](docs/agents/git.md): antes de criar branch ou PR, ou de escolher a próxima issue.
 
