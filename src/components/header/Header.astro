@@ -3,8 +3,9 @@
  * The sticky top bar, adapted from karhdo.dev's `src/components/header/`
  * (MIT, see THIRD_PARTY_NOTICES.md) to the plate language: an opaque bar on
  * a 2px rule, the section links from md up and, below md, the full-screen
- * menu of `MobileNav`. The bar is re-rendered on every page, so its links
- * and labels always follow the page's locale.
+ * menu of `MobileNav`. Without JavaScript, below md, the links take a second
+ * row of the bar instead, and the bar scrolls away. The bar is re-rendered on
+ * every page, so its links and labels always follow the page's locale.
  */
 import IconSearch from "@/assets/icons/IconSearch.svg";
 import MobileNav from "./MobileNav.astro";
@@ -86,7 +87,8 @@ const hasThemeToggle = features.lightAndDarkMode;
 
     {
       /* The tools, one strip of 40px squares: search, theme, then the
-        language switch; #20 turns search into the ⌘K palette. Below md the strip ends with the menu button. */
+        language switch; #20 turns search into the ⌘K palette. Below md
+        the strip ends with the menu button. */
     }
     <div class="border-outline flex border-2 [&>*+*]:border-s-2">
       {

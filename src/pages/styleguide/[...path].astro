@@ -765,6 +765,8 @@ const localeSamples = [
 </Layout>
 
 <script>
+  import type { ThemePref } from "@/types/theme";
+
   function contrast(a: number[], b: number[]): number {
     const lum = ([r, g, b]: number[]) => {
       const f = (c: number) => {
@@ -811,8 +813,6 @@ const localeSamples = [
     });
   }
 
-  type ThemeChoice = "light" | "dark" | "system";
-
   // Claro, escuro or sistema, through the same API as the bar's button.
   function reflectTheme(): void {
     const choice = window.__theme.get();
@@ -835,7 +835,7 @@ const localeSamples = [
       .querySelectorAll<HTMLButtonElement>("[data-theme-choice]")
       .forEach(btn =>
         btn.addEventListener("click", () =>
-          window.__theme.set(btn.dataset.themeChoice as ThemeChoice)
+          window.__theme.set(btn.dataset.themeChoice as ThemePref)
         )
       );
 

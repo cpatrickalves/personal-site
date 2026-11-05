@@ -142,8 +142,14 @@ const t = useTranslations(toLocale(Astro.currentLocale));
     else cycle();
   });
 
-  document.addEventListener("astro:before-preparation", () => {
+  // A navigation can stop before the swap: another link aborts it, or the
+  // page leaves and comes back from the back/forward cache.
+  document.addEventListener("astro:before-preparation", event => {
     navigating = true;
+    event.signal.addEventListener("abort", () => (navigating = false));
+  });
+  addEventListener("pageshow", event => {
+    if (event.persisted) navigating = false;
   });
   document.addEventListener("astro:after-swap", () => {
     navigating = false;

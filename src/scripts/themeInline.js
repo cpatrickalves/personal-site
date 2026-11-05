@@ -3,7 +3,6 @@
   const root = document.documentElement;
   const media = matchMedia("(prefers-color-scheme: dark)");
 
-  // With storage blocked, the choice lasts as long as this window.
   let memory = "system";
   let storageWorks = true;
 
@@ -31,8 +30,8 @@
   const resolve = pref =>
     pref === "dark" || (pref === "system" && media.matches) ? "dark" : "light";
 
-  // From "system", the first step is always the theme not on screen.
-  const next = (pref = get()) => {
+  const next = () => {
+    const pref = get();
     const order = media.matches
       ? ["system", "light", "dark"]
       : ["system", "dark", "light"];
@@ -58,10 +57,10 @@
   if (window.__theme) return;
   window.__theme = { get, set, next, resolve, cycle: () => set(next()) };
 
-  // The ClientRouter copies <html>'s attributes from the incoming page.
   document.addEventListener("astro:before-swap", event => {
     stamp(event.newDocument.documentElement);
   });
+  document.addEventListener("astro:after-swap", () => stamp(root));
 
   media.addEventListener("change", () => {
     stamp(root);
