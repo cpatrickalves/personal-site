@@ -58,7 +58,7 @@ const hasThemeToggle = features.lightAndDarkMode;
 </a>
 
 <header
-  class="bg-background border-border sticky top-0 z-40 border-b-2"
+  class="site-header bg-background border-border sticky top-0 z-40 border-b-2"
   transition:name="site-header"
   transition:animate="none"
 >
@@ -151,8 +151,15 @@ const hasThemeToggle = features.lightAndDarkMode;
     @apply text-[0.9375rem] font-semibold tracking-[0.04em];
   }
 
-  /* Without JavaScript the menu can't open: below md the links take a row. */
+  /*
+   * Without JavaScript the menu can't open: below md the links take a row. The
+   * bar is then too tall to stay fixed: it would cover the screen and anchors.
+   */
   @media (scripting: none) and (width < 48rem) {
+    .site-header {
+      position: static;
+    }
+
     .site-bar {
       flex-wrap: wrap;
       padding-block: 0.75rem 0.25rem;
