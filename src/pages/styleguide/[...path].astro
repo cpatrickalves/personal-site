@@ -765,6 +765,8 @@ const localeSamples = [
 </Layout>
 
 <script>
+  import type { ThemePref } from "@/types/theme";
+
   function contrast(a: number[], b: number[]): number {
     const lum = ([r, g, b]: number[]) => {
       const f = (c: number) => {
@@ -811,19 +813,9 @@ const localeSamples = [
     });
   }
 
-  type ThemeChoice = "light" | "dark" | "system";
-
-  // Claro, escuro or sistema. "Sistema" forgets the stored choice and follows
-  // prefers-color-scheme, the same rule as the inline script in Layout.astro.
-  function reflectTheme(choice: ThemeChoice): void {
-    const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = choice === "system" ? (dark ? "dark" : "light") : choice;
-    const root = document.documentElement;
-    root.dataset.theme = theme;
-    root.classList.toggle("dark", theme === "dark");
-    (window as unknown as { __theme?: { value: string } }).__theme = {
-      value: theme,
-    };
+  // Claro, escuro or sistema, through the same API as the bar's button.
+  function reflectTheme(): void {
+    const choice = window.__theme.get();
     document
       .querySelectorAll<HTMLButtonElement>("[data-theme-choice]")
       .forEach(btn =>
@@ -832,34 +824,18 @@ const localeSamples = [
           String(btn.dataset.themeChoice === choice)
         )
       );
-    document
-      .querySelector("meta[name='theme-color']")
-      ?.setAttribute(
-        "content",
-        getComputedStyle(document.body).backgroundColor
-      );
     updateTokens();
   }
 
-  function applyTheme(choice: ThemeChoice): void {
-    try {
-      if (choice === "system") localStorage.removeItem("theme");
-      else localStorage.setItem("theme", choice);
-    } catch {}
-    reflectTheme(choice);
-  }
+  document.addEventListener("theme-change", reflectTheme);
 
   function setup(): void {
-    let stored: string | null = null;
-    try {
-      stored = localStorage.getItem("theme");
-    } catch {}
-    reflectTheme(stored === "light" || stored === "dark" ? stored : "system");
+    reflectTheme();
     document
       .querySelectorAll<HTMLButtonElement>("[data-theme-choice]")
       .forEach(btn =>
         btn.addEventListener("click", () =>
-          applyTheme(btn.dataset.themeChoice as ThemeChoice)
+          window.__theme.set(btn.dataset.themeChoice as ThemePref)
         )
       );
 

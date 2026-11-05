@@ -118,7 +118,7 @@ flowchart LR
 | Camada de i18n | Strings de UI por idioma, helpers de URL por idioma (que também aplicam o `base`), resolução da versão equivalente no outro idioma e formatação de datas. |
 | Layout e navegação | Barra superior com menu mobile, seletor de idioma, alternância de tema, rodapé e 404. |
 | Busca ⌘K | Paleta de comandos (ilha React) sobre o índice Pagefind. O Pagefind cria um índice por `<html lang>` e carrega o do idioma da página. |
-| Tema | Claro, escuro e "sistema", aplicado antes da primeira pintura para não piscar. |
+| Tema | Claro, escuro e "sistema", aplicado antes da primeira pintura para não piscar. `localStorage.theme` guarda `light` ou `dark`, e a ausência da chave significa "sistema". Sem JavaScript, segue o sistema por uma cópia dos tokens escuros em `@media`, guardada por teste. |
 | Design system | Tokens CSS, fontes (Fonts API do Astro, chave `fonts`), componentes base e primitivas de animação que respeitam `prefers-reduced-motion`. |
 | Renderização de posts | Expressive Code, Mermaid (astro-mermaid, renderizado no navegador) com tema automático, callouts, zoom de imagens e componentes MDX animados. |
 | Gerador de OG images | Uma imagem por post e por idioma, gerada no build. |

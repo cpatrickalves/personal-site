@@ -70,7 +70,14 @@ export interface UIStrings {
     closeMenu: string;
     menu: string;
     mainNav: string;
+    /** The theme button's name before its script runs. */
     toggleTheme: string;
+    /** The theme button's name: what the next press switches to. */
+    themeAction: {
+      light: string;
+      dark: string;
+      system: string;
+    };
     /** The language switch's label, read from the target locale, in its language. */
     switchLanguage: string;
     searchPlaceholder: string;

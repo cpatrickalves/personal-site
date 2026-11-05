@@ -1,0 +1,22 @@
+---
+/**
+ * Sets the theme on <html> before the first paint: synchronous, in <head>, and
+ * embedded whole because nothing bundled would run in time. Adapted from
+ * karhdo.dev's `ThemeScript.astro` (MIT, see THIRD_PARTY_NOTICES.md).
+ *
+ * `localStorage.theme` holds the choice: `light` or `dark`, and no key means
+ * "system". <html> carries `data-theme` (the colours) and `data-theme-pref`
+ * (the choice, for the toggle's icon). The script ships in every page, so its
+ * notes live here:
+ *
+ * - With storage blocked, the choice lasts as long as the window.
+ * - From "system", the first step is always the theme not on screen.
+ * - The ClientRouter copies <html>'s attributes from the incoming page, so
+ *   `astro:before-swap` stamps that page. Without the View Transitions API the
+ *   swap waits for the exit animation, and a click in between changes the
+ *   choice after the stamp: `astro:after-swap` stamps <html> again.
+ */
+import themeInline from "@/scripts/themeInline.js?raw";
+---
+
+<script is:inline set:html={themeInline} />

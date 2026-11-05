@@ -3,13 +3,13 @@
  * The sticky top bar, adapted from karhdo.dev's `src/components/header/`
  * (MIT, see THIRD_PARTY_NOTICES.md) to the plate language: an opaque bar on
  * a 2px rule, the section links from md up and, below md, the full-screen
- * menu of `MobileNav`. The bar is re-rendered on every page, so its links
- * and labels always follow the page's locale.
+ * menu of `MobileNav`. Without JavaScript, below md, the links take a second
+ * row of the bar instead, and the bar scrolls away. The bar is re-rendered on
+ * every page, so its links and labels always follow the page's locale.
  */
-import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
-import IconMoon from "@/assets/icons/IconMoon.svg";
 import MobileNav from "./MobileNav.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 import { navItems } from "./navigation";
 import { stripBase, stripLocale } from "@/utils/withBase";
 import { LANG_TAGS, otherLocale, toLocale } from "@/i18n/locales";
@@ -59,11 +59,11 @@ const hasThemeToggle = features.lightAndDarkMode;
 </a>
 
 <header
-  class="bg-background border-border sticky top-0 z-40 border-b-2"
+  class="site-header bg-background border-border sticky top-0 z-40 border-b-2"
   transition:name="site-header"
   transition:animate="none"
 >
-  <div class="app-layout flex min-h-16 items-center gap-3">
+  <div class="site-bar app-layout flex min-h-16 items-center gap-3">
     <a
       href={homeUrl}
       class="me-auto py-2 text-lg font-semibold tracking-[-0.02em] whitespace-nowrap"
@@ -71,7 +71,7 @@ const hasThemeToggle = features.lightAndDarkMode;
       {site.title}
     </a>
 
-    <nav aria-label={t.a11y.mainNav} class="hidden md:block">
+    <nav aria-label={t.a11y.mainNav} class="site-nav hidden md:block">
       <ul class="flex items-center">
         {
           links.map(({ href, label, current }) => (
@@ -87,8 +87,8 @@ const hasThemeToggle = features.lightAndDarkMode;
 
     {
       /* The tools, one strip of 40px squares: search, theme, then the
-        language switch; #19 replaces the theme button and #20 turns search
-        into the ⌘K palette. Below md the strip ends with the menu button. */
+        language switch; #20 turns search into the ⌘K palette. Below md
+        the strip ends with the menu button. */
     }
     <div class="border-outline flex border-2 [&>*+*]:border-s-2">
       {
@@ -104,21 +104,7 @@ const hasThemeToggle = features.lightAndDarkMode;
           </a>
         )
       }
-      {
-        hasThemeToggle && (
-          <button
-            id="theme-btn"
-            type="button"
-            class="tool-btn relative"
-            title={t.a11y.toggleTheme}
-            aria-label="auto"
-            aria-live="polite"
-          >
-            <IconMoon class="absolute scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90" />
-            <IconSunHigh class="absolute scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0" />
-          </button>
-        )
-      }
+      {hasThemeToggle && <ThemeToggle />}
       <a
         href={languageUrl}
         class="tool-btn lang-btn"
@@ -165,6 +151,32 @@ const hasThemeToggle = features.lightAndDarkMode;
 
   .lang-btn {
     @apply text-[0.9375rem] font-semibold tracking-[0.04em];
+  }
+
+  /*
+   * Without JavaScript the menu can't open: below md the links take a row. The
+   * bar is then too tall to stay fixed: it would cover the screen and anchors.
+   */
+  @media (scripting: none) and (width < 48rem) {
+    .site-header {
+      position: static;
+    }
+
+    .site-bar {
+      flex-wrap: wrap;
+      padding-block: 0.75rem 0.25rem;
+    }
+
+    .site-nav {
+      display: block;
+      order: 1;
+      flex-basis: 100%;
+      margin-inline-start: -0.625rem;
+    }
+
+    .site-nav ul {
+      flex-wrap: wrap;
+    }
   }
 
   .nav-link {

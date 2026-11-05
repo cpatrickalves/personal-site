@@ -206,7 +206,7 @@ O sistema recusa o blog de dev padrão: cards arredondados, glow, gradiente no n
 
 ## Colors
 
-Uma paleta só, a Gelo, em claro e escuro com a mesma gramática de papéis. Os valores normativos estão no frontmatter (prefixo `light-` ou `dark-`) e no código como `--background`, `--card` etc., definidos em `:root, [data-theme="light"]` e em `[data-theme="dark"]`. O tema segue o sistema até o leitor escolher, e o atributo `data-theme` mora no `<html>` (ou num espécime que mostra o outro tema).
+Uma paleta só, a Gelo, em claro e escuro com a mesma gramática de papéis. Os valores normativos estão no frontmatter (prefixo `light-` ou `dark-`) e no código como `--background`, `--card` etc., definidos em `:root, [data-theme="light"]` e em `[data-theme="dark"]`. O tema segue o sistema até o leitor escolher, inclusive sem JavaScript, e o atributo `data-theme` mora no `<html>` (ou num espécime que mostra o outro tema).
 
 ### Primary
 - **Azul-Gelo** (`accent`): o único preenchimento forte. Botão primário, badge de destaque, seleção de texto, sombra da placa no hover. Nunca é texto sobre fundo claro.
@@ -287,7 +287,7 @@ A profundidade é feita de sombras duras: deslocamento diagonal para baixo e par
 
 ## Shapes
 
-Canto reto em tudo (0px): placas, botões, badges, controle de tema, imagens, blocos de código. Contornos são grossos e na cor do texto (2px em placas, botões, espécimes de tema e imagens da coluna de leitura; 1.5px em badges), e as linhas internas são finas na cor `border`. Cabeçalhos de tabela assentam numa régua de 2px na cor do texto; citações levam um filete de 2px à esquerda.
+Canto reto em tudo (0px): placas, botões, badges, controles de tema, imagens, blocos de código. Contornos são grossos e na cor do texto (2px em placas, botões, espécimes de tema e imagens da coluna de leitura; 1.5px em badges), e as linhas internas são finas na cor `border`. Cabeçalhos de tabela assentam numa régua de 2px na cor do texto; citações levam um filete de 2px à esquerda.
 
 **The Square Corner Rule.** Nenhum raio de borda. Um canto arredondado desfaz o recorte de placa que define o sistema. Cantos de 16px com sombra mais clara foram testados no styleguide e recusados pelo Patrick.
 
@@ -326,7 +326,7 @@ Placa justa sobre `card`, Martian Mono em 0.875rem, realce pela paleta. O bloco 
 Cabeçalho seminegrito sobre régua de 2px em `foreground`, linhas finas em `border` entre as linhas do corpo, células com 12px por 10px, algarismos tabulares em Outfit. Variantes: mínima (sem linhas) e listrada (linhas ímpares em `muted` a 25%). Rolam na horizontal com a sombra de borda.
 
 ### Navigation
-Barra superior de 64px, fixa no topo ao rolar, opaca em `background` sobre uma régua de 2px em `border`; nada de vidro nem desfoque. Links em Outfit 500 a 0.9375rem em `muted-foreground`, que passam a `foreground` no hover; o item ativo leva sublinhado ondulado de 2px em `accent-ink` com 8px de afastamento. As ferramentas (busca, tema, idioma) formam uma faixa de quadrados de 40px dentro de um contorno de 2px, separados por filetes de 2px em `border`, com fundo `card` no hover. Abaixo de 768px os links saem da barra e o botão de menu fecha a faixa; ele abre um menu de tela cheia sobre `background`, com os links em 2rem seminegrito, cada um sobre um filete de 2px e com uma seta que anda 3px no hover. Ao abrir, os links sobem um após o outro. O controle de tema (claro, escuro, sistema) é um grupo de botões quadrados de 40px dentro de um contorno de 2px, em que o pressionado inverte para fundo `foreground` e texto `background`.
+Barra superior de 64px, fixa no topo ao rolar, opaca em `background` sobre uma régua de 2px em `border`; nada de vidro nem desfoque. Links em Outfit 500 a 0.9375rem em `muted-foreground`, que passam a `foreground` no hover; o item ativo leva sublinhado ondulado de 2px em `accent-ink` com 8px de afastamento. As ferramentas (busca, tema, idioma) formam uma faixa de quadrados de 40px dentro de um contorno de 2px, separados por filetes de 2px em `border`, com fundo `card` no hover. Abaixo de 768px os links saem da barra e o botão de menu fecha a faixa; ele abre um menu de tela cheia sobre `background`, com os links em 2rem seminegrito, cada um sobre um filete de 2px e com uma seta que anda 3px no hover. Ao abrir, os links sobem um após o outro. Na faixa, o tema é um botão único que alterna entre claro, escuro e sistema, com o ícone da escolha atual (sol, lua ou monitor) e, como nome acessível, a próxima ação no idioma da página; a partir de sistema, o primeiro clique sempre troca as cores. Sem JavaScript, ele some, e o botão de menu também: abaixo de 768px, os links de seção passam a uma segunda linha da barra, que deixa de ser fixa. No `/styleguide`, o controle de tema é um grupo de botões de 40px de altura dentro de um contorno de 2px, em que o pressionado inverte para fundo `foreground` e texto `background`.
 
 ### Espécime de tema (ThemePair)
 Os dois temas lado a lado: cada painel fixa `data-theme`, pinta o próprio `background` dentro de um contorno de 2px e mostra um título com a palavra de ênfase, texto secundário com link, os botões pequenos e um card de post em placa justa. Empilha no celular, duas colunas a partir de 768px.
@@ -334,13 +334,14 @@ Os dois temas lado a lado: cada painel fixa `data-theme`, pinta o próprio `back
 ### Motion
 - **Reveal:** elementos marcados entram de 16px abaixo, com opacidade e desfoque de 4px, em 700ms com `ease-out-expo`, escalonados por `--reveal-delay`.
 - **Entre páginas:** a página que sai afunda 8px e some em 180ms; a que entra sobe 12px em 500ms, 80ms depois.
-- **Redução de movimento:** transições, animações, View Transitions e levantamento de placas são desligados.
+- **Troca de tema:** quando o botão da faixa muda as cores, o novo tema cresce em círculo a partir dele, em 350ms com `ease-out-expo`. A troca fica sem o círculo nos outros caminhos (`/styleguide`, sistema operacional) e durante uma navegação. O círculo é um movimento, não um contêiner: a regra de cantos retos continua valendo para o que fica na tela.
+- **Redução de movimento:** transições, animações, View Transitions, a revelação do tema e o levantamento de placas são desligados.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** usar a placa (canto reto, contorno de 2px em `foreground`, sombra dura de 6px) como o único contêiner do site.
-- **Do** escrever cores de tema só em `:root, [data-theme="light"]` e `[data-theme="dark"]`, com os mesmos papéis nos dois.
+- **Do** escrever cores de tema só em `:root, [data-theme="light"]` e `[data-theme="dark"]`, com os mesmos papéis nos dois. A única exceção é a cópia dos tokens escuros em `@media (prefers-color-scheme: dark)`, para quem navega sem JavaScript; um teste falha se ela divergir.
 - **Do** referenciar tokens crus (`var(--card)`, `var(--foreground)`) em CSS escrito à mão.
 - **Do** usar `accent-ink` para todo texto na cor do accent e `accent` só como preenchimento.
 - **Do** usar o detalhe (Outfit 500, algarismos tabulares) para números e tempo de leitura, e Outfit no peso do texto para datas. **Don't** usar Martian Mono fora do código; a ênfase de título é Outfit no `accent-ink`.
