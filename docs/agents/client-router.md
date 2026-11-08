@@ -23,6 +23,10 @@ Nesses casos não há `astro:after-swap` nem `astro:page-load`:
 
 Estado ligado no `astro:before-preparation` é desligado no `abort` e no `pageshow` com `event.persisted`. O "pular para o conteúdo" do `Header.astro` cancela o próprio clique, então o router nunca o vê.
 
+## O que sobrevive à troca
+
+A troca substitui o `<head>` e o `<body>`, menos os elementos com `transition:persist`. A paleta ⌘K (`src/components/search/`) monta o React em `#cmdk-root`, que é persistido, e põe o próprio CSS num `<style>` dentro dele: um `<style>` acrescentado ao `<head>` sumiria na próxima troca. O `#cmdk-data`, fora da raiz, é o da página nova, e a paleta o relê a cada abertura.
+
 ## Nas provas
 
 - Clique num link interno com `clickAndSwap` da skill `checagem-visual`, que espera o `astro:page-load`.

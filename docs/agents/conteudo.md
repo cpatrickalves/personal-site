@@ -10,6 +10,10 @@ As coleções estão em `src/content.config.ts`.
 
 - Para ler frontmatter fora do Astro (num script), use `parseFrontmatter` de `@astrojs/markdown-remark`, o parser do build: ele aceita BOM e as variações de cerca que uma regex própria perde.
 
+## Índice da busca
+
+O `pnpm build` roda o Pagefind sobre o `dist`, um índice por `<html lang>`. Só a página do Post tem `data-pagefind-body`, e nela entram o título, o texto e as tags; o resto do `<main>` leva `data-pagefind-ignore`. O Pagefind busca também nos metadados (`data-pagefind-meta`): o que a paleta só mostra, como a data, vai como `data-pagefind-filter`.
+
 ## Projetos e palestras
 
 `projects` e `talks`: um YAML por item, com os campos de texto como `{ "pt-br": ..., en: ... }`. Os schemas são estritos: uma chave errada quebra o build.

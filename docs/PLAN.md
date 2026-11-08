@@ -37,7 +37,6 @@ PT-BR fica sem prefixo e EN em `/en`; os nomes das seções ficam em inglês nos
 | Sobre | `/about/` | `/en/about/` | Visível |
 | RSS | `/rss.xml` | `/en/rss.xml` | Visível |
 | Arquivo | `/archives/` | `/en/archives/` | Herdado do AstroPaper; a Fase 5 decide se fica |
-| Busca | `/search/` | `/en/search/` | Até a paleta ⌘K da Fase 3 |
 | Styleguide | `/styleguide/` | — | Só no dev e no preview |
 
 **Palestras ocultas:** uma flag `features.talks = false` na config. Desligada, a seção sai do menu e da home, a rota não é gerada e não entra no sitemap. Ligar é mudar um valor e publicar.
@@ -124,6 +123,7 @@ São nove fases (0 a 8) em sequência: design e estrutura com dados fake primeir
 **Fase 6: Analytics, SEO e qualidade**
 
 - Script do Umami só em produção (build sem `base`), com `data-domains="cpatrickalves.com"`.
+- Decidir se a busca ⌘K registra no Umami os termos buscados, sobretudo os que não acham nada (fica fora da #20).
 - Lighthouse acima de 95 em performance, acessibilidade e SEO.
   - Acessibilidade e SEO bloqueiam o PR.
   - Performance (mediana de 3 execuções) só gera aviso no PR e vira portão manual no pré-lançamento.
@@ -230,7 +230,7 @@ Esta seção existe para que um agente no Claude Code execute o plano sem o chat
 - O i18n do tema cobre só strings de UI (`src/i18n/lang/en.ts`, `locales: ["en"]`); rotas por idioma, coleções por idioma e seletor são trabalho novo.
 - As rotas do tema usam `/posts/`; renomear para `/blog/`.
 - Flags e config ficam no `astro-paper.config.ts`; a flag `talks` entra em `features`. Trocar o `timezone` do exemplo (Asia/Bangkok) para `America/Sao_Paulo`.
-- A busca do tema é uma página com Pagefind; ela é substituída pela paleta ⌘K do karhdo.dev.
+- A busca do tema era uma página com Pagefind (`/search/`); a paleta ⌘K do karhdo.dev a substituiu na #20, e a página saiu.
 - Dados com `fake: true` aparecem no preview e saem do build quando a Fase 7 começa.
 
 **Peças do karhdo.dev ([Karhdo/karhdo.dev](https://github.com/Karhdo/karhdo.dev), MIT)**
