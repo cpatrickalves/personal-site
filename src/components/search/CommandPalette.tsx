@@ -73,22 +73,25 @@ function loadPagefind(): Promise<Pagefind> {
     throw error;
   }) as Promise<Pagefind>);
 
-  const engine = (async () => {
+  const ready = { lang } as { lang: string; engine: Promise<Pagefind> };
+  ready.engine = (async () => {
     const pagefind = await module;
     if (await previous) await pagefind.destroy();
     await pagefind.options({
       baseUrl: pagefindBaseUrl(import.meta.env.BASE_URL),
       excerptLength: 20,
     });
+    // `init` reads `<html lang>` now, not when the open asked: the page may
+    // have changed language while `pagefind.js` was on its way.
+    ready.lang = document.documentElement.lang;
     await pagefind.init();
     return pagefind;
   })();
-  const ready = { lang, engine };
-  engine.catch(() => {
+  ready.engine.catch(() => {
     if (pagefindReady === ready) pagefindReady = undefined;
   });
   pagefindReady = ready;
-  return engine;
+  return ready.engine;
 }
 
 const EMPTY: PaletteData = {
