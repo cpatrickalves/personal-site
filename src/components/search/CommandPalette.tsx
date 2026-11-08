@@ -566,20 +566,20 @@ export default function CommandPalette({
               <Glyph name="close" />
             </button>
           </div>
-          <Command.List
-            className="cmdk-list"
-            label={strings.results}
-            aria-busy={searching}
-          >
+          {/* The scrolling area holds the notes beside the listbox, which may
+              only own options and groups; the live region reads them out. */}
+          <div className="cmdk-list" aria-busy={searching}>
             {unavailable && <p className="cmdk-note">{strings.unavailable}</p>}
-            {order.map(group => groups[group])}
+            <Command.List label={strings.results} aria-busy={searching}>
+              {order.map(group => groups[group])}
+            </Command.List>
             {searching && <p className="cmdk-note">{strings.searching}</p>}
             {term && done && rows === 0 && (
               <p className="cmdk-empty">
                 {tplStr(strings.noResults, { term })}
               </p>
             )}
-          </Command.List>
+          </div>
           <div className="cmdk-foot" aria-hidden="true">
             <span>
               <kbd>↑</kbd>
