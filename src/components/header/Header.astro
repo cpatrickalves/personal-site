@@ -210,6 +210,7 @@ const hasThemeToggle = features.lightAndDarkMode;
 
 <script>
   import { shortcutFor } from "@/components/search/palette-data";
+  import { tplStr } from "@/i18n/format";
 
   /**
    * The search button names the shortcut of the reader's system, which only
@@ -227,10 +228,9 @@ const hasThemeToggle = features.lightAndDarkMode;
         .userAgentData?.platform ||
       navigator.platform ||
       "";
-    const label = (button.dataset.labelTemplate ?? "").replace(
-      "{{shortcut}}",
-      shortcutFor(platform)
-    );
+    const label = tplStr(button.dataset.labelTemplate ?? "", {
+      shortcut: shortcutFor(platform),
+    });
     if (label) {
       button.setAttribute("aria-label", label);
       button.setAttribute("title", label);
