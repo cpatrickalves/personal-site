@@ -94,6 +94,19 @@ function loadPagefind(): Promise<Pagefind> {
   return ready.engine;
 }
 
+/**
+ * While the palette is open `palette.css` locks the page's scroll, which
+ * takes away a classic scrollbar: its room is kept, so the page around the
+ * plate does not move. A page with no scrollbar gets no gutter.
+ */
+function holdScrollbar(hold: boolean): void {
+  const root = document.documentElement;
+  if (!hold) root.style.removeProperty("scrollbar-gutter");
+  else if (window.innerWidth > root.clientWidth) {
+    root.style.setProperty("scrollbar-gutter", "stable");
+  }
+}
+
 const EMPTY: PaletteData = {
   posts: [],
   sections: [],
@@ -226,6 +239,7 @@ export default function CommandPalette({
     const dialog = dialogRef.current;
     if (dialog) {
       restoreFocusRef.current = true;
+      holdScrollbar(true);
       dialog.showModal();
       dialog.querySelector<HTMLInputElement>("[cmdk-input]")?.focus();
     }
@@ -245,6 +259,7 @@ export default function CommandPalette({
     if (!dialog) return;
     if (open && !dialog.open) {
       restoreFocusRef.current = true;
+      holdScrollbar(true);
       dialog.showModal();
       dialog.querySelector<HTMLInputElement>("[cmdk-input]")?.focus();
     } else if (!open && dialog.open) {
@@ -261,6 +276,7 @@ export default function CommandPalette({
     const onClose = () => {
       // The `close` event is queued: a reopen may have come first.
       if (dialog?.open) return;
+      holdScrollbar(false);
       setOpen(false);
       const opener = openerRef.current;
       if (restoreFocusRef.current && opener?.isConnected) {

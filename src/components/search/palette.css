@@ -5,6 +5,8 @@
  * stays visible around it; below md the whole screen, like the mobile menu.
  * Raw tokens only. Loaded with the palette's chunk, on the first open.
  */
+/* The scroll lock; `holdScrollbar` in CommandPalette.tsx keeps the room of a
+   classic scrollbar, so the page around the plate does not move. */
 :root:has(.cmdk-back[open]) {
   overflow: hidden;
 }
