@@ -454,7 +454,7 @@ export default function CommandPalette({
         {post.excerpt ? (
           <span
             className="cmdk-excerpt"
-            // Pagefind encodes the excerpt's entities and only adds <mark>.
+            // Pagefind escapes only < and > in the excerpt, then adds <mark>.
             dangerouslySetInnerHTML={{ __html: post.excerpt }}
           />
         ) : null}

@@ -18,7 +18,7 @@ export type PalettePost = {
   title: string;
   /** Publication date, `AAAA-MM-DD`, as `formatDate` gives it. */
   date: string;
-  /** Pagefind's excerpt: entities encoded, the term in `<mark>`. */
+  /** Pagefind's excerpt: only `<` and `>` escaped, the term in `<mark>`. */
   excerpt?: string;
 };
 
