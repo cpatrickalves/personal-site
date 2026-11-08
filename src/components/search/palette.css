@@ -105,12 +105,20 @@
   flex: 1;
   min-width: 0;
   height: 2.5rem;
+  padding-inline: 0.5rem;
   border: 0;
   outline: 0;
   background: transparent;
   color: var(--foreground);
   font: inherit;
   font-size: 1.125rem;
+}
+
+/* DESIGN.md's focus ring. A text field matches :focus-visible on every focus,
+   so the ring shows whenever the palette opens. */
+.cmdk-in input:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
 }
 
 .cmdk-in input::placeholder {
