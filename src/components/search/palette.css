@@ -112,6 +112,9 @@
   color: var(--foreground);
   font: inherit;
   font-size: 1.125rem;
+  /* The ring appears at once: with reduced motion, motion.css gives every
+     element a 0.01ms transition, and the default `all` would animate it. */
+  transition-property: none;
 }
 
 /* DESIGN.md's focus ring. A text field matches :focus-visible on every focus,
