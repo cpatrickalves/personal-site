@@ -5,6 +5,10 @@ import { fontData, experimental_getFontFileURL } from "astro:assets";
 import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
 import config from "@/config";
 
+// satori takes a React element; with React's types installed, a plain
+// element object needs the cast.
+type SatoriElement = Parameters<typeof satori>[0];
+
 export const GET: APIRoute = async context => {
   const fonts = fontData["--font-outfit-og"];
   const regularFontPath = getFontPathByWeight(fonts, 400);
@@ -138,7 +142,7 @@ export const GET: APIRoute = async context => {
           },
         ],
       },
-    },
+    } as unknown as SatoriElement,
     {
       width: 1200,
       height: 630,

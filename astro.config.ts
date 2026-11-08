@@ -6,6 +6,7 @@ import {
 } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import { unified } from "@astrojs/markdown-remark";
 import remarkToc from "remark-toc";
@@ -26,13 +27,13 @@ export default defineConfig({
   base: "/personal-site",
   integrations: [
     mdx(),
+    // Only the ⌘K palette uses React, loaded on its first open.
+    react(),
     sitemap({
       filter: page =>
         !page.includes("/styleguide/") &&
         (config.features?.showArchives !== false ||
-          !page.endsWith("/archives/")) &&
-        // Without Pagefind, /search/ renders the 404.
-        (config.features?.search !== false || !page.endsWith("/search/")),
+          !page.endsWith("/archives/")),
       // Pairs each page with the same path in the other locale (xhtml:link),
       // as the hreflang links in Layout.astro do.
       i18n: { defaultLocale: DEFAULT_LOCALE, locales: LANG_TAGS },

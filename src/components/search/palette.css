@@ -1,0 +1,306 @@
+/*
+ * The ⌘K palette, adapted from karhdo.dev's `palette.css` (MIT, see
+ * THIRD_PARTY_NOTICES.md) to DESIGN.md: from md up a plate at the top of the
+ * screen (square corners, 2px outline, hard shadow) over the page, which
+ * stays visible around it; below md the whole screen, like the mobile menu.
+ * Raw tokens only. Loaded with the palette's chunk, on the first open.
+ */
+/* The scroll lock; `holdScrollbar` in CommandPalette.tsx keeps the room of a
+   classic scrollbar, so the page around the plate does not move. */
+:root:has(.cmdk-back[open]) {
+  overflow: hidden;
+}
+
+.cmdk-back {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-family: inherit;
+}
+
+.cmdk-back[open] {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cmdk-back::backdrop {
+  background: transparent;
+}
+
+.cmdk {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+}
+
+/* cmdk's root holds the field, the list and the footer. */
+.cmdk [cmdk-root] {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+@media (width >= 48rem) {
+  .cmdk-back {
+    padding: max(6rem, 12vh) 1.5rem 1.5rem;
+  }
+
+  .cmdk {
+    width: min(40rem, 100%);
+    height: auto;
+    max-height: 100%;
+    background: var(--card);
+    border: 2px solid var(--foreground);
+    box-shadow: 6px 6px 0 0 var(--shadow);
+  }
+}
+
+/* Opening: the plate rises 8px into place. Nothing moves with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .cmdk-back .cmdk {
+    transition:
+      opacity 0.2s var(--ease-out-expo),
+      transform 0.3s var(--ease-out-expo);
+  }
+
+  @starting-style {
+    .cmdk-back[open] .cmdk {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+}
+
+/* The field: the height of the bar, over a 2px rule. */
+.cmdk-in {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 4rem;
+  padding-inline: 1rem 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.cmdk-in > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  color: var(--muted-foreground);
+}
+
+.cmdk-in input {
+  flex: 1;
+  min-width: 0;
+  height: 2.5rem;
+  padding-inline: 0.5rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  font-size: 1.125rem;
+  /* The ring appears at once: with reduced motion, motion.css gives every
+     element a 0.01ms transition, and the default `all` would animate it. */
+  transition-property: none;
+}
+
+/* DESIGN.md's focus ring. A text field matches :focus-visible on every focus,
+   so the ring shows whenever the palette opens. */
+.cmdk-in input:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+}
+
+.cmdk-in input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+.cmdk-in input::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* The close button, a 40px square of the bar's tool strip. */
+.cmdk-close {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--foreground);
+  background: transparent;
+  color: var(--foreground);
+  transition: background-color 0.2s;
+}
+
+.cmdk-close:hover {
+  background: var(--muted);
+}
+
+.cmdk-close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.cmdk-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.5rem;
+  scroll-padding-block: 0.5rem;
+}
+
+@media (width >= 48rem) {
+  .cmdk-list {
+    flex: initial;
+    max-height: min(26rem, 60vh);
+  }
+}
+
+.cmdk-list [cmdk-group] + [cmdk-group] {
+  margin-top: 0.5rem;
+}
+
+.cmdk-list [cmdk-group-heading] {
+  padding: 0.5rem 0.75rem 0.25rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.cmdk-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--foreground);
+  cursor: pointer;
+  user-select: none;
+}
+
+.cmdk-item > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  color: var(--muted-foreground);
+}
+
+/* The selected row takes the accent fill, like a text selection. */
+.cmdk-item[data-selected="true"] {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.cmdk-item[data-selected="true"] > svg,
+.cmdk-item[data-selected="true"] .cmdk-excerpt,
+.cmdk-item[data-selected="true"] .cmdk-sub {
+  color: var(--accent-foreground);
+}
+
+.cmdk-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.cmdk-title {
+  overflow: hidden;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cmdk-excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* The matched term: weight and a 2px underline, never a second colour. */
+.cmdk-excerpt mark {
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline 2px;
+  text-underline-offset: 3px;
+}
+
+.cmdk-sub {
+  flex: none;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cmdk-more {
+  color: var(--accent-ink);
+  font-weight: 500;
+}
+
+.cmdk-more > svg {
+  color: inherit;
+}
+
+.cmdk-note,
+.cmdk-empty {
+  margin: 0;
+  padding: 1rem 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.9375rem;
+}
+
+.cmdk-foot {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding: 0.625rem 1rem;
+  border-top: 2px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.cmdk-foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.cmdk kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.375rem;
+  border: 1.5px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}

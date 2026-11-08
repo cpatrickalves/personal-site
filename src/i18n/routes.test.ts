@@ -34,7 +34,6 @@ test("section names are the same in both locales", () => {
     assert.equal(routePath(locale, { page: "projects" }), `${prefix}projects/`);
     assert.equal(routePath(locale, { page: "talks" }), `${prefix}talks/`);
     assert.equal(routePath(locale, { page: "archives" }), `${prefix}archives/`);
-    assert.equal(routePath(locale, { page: "search" }), `${prefix}search/`);
   }
 });
 
@@ -126,7 +125,6 @@ test("pages that exist in both locales lead to themselves", () => {
     "talks",
     "about",
     "archives",
-    "search",
     "rss",
   ] as const) {
     assert.deepEqual(equivalentRoute({ page }, enPages), { page });

@@ -37,6 +37,7 @@ SOFTWARE.
 - Origem: https://github.com/Karhdo/karhdo.dev
 - Peças copiadas (barra superior, busca ⌘K, modo claro/escuro, Expressive Code) entram na Fase 3; o commit de origem de cada uma é registrado aqui quando ela entrar.
 - Barra superior: `src/components/header/` (`Header.astro` e `MobileNav.astro`), do commit `ea3cf7ac89df2c70b700273235bd6ba173fb4bad`. Adaptada em `src/components/header/` aos tokens do site: sem vidro nem cantos arredondados, e sem `SearchTrigger`, `ThemeToggle` e `AnalyticsLink`.
+- Busca ⌘K: `src/components/search/` (`CommandPalette.tsx`, `CommandPaletteLoader.astro`, `mount-palette.tsx`, `palette-data.ts` e `palette.css`), do commit `cc2e79f5e369a62c54dfbad85872fe23e6afffe9`. Adaptada em `src/components/search/` ao `DESIGN.md` e ao i18n do site: só Posts e seções (sem ações de tema, de copiar URL e de redes sociais), textos nos dois idiomas, índice do idioma da página, até 8 resultados com `Mostrar mais`, tela cheia abaixo de 768px e placa de canto reto acima.
 - Tema claro, escuro e sistema: `src/components/seo/ThemeScript.astro`, `src/components/header/ThemeToggle.astro`, `src/styles/theme-css.ts` e `src/lib/theme.ts`, do commit `cc2e79f5e369a62c54dfbad85872fe23e6afffe9`. Adaptado em `src/components/seo/ThemeScript.astro`, `src/scripts/themeInline.js`, `src/components/header/ThemeToggle.astro`, `src/scripts/themeReveal.ts` e `src/styles/theme-css.ts`: a escolha "sistema" remove a chave em vez de gravá-la, a ordem do ciclo depende do sistema operacional, o botão segue a faixa de quadrados de 40px e o círculo dura 350ms.
 
 ```

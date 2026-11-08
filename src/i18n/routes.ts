@@ -15,7 +15,6 @@ export type Route =
   | { page: "talks" }
   | { page: "about" }
   | { page: "archives" }
-  | { page: "search" }
   | { page: "rss" };
 
 // Pages are directories, with a trailing slash as Astro builds them; the feed

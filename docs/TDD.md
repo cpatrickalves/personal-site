@@ -117,7 +117,7 @@ flowchart LR
 | Coleções de conteúdo | Posts por idioma, páginas institucionais por idioma, projetos e palestras em YAML bilíngue. O schema é validado no build. |
 | Camada de i18n | Strings de UI por idioma, helpers de URL por idioma (que também aplicam o `base`), resolução da versão equivalente no outro idioma e formatação de datas. |
 | Layout e navegação | Barra superior com menu mobile, seletor de idioma, alternância de tema, rodapé e 404. |
-| Busca ⌘K | Paleta de comandos (ilha React) sobre o índice Pagefind. O Pagefind cria um índice por `<html lang>` e carrega o do idioma da página. |
+| Busca ⌘K | Paleta de comandos em React sobre o índice Pagefind, sem página própria. Abre por ⌘K, Ctrl+K, `/` ou pela lupa da barra; o React, o cmdk e o `pagefind.js` só baixam na primeira abertura. O Pagefind cria um índice por `<html lang>` e carrega o do idioma da página, de novo quando o idioma muda. O índice tem o título, o texto e as tags de cada Post; a data vai como filtro, porque metadado do Pagefind é texto buscável. |
 | Tema | Claro, escuro e "sistema", aplicado antes da primeira pintura para não piscar. `localStorage.theme` guarda `light` ou `dark`, e a ausência da chave significa "sistema". Sem JavaScript, segue o sistema por uma cópia dos tokens escuros em `@media`, guardada por teste. |
 | Design system | Tokens CSS, fontes (Fonts API do Astro, chave `fonts`), componentes base e primitivas de animação que respeitam `prefers-reduced-motion`. |
 | Renderização de posts | Expressive Code, Mermaid (astro-mermaid, renderizado no navegador) com tema automático, callouts, zoom de imagens e componentes MDX animados. |
@@ -139,7 +139,6 @@ Os nomes das seções ficam em inglês nos dois idiomas.
 | Sobre | `/about/` | `/en/about/` | Visível |
 | RSS | `/rss.xml` | `/en/rss.xml` | Visível |
 | Arquivo | `/archives/` | `/en/archives/` | Herdado do AstroPaper; a Fase 5 decide se fica |
-| Busca | `/search/` | `/en/search/` | Até a paleta ⌘K da Fase 3 |
 | Styleguide | `/styleguide/` | — | Só no dev e no preview |
 
 Toda tag tem página nos dois idiomas, mesmo sem posts num deles, para o seletor de idioma sempre achar a mesma tag.

@@ -2,6 +2,7 @@
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import ThemeScript from "@/components/seo/ThemeScript.astro";
+import CommandPaletteLoader from "@/components/search/CommandPaletteLoader.astro";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
 import { LANG_TAGS, toLocale } from "@/i18n/locales";
@@ -118,6 +119,7 @@ const hreflangLinks = route ? await getHreflangLinks(route) : [];
     class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
   >
     <slot />
+    {config.features.search !== false && <CommandPaletteLoader />}
     <script>
       import "@/scripts/theme";
       import "@/scripts/reveal";
