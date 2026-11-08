@@ -29,7 +29,10 @@ const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 const { features, site } = config;
 
+// Newest publication first: `getLocalePosts` sorts by the last update, and
+// the rows show the publication date.
 const posts = (await getLocalePosts(locale))
+  .sort((a, b) => +b.data.pubDatetime - +a.data.pubDatetime)
   .slice(0, LATEST_POSTS)
   .map(post => ({
     url: getPostUrl(post),
