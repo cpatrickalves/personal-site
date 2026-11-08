@@ -267,9 +267,16 @@ export default function CommandPalette({
         opener.focus({ preventScroll: true });
       }
     };
-    // A click on the dialog itself is a click around the plate.
+    // A click on the dialog itself is a click around the plate. A drag that
+    // starts on the plate (selecting the field's text, the list's scrollbar)
+    // and ends around it also clicks the dialog: only a press that starts
+    // there closes.
+    let pressedOnBackdrop = false;
+    const onPointerDown = (event: PointerEvent) => {
+      pressedOnBackdrop = event.target === dialog;
+    };
     const onBackdrop = (event: MouseEvent) => {
-      if (event.target === dialog) close();
+      if (pressedOnBackdrop && event.target === dialog) close();
     };
     // Tab cycles through the dialog's controls and never leaves it.
     const onKeyDown = (event: KeyboardEvent) => {
@@ -293,6 +300,7 @@ export default function CommandPalette({
     window.addEventListener("cmdk:toggle", onToggle);
     document.addEventListener("astro:before-swap", onBeforeSwap);
     dialog?.addEventListener("close", onClose);
+    dialog?.addEventListener("pointerdown", onPointerDown);
     dialog?.addEventListener("click", onBackdrop);
     dialog?.addEventListener("keydown", onKeyDown);
     return () => {
@@ -300,6 +308,7 @@ export default function CommandPalette({
       window.removeEventListener("cmdk:toggle", onToggle);
       document.removeEventListener("astro:before-swap", onBeforeSwap);
       dialog?.removeEventListener("close", onClose);
+      dialog?.removeEventListener("pointerdown", onPointerDown);
       dialog?.removeEventListener("click", onBackdrop);
       dialog?.removeEventListener("keydown", onKeyDown);
     };
