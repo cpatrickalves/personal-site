@@ -60,9 +60,6 @@ export interface UIStrings {
 
     archivesTitle: string;
     archivesDesc: string;
-
-    searchTitle: string;
-    searchDesc: string;
   };
   a11y: {
     skipToContent: string;
@@ -80,10 +77,32 @@ export interface UIStrings {
     };
     /** The language switch's label, read from the target locale, in its language. */
     switchLanguage: string;
-    searchPlaceholder: string;
-    noResults: string;
+    /** The search button's name once its script knows the system: `{{shortcut}}` is ⌘K or Ctrl+K. */
+    searchWithShortcut: string;
     goToPreviousPage: string;
     goToNextPage: string;
+  };
+  /** The ⌘K palette (`src/components/search/`). */
+  search: {
+    dialog: string;
+    placeholder: string;
+    close: string;
+    results: string;
+    latest: string;
+    posts: string;
+    navigation: string;
+    /** `{{n}}`: the Posts left out. */
+    showMore: string;
+    searching: string;
+    /** `{{term}}`: what the reader typed. */
+    noResults: string;
+    unavailable: string;
+    /** `{{n}}`: the rows of the list. */
+    resultOne: string;
+    resultOther: string;
+    hintMove: string;
+    hintOpen: string;
+    hintClose: string;
   };
   notFound: {
     title: string;

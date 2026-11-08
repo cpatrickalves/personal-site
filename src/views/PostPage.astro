@@ -6,6 +6,7 @@ import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
 import Tag from "@/components/Tag.astro";
 import { getPostUrl } from "@/i18n/urls";
+import { formatDate } from "@/i18n";
 import { getPostSlug } from "@/utils/getPostPaths";
 import { slugifyStr } from "@/utils/slugify";
 import { toTransitionName } from "@/utils/toTransitionName";
@@ -60,6 +61,10 @@ const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
 const route: Route = { page: "post", slug: getPostSlug(post) };
+
+// The palette shows the publication date. It goes to Pagefind as a filter:
+// a meta would be searchable text.
+const publishedOn = formatDate(pubDatetime, timezone ?? config.site.timezone);
 ---
 
 <PostLayout
@@ -79,6 +84,7 @@ const route: Route = { page: "post", slug: getPostSlug(post) };
     id="main-content"
     class:list={["app-layout", { "mt-8": !config.features.showBackButton }]}
     data-pagefind-body
+    data-pagefind-filter={`date:${publishedOn}`}
   >
     <h1
       style={{ viewTransitionName: toTransitionName(post.id) }}
@@ -87,7 +93,8 @@ const route: Route = { page: "post", slug: getPostSlug(post) };
       {title}
     </h1>
 
-    <div class="my-2 flex items-center gap-2">
+    <!-- The index holds the title, the text and the tags; nothing else. -->
+    <div class="my-2 flex items-center gap-2" data-pagefind-ignore>
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
       <span
         aria-hidden="true"
@@ -114,7 +121,9 @@ const route: Route = { page: "post", slug: getPostSlug(post) };
 
     <hr class="my-8 border-dashed" />
 
-    <EditPost class="sm:hidden" {hideEditPost} {post} />
+    <div data-pagefind-ignore>
+      <EditPost class="sm:hidden" {hideEditPost} {post} />
+    </div>
 
     <BackToTopButton />
 
@@ -122,7 +131,9 @@ const route: Route = { page: "post", slug: getPostSlug(post) };
       {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
     </ul>
 
-    <ShareLinks />
+    <div data-pagefind-ignore>
+      <ShareLinks />
+    </div>
 
     <hr class="my-8 border-dashed" />
 

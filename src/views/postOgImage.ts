@@ -5,6 +5,10 @@ import sharp from "sharp";
 import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
 import config from "@/config";
 
+// satori takes a React element; with React's types installed, a plain
+// element object needs the cast.
+type SatoriElement = Parameters<typeof satori>[0];
+
 // The dynamic OG image of a Post, shared by the PT-BR and EN routes.
 export const GET: APIRoute = async ({ props, url }) => {
   if (!config.features.dynamicOgImage) {
@@ -150,7 +154,7 @@ export const GET: APIRoute = async ({ props, url }) => {
           },
         ],
       },
-    },
+    } as unknown as SatoriElement,
     {
       width: 1200,
       height: 630,

@@ -35,8 +35,6 @@ const targetT = useTranslations(target);
 const languageUrl = await getEquivalentUrl(route, target);
 
 const homeUrl = localeUrl(locale, { page: "home" });
-const searchUrl = localeUrl(locale, { page: "search" });
-const pathname = Astro.url.pathname.replace(/\/?$/, "/");
 const links = navItems(
   { talks: features.talks, showArchives: features.showArchives },
   stripLocale(stripBase(Astro.url.pathname), locale)
@@ -86,22 +84,24 @@ const hasThemeToggle = features.lightAndDarkMode;
     </nav>
 
     {
-      /* The tools, one strip of 40px squares: search, theme, then the
-        language switch; #20 turns search into the ⌘K palette. Below md
-        the strip ends with the menu button. */
+      /* The tools, one strip of 40px squares: search (the ⌘K palette),
+        theme, then the language switch. Below md the strip ends with the
+        menu button. */
     }
     <div class="border-outline flex border-2 [&>*+*]:border-s-2">
       {
         hasSearch && (
-          <a
-            href={searchUrl}
+          <button
+            type="button"
             class="tool-btn"
-            aria-current={pathname === searchUrl ? "page" : undefined}
+            aria-label={t.nav.search}
             title={t.nav.search}
+            aria-haspopup="dialog"
+            data-search-open
+            data-label-template={t.a11y.searchWithShortcut}
           >
             <IconSearch aria-hidden="true" />
-            <span class="sr-only">{t.nav.search}</span>
-          </a>
+          </button>
         )
       }
       {hasThemeToggle && <ThemeToggle />}
@@ -153,6 +153,18 @@ const hasThemeToggle = features.lightAndDarkMode;
     @apply text-[0.9375rem] font-semibold tracking-[0.04em];
   }
 
+  /* The palette opens through its script; without it, search has no place. */
+  @media (scripting: none) {
+    [data-search-open] {
+      display: none;
+    }
+
+    /* Search, theme and menu are gone: the language switch starts the strip. */
+    .lang-btn {
+      border-inline-start-width: 0;
+    }
+  }
+
   /*
    * Without JavaScript the menu can't open: below md the links take a row. The
    * bar is then too tall to stay fixed: it would cover the screen and anchors.
@@ -197,6 +209,42 @@ const hasThemeToggle = features.lightAndDarkMode;
 </style>
 
 <script>
+  import { shortcutFor } from "@/components/search/palette-data";
+
+  /**
+   * The search button names the shortcut of the reader's system, which only
+   * the browser knows; the served HTML says just the action. A click opens
+   * the palette through its loader (`CommandPaletteLoader.astro`).
+   */
+  function initSearchButton() {
+    const button =
+      document.querySelector<HTMLButtonElement>("[data-search-open]");
+    if (!button || button.dataset.bound) return;
+    button.dataset.bound = "true";
+
+    const platform =
+      (navigator as Navigator & { userAgentData?: { platform?: string } })
+        .userAgentData?.platform ||
+      navigator.platform ||
+      "";
+    const label = (button.dataset.labelTemplate ?? "").replace(
+      "{{shortcut}}",
+      shortcutFor(platform)
+    );
+    if (label) {
+      button.setAttribute("aria-label", label);
+      button.setAttribute("title", label);
+    }
+    button.addEventListener("click", () =>
+      window.dispatchEvent(
+        new CustomEvent("open-command-palette", { detail: { opener: button } })
+      )
+    );
+  }
+
+  initSearchButton();
+  document.addEventListener("astro:page-load", initSearchButton);
+
   function handleSkipToContent() {
     const skipLink = document.getElementById("skip-to-content");
     if (!skipLink) return;

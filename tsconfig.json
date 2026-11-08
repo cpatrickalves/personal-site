@@ -3,6 +3,8 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist", "public/pagefind"],
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "paths": {
       "@/*": ["./src/*"],
       "@/astro-paper.config": ["./astro-paper.config"]
