@@ -25,7 +25,9 @@ Estado ligado no `astro:before-preparation` é desligado no `abort` e no `pagesh
 
 ## O que sobrevive à troca
 
-A troca substitui o `<head>` e o `<body>`, menos os elementos com `transition:persist`. A paleta ⌘K (`src/components/search/`) monta o React em `#cmdk-root`, que é persistido, e põe o próprio CSS num `<style>` dentro dele: um `<style>` acrescentado ao `<head>` sumiria na próxima troca. O `#cmdk-data`, fora da raiz, é o da página nova, e a paleta o relê a cada abertura.
+A troca substitui o `<head>` e o `<body>`, menos os elementos com `transition:persist`. A paleta ⌘K (`src/components/search/`) monta o React em `#cmdk-root`, que é persistido, e põe o próprio CSS num `<style>` dentro dele: um `<style>` acrescentado ao `<head>` sumiria na próxima troca. O `#cmdk-data`, fora da raiz, é o da página nova, e a paleta o relê a cada abertura. Por que a paleta é React montado à mão e não uma ilha: [ADR 0004](../adr/0004-react-so-na-paleta-de-busca.md).
+
+O estado de módulo também sobrevive, mas o `<html lang>` pode mudar na troca. O Pagefind carrega o índice do idioma que lê no `init`, então a paleta guarda o idioma lido logo antes do `init` e, se ele mudou, faz `destroy()` e um `init()` novo. Leia o `<html lang>` quando for usá-lo, não quando o pedido começou.
 
 ## Nas provas
 

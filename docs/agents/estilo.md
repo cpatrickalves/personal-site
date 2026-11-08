@@ -4,6 +4,7 @@ O sistema de design (paleta, tipografia, componentes) está no `DESIGN.md`; o po
 
 - Tailwind 4 via Vite; tokens em `src/styles/theme.css`. O Shiki usa o tema `css-variables`, então as cores do código também vêm desses tokens.
 - Primitivas de UI compartilhadas ficam em `src/components/ui/`; `src/pages/styleguide/` as renderiza para a aprovação do design.
+- Um diálogo que trava a rolagem com `overflow: hidden` no `<html>` tira a barra de rolagem clássica, e a página em volta anda para o lado. A paleta ⌘K põe `scrollbar-gutter: stable` inline no `<html>` só enquanto está aberta e só se a barra ocupa espaço (`holdScrollbar` em `CommandPalette.tsx`), em vez de uma regra global, para as outras páginas não mudarem.
 
 ## Fontes
 

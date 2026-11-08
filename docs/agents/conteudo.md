@@ -14,6 +14,9 @@ As coleções estão em `src/content.config.ts`.
 
 O `pnpm build` roda o Pagefind sobre o `dist`, um índice por `<html lang>`. Só a página do Post tem `data-pagefind-body`, e nela entram o título, o texto e as tags; o resto do `<main>` leva `data-pagefind-ignore`. O Pagefind busca também nos metadados (`data-pagefind-meta`): o que a paleta só mostra, como a data, vai como `data-pagefind-filter`.
 
+- O trecho de um resultado vem do Pagefind com só `<` e `>` escapados e o termo em `<mark>`, e a paleta o põe como HTML. Um `&` do texto passa cru: um Post que mostra o literal `&lt;` aparece no trecho como `<`.
+- `getLocalePosts` ordena pela última atualização (`modDatetime`, senão `pubDatetime`). Uma lista que mostra a data de publicação, como os últimos Posts da paleta, ordena de novo por `pubDatetime`.
+
 ## Projetos e palestras
 
 `projects` e `talks`: um YAML por item, com os campos de texto como `{ "pt-br": ..., en: ... }`. Os schemas são estritos: uma chave errada quebra o build.
